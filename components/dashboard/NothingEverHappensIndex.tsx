@@ -23,10 +23,10 @@ export function NothingEverHappensIndex({
   highestRiskMarket,
 }: NothingEverHappensIndexProps) {
   const getStatusText = (pct: number) => {
-    if (pct < 30) return "Nothing Ever Happens";
-    if (pct < 65) return "Something Might Happen";
-    if (pct < 99) return "Something Is Happening";
-    return "It Happened";
+    if (pct < 30) return "아무 일도 없음";
+    if (pct < 65) return "뭔가 있을지도";
+    if (pct < 99) return "뭔가 벌어지는 중";
+    return "터졌다";
   };
 
   const getStatusColor = (pct: number) => {
@@ -44,11 +44,11 @@ export function NothingEverHappensIndex({
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center relative z-10">
         {/* 왼쪽: 타이틀 + 설명 */}
         <div className="flex-1 min-w-0 text-center lg:text-left order-1">
-          <p className="text-xs text-gray-500 tracking-[0.3em] font-mono mb-3">
-            NOTHING EVER HAPPENS INDEX
+          <p className="text-xs text-gray-500 tracking-[0.2em] font-mono mb-3">
+            김밥 지정학 지수
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-6">
-            <span className="text-white">Status: </span>
+            <span className="text-white">상태: </span>
             <span className={statusColor}>{status}</span>
           </h2>
 
@@ -59,8 +59,8 @@ export function NothingEverHappensIndex({
           </button>
 
           <p className="text-gray-400 text-sm lg:text-base mb-6 lg:mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
-            Real-time doomsday clock tracking 33 high-impact risk markets. The
-            higher the index, the closer we are to a major geopolitical event.
+            33개 고위험 마켓을 추적하는 실시간 종말 시계. 지수가 높을수록
+            대형 지정학적 사건에 가까워집니다.
           </p>
 
           <div className="hidden lg:block">
@@ -93,7 +93,7 @@ function HighestRiskCard({ market }: { market: HighestRiskMarket }) {
           <div className="flex items-center gap-2 mb-1">
             <span className="text-yellow-500 text-sm">⚠</span>
             <span className="text-xs text-gray-500 tracking-wider font-mono">
-              HIGHEST RISK
+              최고 위험
             </span>
           </div>
           <p className="text-sm text-white leading-tight line-clamp-2">
@@ -204,27 +204,23 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
       </div>
 
       {/* 구역 라벨 */}
-      <div className="absolute top-[15%] left-[8%] text-green-500 text-[10px] font-mono font-bold leading-tight text-center">
-        <div>NOTHING</div>
-        <div>EVER</div>
-        <div>HAPPENS</div>
+      <div className="absolute top-[15%] left-[8%] text-green-500 text-[11px] font-bold leading-tight text-center">
+        <div>아무 일도</div>
+        <div>없음</div>
       </div>
 
-      <div className="absolute top-[2%] left-[28%] text-yellow-600 text-[10px] font-mono font-bold leading-tight text-center">
-        <div>SOMETHING</div>
-        <div>MIGHT</div>
-        <div>HAPPEN</div>
+      <div className="absolute top-[2%] left-[28%] text-yellow-600 text-[11px] font-bold leading-tight text-center">
+        <div>뭔가</div>
+        <div>있을지도</div>
       </div>
 
-      <div className="absolute top-[2%] right-[22%] text-orange-500 text-[10px] font-mono font-bold leading-tight text-center">
-        <div>SOMETHING</div>
-        <div>IS</div>
-        <div>HAPPENING</div>
+      <div className="absolute top-[2%] right-[22%] text-orange-500 text-[11px] font-bold leading-tight text-center">
+        <div>뭔가</div>
+        <div>벌어지는 중</div>
       </div>
 
-      <div className="absolute top-[15%] right-[5%] text-red-500 text-[9px] font-mono font-bold leading-tight text-center">
-        <div>IT</div>
-        <div>HAPPENED</div>
+      <div className="absolute top-[15%] right-[5%] text-red-500 text-[11px] font-bold leading-tight text-center">
+        <div>터졌다</div>
       </div>
     </div>
   );

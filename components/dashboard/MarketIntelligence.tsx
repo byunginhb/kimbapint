@@ -59,7 +59,7 @@ const osintTweets: OsintTweet[] = [
 const markets: MarketItem[] = [
   {
     id: "1",
-    title: "Will Russia enter Druzkhivka by January 31?",
+    title: "러시아가 1월 31일까지 드루즈키브카에 진입할까?",
     image: "🏙️",
     price: 1,
     priceChange: null,
@@ -68,7 +68,7 @@ const markets: MarketItem[] = [
   },
   {
     id: "2",
-    title: "Russia x Ukraine ceasefire by March 31, 2026?",
+    title: "2026년 3월 31일까지 러-우 휴전?",
     image: "🇺🇦",
     price: 16,
     priceChange: null,
@@ -77,7 +77,7 @@ const markets: MarketItem[] = [
   },
   {
     id: "3",
-    title: "Russia x Ukraine ceasefire by end of 2026?",
+    title: "2026년 말까지 러-우 휴전?",
     image: "🕊️",
     price: 45,
     priceChange: -1,
@@ -86,7 +86,7 @@ const markets: MarketItem[] = [
   },
   {
     id: "4",
-    title: "Will NATO deploy troops to Ukraine in 2026?",
+    title: "2026년 NATO가 우크라이나에 병력 배치?",
     image: "🔵",
     price: 51,
     priceChange: null,
@@ -156,9 +156,9 @@ function MarketCard({ market }: { market: MarketItem }) {
                 {market.priceChange >= 0 ? "▲" : "▼"} {Math.abs(market.priceChange)}¢
               </span>
             ) : (
-              "No change"
+              "변동 없음"
             )}{" "}
-            since tweet
+            (트윗 이후)
           </p>
         </div>
         <div className="flex flex-col items-end">
@@ -174,13 +174,13 @@ function MarketCard({ market }: { market: MarketItem }) {
         </span>
         <div className="flex items-center gap-2">
           <button className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronDown className="w-4 h-4 inline" /> See more details
+            <ChevronDown className="w-4 h-4 inline" /> 상세 보기
           </button>
           <a
             href="#"
             className="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded text-white transition-colors font-mono"
           >
-            View market →
+            마켓 보기 →
           </a>
         </div>
       </div>
@@ -198,11 +198,11 @@ export function MarketIntelligence() {
         <div className="flex items-center gap-3">
           <TrendingUp className="w-5 h-5 text-cyan-400" />
           <h2 className="text-lg font-bold text-white font-mono tracking-wider">
-            MARKET INTELLIGENCE
+            마켓 인텔리전스
           </h2>
           <span className="flex items-center gap-1.5 text-xs">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-gray-400">LIVE ODDS</span>
+            <span className="text-gray-400">실시간</span>
           </span>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -218,25 +218,21 @@ export function MarketIntelligence() {
         <HelpCircle className="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm text-gray-300 mb-2">
-            Real-time OSINT analysis matched to prediction markets. Select tweets
-            to view relevant market opportunities, or switch to{" "}
+            실시간 OSINT 분석과 예측 마켓 매칭. 트윗을 선택하면 관련 마켓을 볼 수 있고,{" "}
             <a href="#" className="text-cyan-400 hover:underline">
-              TOP MARKETS
-            </a>{" "}
-            for aggregated insights across all reports.
+              TOP 마켓
+            </a>
+            에서 전체 리포트의 종합 인사이트를 확인하세요.
           </p>
           <div className="flex flex-wrap gap-4 text-xs text-gray-500">
             <span>
-              <span className="text-green-400">●</span> Click tweets → View
-              relevant markets
+              <span className="text-green-400">●</span> 트윗 클릭 → 관련 마켓 보기
             </span>
             <span>
-              <span className="text-green-400">●</span> Live/Top toggle → Switch
-              views
+              <span className="text-green-400">●</span> Live/Top 토글 → 뷰 전환
             </span>
             <span>
-              <span className="text-yellow-400">●</span> Relevance % → Match
-              quality
+              <span className="text-yellow-400">●</span> 관련도 % → 매칭 품질
             </span>
           </div>
         </div>
@@ -299,7 +295,7 @@ export function MarketIntelligence() {
             Polymarket
           </span>
           <span className="text-white font-medium">
-            Trade geopolitics on Polymarket
+            Polymarket에서 지정학 트레이딩
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -307,17 +303,17 @@ export function MarketIntelligence() {
             href="#"
             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-white text-sm font-medium transition-colors"
           >
-            Trade now
+            트레이딩
           </a>
           <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-white text-sm transition-colors">
-            Dismiss
+            닫기
           </button>
         </div>
       </div>
 
       {/* 푸터 */}
       <div className="mt-8 text-center text-xs text-gray-600 font-mono tracking-wider">
-        CLASSIFIED // FOR OFFICIAL USE ONLY // PIZZA INTELLIGENCE DIVISION
+        기밀 // 공식 사용만 // 피자 인텔리전스 부서
       </div>
     </div>
   );

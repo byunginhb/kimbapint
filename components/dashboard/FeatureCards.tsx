@@ -60,7 +60,7 @@ export function FeatureCards() {
             </div>
 
             <p className="text-gray-400 text-sm lg:text-base mb-6 max-w-xs">
-              Real-time 3D visualization of global prediction markets
+              글로벌 예측 마켓의 실시간 3D 시각화
             </p>
 
             <hr className="w-full border-gray-700 mb-6" />
@@ -70,7 +70,7 @@ export function FeatureCards() {
               className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-mono text-sm"
             >
               <ExternalLink className="w-4 h-4" />
-              Enter PolyGlobe
+              PolyGlobe 입장
             </a>
           </div>
         </div>
@@ -116,7 +116,7 @@ export function FeatureCards() {
             </div>
 
             <p className="text-gray-400 text-sm lg:text-base mb-6 max-w-xs">
-              Track Trump transcript mentions & narratives
+              트럼프 발언록 언급 및 내러티브 추적
             </p>
 
             <hr className="w-full border-gray-700 mb-6" />
@@ -126,7 +126,7 @@ export function FeatureCards() {
               className="flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors font-mono text-sm"
             >
               <TrendingUp className="w-4 h-4" />
-              Explore Mentions
+              언급 탐색
             </a>
           </div>
         </div>

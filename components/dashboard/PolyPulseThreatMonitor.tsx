@@ -11,38 +11,38 @@ interface ThreatPair {
 
 const threatPairs: ThreatPair[] = [
   {
-    from: { code: "USA", flag: "🇺🇸" },
-    to: { code: "RUS", flag: "🇷🇺" },
+    from: { code: "미국", flag: "🇺🇸" },
+    to: { code: "러시아", flag: "🇷🇺" },
     level: "MODERATE",
     chartData: [40, 35, 42, 38, 45, 40, 38, 42, 45, 48, 44, 40],
   },
   {
-    from: { code: "RUS", flag: "🇷🇺" },
-    to: { code: "UKR", flag: "🇺🇦" },
+    from: { code: "러시아", flag: "🇷🇺" },
+    to: { code: "우크라", flag: "🇺🇦" },
     level: "HIGH",
     chartData: [50, 55, 52, 60, 58, 65, 62, 58, 55, 52, 58, 55],
   },
   {
-    from: { code: "USA", flag: "🇺🇸" },
-    to: { code: "CHN", flag: "🇨🇳" },
+    from: { code: "미국", flag: "🇺🇸" },
+    to: { code: "중국", flag: "🇨🇳" },
     level: "MODERATE",
     chartData: [30, 32, 28, 35, 38, 42, 40, 45, 48, 50, 52, 55],
   },
   {
-    from: { code: "CHN", flag: "🇨🇳" },
-    to: { code: "TWN", flag: "🇹🇼" },
+    from: { code: "중국", flag: "🇨🇳" },
+    to: { code: "대만", flag: "🇹🇼" },
     level: "HIGH",
     chartData: [60, 58, 62, 55, 52, 48, 50, 45, 48, 52, 50, 48],
   },
   {
-    from: { code: "USA", flag: "🇺🇸" },
-    to: { code: "IRN", flag: "🇮🇷" },
+    from: { code: "미국", flag: "🇺🇸" },
+    to: { code: "이란", flag: "🇮🇷" },
     level: "CRITICAL",
     chartData: [50, 55, 60, 58, 65, 70, 75, 78, 80, 85, 82, 88],
   },
   {
-    from: { code: "USA", flag: "🇺🇸" },
-    to: { code: "VEN", flag: "🇻🇪" },
+    from: { code: "미국", flag: "🇺🇸" },
+    to: { code: "베네수엘라", flag: "🇻🇪" },
     level: "CRITICAL",
     chartData: [70, 68, 72, 65, 68, 62, 58, 55, 60, 58, 55, 52],
   },
@@ -153,7 +153,7 @@ function ThreatCard({ pair }: { pair: ThreatPair }) {
         href="#"
         className="text-xs text-gray-500 hover:text-gray-300 transition-colors font-mono"
       >
-        Analyze →
+        분석하기 →
       </a>
     </div>
   );
@@ -172,11 +172,11 @@ export function PolyPulseThreatMonitor() {
             <span className="text-purple-400">↗</span>
             <span className="font-bold">PolyPulse</span>
             <span className="text-gray-400">—</span>
-            <span className="text-gray-300">Bilateral Threat Monitor</span>
+            <span className="text-gray-300">양자 위협 모니터</span>
           </h2>
         </div>
         <button className="hidden sm:flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg text-sm text-gray-300 hover:bg-gray-800 transition-colors font-mono">
-          Open PolyPulse →
+          PolyPulse 열기 →
         </button>
       </div>
 

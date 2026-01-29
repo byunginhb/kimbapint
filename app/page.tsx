@@ -45,7 +45,7 @@ export default function Home() {
           <NothingEverHappensIndex
             percentage={19}
             highestRiskMarket={{
-              title: "Will the U.S. invade a Latin American country in 2026?",
+              title: "2026년 미국이 중남미 국가를 침공할까?",
               percentage: 19,
               countryFlag: "🇺🇸",
             }}
