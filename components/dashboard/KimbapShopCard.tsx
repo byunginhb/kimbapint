@@ -1,20 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { ExternalLink, Car } from "lucide-react";
-
-interface HourlyData {
-  hour: number;
-  value: number;
-}
-
-interface KimbapShop {
-  id: string;
-  name: string;
-  status: "NOMINAL" | "BUSY" | "CLOSED" | "SPIKE";
-  distance: string;
-  statusText: string;
-  hourlyData: HourlyData[];
-}
+import type { KimbapShop } from "@/lib/types";
 
 interface KimbapShopCardProps {
   shop: KimbapShop;
@@ -52,7 +40,10 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
   const maxValue = Math.max(...shop.hourlyData.map((d) => d.value));
 
   return (
-    <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
+    <Link
+      href={`/shop/${shop.id}`}
+      className="block bg-gray-900/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/60 hover:border-gray-600 transition-all cursor-pointer"
+    >
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
@@ -62,12 +53,12 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <button className="p-1.5 rounded bg-gray-800 hover:bg-gray-700 transition-colors text-gray-400 hover:text-white">
+          <span className="p-1.5 rounded bg-gray-800 text-gray-400">
             <ExternalLink className="w-4 h-4" />
-          </button>
-          <button className="p-1.5 rounded bg-gray-800 hover:bg-gray-700 transition-colors text-gray-400 hover:text-white">
+          </span>
+          <span className="p-1.5 rounded bg-gray-800 text-gray-400">
             <Car className="w-4 h-4" />
-          </button>
+          </span>
         </div>
       </div>
 
@@ -119,6 +110,6 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
           );
         })}
       </div>
-    </div>
+    </Link>
   );
 }

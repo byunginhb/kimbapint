@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, Archive, TrendingUp, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { Clock, Archive, TrendingUp } from "lucide-react";
 
 export function TopBar() {
   const [currentTime, setCurrentTime] = useState<string | null>(null);
@@ -25,7 +26,6 @@ export function TopBar() {
             <button className="flex items-center gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-slate-900/50 border border-slate-700 rounded text-slate-300 hover:bg-slate-800 hover:text-white transition-all font-mono text-xs">
               <span className="text-base">🇰🇷</span>
               <span className="uppercase hidden sm:inline">KO</span>
-              <ChevronDown className="w-2.5 h-2.5 transition-transform opacity-70 hidden sm:block" />
             </button>
           </div>
 
@@ -48,20 +48,24 @@ export function TopBar() {
         {/* 오른쪽 */}
         <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-4">
           {/* HISTORY 버튼 */}
-          <button className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-blue-900/50 border border-blue-500 rounded text-blue-400 hover:bg-blue-900 transition-all font-mono text-xs">
-            <Archive className="w-3 h-3 flex-shrink-0" />
+          <Link
+            href="/history"
+            className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-blue-900/50 border border-blue-500 rounded text-blue-400 hover:bg-blue-900 transition-all font-mono text-xs"
+          >
+            <Archive className="w-3 h-3 shrink-0" />
             <span className="hidden sm:inline">HISTORY</span>
             <span className="sm:hidden">HIST</span>
-            <ChevronDown className="w-2.5 h-2.5 flex-shrink-0" />
-          </button>
+          </Link>
 
           {/* MARKETS 버튼 */}
-          <button className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-purple-900/50 border border-purple-500 rounded text-purple-400 hover:bg-purple-900 transition-all font-mono text-xs">
-            <TrendingUp className="w-3 h-3 flex-shrink-0" />
+          <Link
+            href="/markets"
+            className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-purple-900/50 border border-purple-500 rounded text-purple-400 hover:bg-purple-900 transition-all font-mono text-xs"
+          >
+            <TrendingUp className="w-3 h-3 shrink-0" />
             <span className="hidden sm:inline">MARKETS</span>
             <span className="sm:hidden">MKT</span>
-            <ChevronDown className="w-2.5 h-2.5 flex-shrink-0" />
-          </button>
+          </Link>
 
           {/* STATUS */}
           <div className="flex items-center gap-2 text-xs">

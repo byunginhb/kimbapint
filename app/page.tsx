@@ -12,6 +12,7 @@ import { NothingEverHappensIndex } from "@/components/dashboard/NothingEverHappe
 import { PolyPulseThreatMonitor } from "@/components/dashboard/PolyPulseThreatMonitor";
 import { FeatureCards } from "@/components/dashboard/FeatureCards";
 import { MarketIntelligence } from "@/components/dashboard/MarketIntelligence";
+import { MarketGrid } from "@/components/markets/MarketGrid";
 
 export default function Home() {
   return (
@@ -33,6 +34,13 @@ export default function Home() {
 
       {/* 김밥집 카드 그리드 */}
       <KimbapShopGrid />
+
+      {/* 예측 마켓 그리드 */}
+      <div className="border-t border-gray-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <MarketGrid />
+        </div>
+      </div>
 
       {/* Status + Globe 섹션 */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">

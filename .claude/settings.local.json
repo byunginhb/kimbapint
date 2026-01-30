@@ -8,7 +8,8 @@
       "Bash(curl:*)",
       "Bash(lsof:*)",
       "Bash(xargs kill -9)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(tree:*)"
     ]
   }
 }
