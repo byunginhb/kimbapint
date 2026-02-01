@@ -1,20 +1,14 @@
-/* Pretendard 한글 폰트 */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
-
-/* VT323 레트로 폰트 */
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
 @import "tailwindcss";
 
-:root {
-  --font-vt323: 'VT323', monospace;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+@theme {
+  --font-sans: var(--font-neo-dunggeunmo), monospace;
+  --font-mono: var(--font-neo-dunggeunmo), monospace;
 }
 
 body {
   background: #000000;
   color: #ffffff;
-  font-family: var(--font-mono);
+  font-family: var(--font-neo-dunggeunmo), monospace;
 }
 
 /* Scanlines 효과 */
