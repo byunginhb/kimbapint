@@ -540,7 +540,7 @@ export function getMarketById(id: string): MarketDetail | undefined {
 export const mockKimbapconHistory: KimbapconHistory[] = [
   {
     id: "1",
-    date: "2025-01-29",
+    date: "2026-02-02",
     level: 4,
     previousLevel: 4,
     status: "DOUBLE TAKE • INCREASED INTELLIGENCE WATCH",
@@ -548,7 +548,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "2",
-    date: "2025-01-28",
+    date: "2026-02-01",
     level: 4,
     previousLevel: 3,
     status: "DOUBLE TAKE • INCREASED INTELLIGENCE WATCH",
@@ -556,7 +556,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "3",
-    date: "2025-01-27",
+    date: "2026-01-30",
     level: 3,
     previousLevel: 4,
     status: "ROUND HOUSE • ABOVE NORMAL READINESS",
@@ -564,7 +564,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "4",
-    date: "2025-01-25",
+    date: "2026-01-28",
     level: 4,
     previousLevel: 4,
     status: "DOUBLE TAKE • INCREASED INTELLIGENCE WATCH",
@@ -572,7 +572,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "5",
-    date: "2025-01-20",
+    date: "2026-01-25",
     level: 4,
     previousLevel: 3,
     status: "DOUBLE TAKE • INCREASED INTELLIGENCE WATCH",
@@ -580,7 +580,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "6",
-    date: "2025-01-18",
+    date: "2026-01-22",
     level: 3,
     previousLevel: 4,
     status: "ROUND HOUSE • ABOVE NORMAL READINESS",
@@ -588,7 +588,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "7",
-    date: "2025-01-15",
+    date: "2026-01-18",
     level: 4,
     previousLevel: 4,
     status: "DOUBLE TAKE • INCREASED INTELLIGENCE WATCH",
@@ -596,7 +596,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "8",
-    date: "2025-01-10",
+    date: "2026-01-12",
     level: 4,
     previousLevel: 5,
     status: "DOUBLE TAKE • INCREASED INTELLIGENCE WATCH",
@@ -604,7 +604,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "9",
-    date: "2025-01-05",
+    date: "2026-01-05",
     level: 5,
     previousLevel: 5,
     status: "FADE OUT • NORMAL PEACETIME READINESS",
@@ -612,7 +612,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
   },
   {
     id: "10",
-    date: "2025-01-01",
+    date: "2026-01-01",
     level: 5,
     previousLevel: 4,
     status: "FADE OUT • NORMAL PEACETIME READINESS",
@@ -624,7 +624,7 @@ export const mockKimbapconHistory: KimbapconHistory[] = [
 export const mockMajorEvents: MajorEvent[] = [
   {
     id: "1",
-    date: "2025-01-28",
+    date: "2026-02-01",
     title: "북한 단거리 미사일 발사",
     description: "북한이 동해상으로 단거리 탄도미사일 2발을 발사했습니다.",
     type: "military",
@@ -633,7 +633,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "2",
-    date: "2025-01-27",
+    date: "2026-01-30",
     title: "중국 대만해협 군사훈련",
     description: "중국 인민해방군이 대만해협에서 대규모 군사훈련을 실시했습니다.",
     type: "military",
@@ -642,7 +642,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "3",
-    date: "2025-01-25",
+    date: "2026-01-28",
     title: "미국 대북 특사 방한",
     description: "미국 국무부 대북 특사가 한국을 방문해 북핵 문제를 협의했습니다.",
     type: "political",
@@ -651,7 +651,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "4",
-    date: "2025-01-20",
+    date: "2026-01-25",
     title: "남북 고위급 회담 무산",
     description: "예정된 남북 고위급 회담이 북한 측 불참으로 무산되었습니다.",
     type: "political",
@@ -660,7 +660,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "5",
-    date: "2025-01-18",
+    date: "2026-01-22",
     title: "일본 독도 영유권 재주장",
     description: "일본 정부가 독도 영유권을 재확인하는 성명을 발표했습니다.",
     type: "political",
@@ -669,7 +669,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "6",
-    date: "2025-01-15",
+    date: "2026-01-18",
     title: "한미 연합훈련 시작",
     description: "한미 연합 군사훈련 '프리덤 실드'가 시작되었습니다.",
     type: "military",
@@ -678,7 +678,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "7",
-    date: "2025-01-10",
+    date: "2026-01-12",
     title: "북한 김정은 군사시설 시찰",
     description: "김정은 위원장이 전략미사일 사령부를 시찰했습니다.",
     type: "military",
@@ -687,7 +687,7 @@ export const mockMajorEvents: MajorEvent[] = [
   },
   {
     id: "8",
-    date: "2025-01-05",
+    date: "2026-01-05",
     title: "신년 평화 메시지 교환",
     description: "남북이 신년을 맞아 평화 메시지를 교환했습니다.",
     type: "political",
