@@ -15,10 +15,7 @@ export default function YeGeonNav() {
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
         <div className="flex items-center gap-6">
           <Link href="/yegeon" className="flex items-center gap-2">
-            <span className="text-xl font-bold yg-text-primary-500">예견</span>
-            <span className="hidden text-sm yg-text-ink-400 sm:inline">
-              YeGeon
-            </span>
+            <span className="yegeon-logo text-xl font-extrabold tracking-widest">YEGEON</span>
           </Link>
 
           <div className="hidden items-center gap-4 md:flex">

@@ -9,7 +9,15 @@
       "Bash(lsof:*)",
       "Bash(xargs kill -9)",
       "Bash(pkill:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "WebFetch(domain:manifold.markets)",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(for:*)",
+      "Bash(do [ -f \"$file\" ])",
+      "Bash(done)",
+      "Bash(find /Users/byunginsong/Documents/projects/kimbapint/app/yegeon -name \"*.tsx\" -exec sh -c 'echo \"\"$\\(wc -l < \"\"$1\"\"\\) $1\"\"' _ {} ;)",
+      "Bash(find /Users/byunginsong/Documents/projects/kimbapint/components/yegeon -name \"*.tsx\" -exec sh -c 'echo \"\"$\\(wc -l < \"\"$1\"\"\\) $1\"\"' _ {} ;)"
     ]
   }
 }
