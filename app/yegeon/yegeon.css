@@ -1,0 +1,291 @@
+/* YeGeon CSS Isolation - Manifold Markets 디자인 클론 */
+/* .yegeon-root 스코프로 전역 KimbapINT 스타일과 완전 격리 */
+
+/* ============================================
+   1. CSS 변수 시스템 (Light / Dark)
+   ============================================ */
+
+.yegeon-root {
+  /* Light 모드 (기본) */
+  --color-canvas-0: 253 254 255;
+  --color-canvas-50: 244 243 251;
+  --color-canvas-100: 210 212 224;
+  --color-ink-0: 255 255 255;
+  --color-ink-100: 235 236 243;
+  --color-ink-200: 210 212 224;
+  --color-ink-300: 182 186 204;
+  --color-ink-400: 136 141 167;
+  --color-ink-500: 101 107 138;
+  --color-ink-600: 77 82 112;
+  --color-ink-700: 58 62 87;
+  --color-ink-800: 42 46 68;
+  --color-ink-900: 28 31 51;
+  --color-ink-1000: 0 0 0;
+  --color-primary-100: 224 231 255;
+  --color-primary-200: 199 210 254;
+  --color-primary-300: 165 180 252;
+  --color-primary-400: 129 140 248;
+  --color-primary-500: 99 102 241;
+  --color-primary-600: 79 70 229;
+  --color-primary-700: 67 56 202;
+  --color-yes-100: 204 251 241;
+  --color-yes-200: 153 246 228;
+  --color-yes-300: 94 234 212;
+  --color-yes-400: 45 212 191;
+  --color-yes-500: 20 184 166;
+  --color-yes-600: 13 148 136;
+  --color-no-100: 255 228 217;
+  --color-no-200: 253 197 172;
+  --color-no-300: 250 155 118;
+  --color-no-400: 249 120 82;
+  --color-no-500: 247 88 54;
+  --color-no-600: 220 65 34;
+
+  background-color: rgb(var(--color-canvas-0));
+  color: rgb(var(--color-ink-900));
+  font-family: var(--font-figtree), "Figtree", system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark 모드 */
+.yegeon-root.dark {
+  --color-canvas-0: 15 23 41;
+  --color-canvas-50: 30 41 59;
+  --color-canvas-100: 51 65 85;
+  --color-ink-0: 0 0 0;
+  --color-ink-100: 28 31 51;
+  --color-ink-200: 42 46 68;
+  --color-ink-300: 58 62 87;
+  --color-ink-400: 101 107 138;
+  --color-ink-500: 136 141 167;
+  --color-ink-600: 182 186 204;
+  --color-ink-700: 210 212 224;
+  --color-ink-800: 226 232 240;
+  --color-ink-900: 241 245 249;
+  --color-ink-1000: 255 255 255;
+  --color-primary-100: 49 46 129;
+  --color-primary-200: 55 48 163;
+  --color-primary-300: 67 56 202;
+  --color-primary-400: 99 102 241;
+  --color-primary-500: 129 140 248;
+  --color-primary-600: 165 180 252;
+  --color-primary-700: 199 210 254;
+  --color-yes-100: 6 78 68;
+  --color-yes-200: 13 102 92;
+  --color-yes-300: 13 148 136;
+  --color-yes-400: 20 184 166;
+  --color-yes-500: 45 212 191;
+  --color-yes-600: 94 234 212;
+  --color-no-100: 127 29 29;
+  --color-no-200: 170 40 20;
+  --color-no-300: 200 55 30;
+  --color-no-400: 247 88 54;
+  --color-no-500: 249 120 82;
+  --color-no-600: 250 155 118;
+}
+
+/* ============================================
+   2. yg- 유틸리티 클래스
+   ============================================ */
+
+/* --- Background --- */
+.yegeon-root .yg-bg-canvas-0 { background-color: rgb(var(--color-canvas-0)); }
+.yegeon-root .yg-bg-canvas-50 { background-color: rgb(var(--color-canvas-50)); }
+.yegeon-root .yg-bg-canvas-50\/50 { background-color: rgb(var(--color-canvas-50) / 0.5); }
+.yegeon-root .yg-bg-canvas-50\/30 { background-color: rgb(var(--color-canvas-50) / 0.3); }
+.yegeon-root .yg-bg-canvas-100 { background-color: rgb(var(--color-canvas-100)); }
+.yegeon-root .yg-bg-canvas-100\/50 { background-color: rgb(var(--color-canvas-100) / 0.5); }
+.yegeon-root .yg-bg-primary-500 { background-color: rgb(var(--color-primary-500)); }
+.yegeon-root .yg-bg-primary-600 { background-color: rgb(var(--color-primary-600)); }
+.yegeon-root .yg-bg-yes-500 { background-color: rgb(var(--color-yes-500)); }
+.yegeon-root .yg-bg-yes-600 { background-color: rgb(var(--color-yes-600)); }
+.yegeon-root .yg-bg-yes-600\/20 { background-color: rgb(var(--color-yes-600) / 0.2); }
+.yegeon-root .yg-bg-yes-100\/10 { background-color: rgb(var(--color-yes-100) / 0.1); }
+.yegeon-root .yg-bg-no-500 { background-color: rgb(var(--color-no-500)); }
+.yegeon-root .yg-bg-no-600 { background-color: rgb(var(--color-no-600)); }
+.yegeon-root .yg-bg-no-600\/20 { background-color: rgb(var(--color-no-600) / 0.2); }
+.yegeon-root .yg-bg-no-100\/10 { background-color: rgb(var(--color-no-100) / 0.1); }
+.yegeon-root .yg-bg-primary-100\/20 { background-color: rgb(var(--color-primary-100) / 0.2); }
+
+/* --- Text --- */
+.yegeon-root .yg-text-ink-1000 { color: rgb(var(--color-ink-1000)); }
+.yegeon-root .yg-text-ink-900 { color: rgb(var(--color-ink-900)); }
+.yegeon-root .yg-text-ink-800 { color: rgb(var(--color-ink-800)); }
+.yegeon-root .yg-text-ink-700 { color: rgb(var(--color-ink-700)); }
+.yegeon-root .yg-text-ink-600 { color: rgb(var(--color-ink-600)); }
+.yegeon-root .yg-text-ink-500 { color: rgb(var(--color-ink-500)); }
+.yegeon-root .yg-text-ink-400 { color: rgb(var(--color-ink-400)); }
+.yegeon-root .yg-text-ink-300 { color: rgb(var(--color-ink-300)); }
+.yegeon-root .yg-text-primary-400 { color: rgb(var(--color-primary-400)); }
+.yegeon-root .yg-text-primary-500 { color: rgb(var(--color-primary-500)); }
+.yegeon-root .yg-text-primary-600 { color: rgb(var(--color-primary-600)); }
+.yegeon-root .yg-text-yes-400 { color: rgb(var(--color-yes-400)); }
+.yegeon-root .yg-text-yes-500 { color: rgb(var(--color-yes-500)); }
+.yegeon-root .yg-text-no-400 { color: rgb(var(--color-no-400)); }
+.yegeon-root .yg-text-no-500 { color: rgb(var(--color-no-500)); }
+
+/* --- Border --- */
+.yegeon-root .yg-border-canvas-100 { border-color: rgb(var(--color-canvas-100)); }
+.yegeon-root .yg-border-canvas-50 { border-color: rgb(var(--color-canvas-50)); }
+.yegeon-root .yg-border-primary-500 { border-color: rgb(var(--color-primary-500)); }
+.yegeon-root .yg-border-yes-500 { border-color: rgb(var(--color-yes-500)); }
+.yegeon-root .yg-border-yes-600 { border-color: rgb(var(--color-yes-600)); }
+.yegeon-root .yg-border-no-500 { border-color: rgb(var(--color-no-500)); }
+.yegeon-root .yg-border-no-600 { border-color: rgb(var(--color-no-600)); }
+
+/* --- Hover variants --- */
+.yegeon-root .hover\:yg-bg-canvas-50:hover { background-color: rgb(var(--color-canvas-50)); }
+.yegeon-root .hover\:yg-bg-canvas-100:hover { background-color: rgb(var(--color-canvas-100)); }
+.yegeon-root .hover\:yg-bg-primary-600:hover { background-color: rgb(var(--color-primary-600)); }
+.yegeon-root .hover\:yg-bg-primary-700:hover { background-color: rgb(var(--color-primary-700)); }
+.yegeon-root .hover\:yg-bg-yes-600:hover { background-color: rgb(var(--color-yes-600)); }
+.yegeon-root .hover\:yg-bg-no-600:hover { background-color: rgb(var(--color-no-600)); }
+.yegeon-root .hover\:yg-text-ink-1000:hover { color: rgb(var(--color-ink-1000)); }
+.yegeon-root .hover\:yg-text-ink-900:hover { color: rgb(var(--color-ink-900)); }
+.yegeon-root .hover\:yg-text-ink-800:hover { color: rgb(var(--color-ink-800)); }
+.yegeon-root .hover\:yg-text-ink-700:hover { color: rgb(var(--color-ink-700)); }
+.yegeon-root .hover\:yg-text-primary-400:hover { color: rgb(var(--color-primary-400)); }
+.yegeon-root .hover\:yg-text-primary-500:hover { color: rgb(var(--color-primary-500)); }
+.yegeon-root .hover\:yg-border-canvas-100:hover { border-color: rgb(var(--color-canvas-100)); }
+.yegeon-root .hover\:yg-border-yes-600:hover { border-color: rgb(var(--color-yes-600)); }
+.yegeon-root .hover\:yg-border-no-600:hover { border-color: rgb(var(--color-no-600)); }
+
+/* --- Gradient --- */
+.yegeon-root .yg-gradient-yes {
+  background: linear-gradient(to right, rgb(var(--color-yes-500)), rgb(var(--color-yes-400)));
+}
+
+/* ============================================
+   3. 글로벌 리셋 & 유틸리티
+   ============================================ */
+
+.yegeon-root * {
+  font-family: inherit;
+}
+
+/* 스크롤바 스타일 오버라이드 */
+.yegeon-root ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.yegeon-root ::-webkit-scrollbar-track {
+  background: rgb(var(--color-canvas-50));
+}
+
+.yegeon-root ::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-canvas-100));
+  border-radius: 4px;
+}
+
+.yegeon-root ::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-ink-400));
+}
+
+/* ============================================
+   4. 애니메이션 & 인터랙션
+   ============================================ */
+
+/* Probability change animation */
+@keyframes probability-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.yegeon-root .animate-prob-pulse {
+  animation: probability-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth chart tooltip */
+.yegeon-root .recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+.yegeon-root .recharts-default-tooltip {
+  background: rgb(var(--color-canvas-50)) !important;
+  border: 1px solid rgb(var(--color-canvas-100)) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+}
+
+/* Card hover effect */
+.yegeon-card-hover {
+  transition: all 0.2s ease;
+}
+
+.yegeon-card-hover:hover {
+  background-color: rgb(var(--color-canvas-50));
+  border-color: rgb(var(--color-ink-400));
+}
+
+/* Tab active indicator */
+.yegeon-tab-active {
+  position: relative;
+}
+
+.yegeon-tab-active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgb(var(--color-primary-500));
+  border-radius: 1px;
+}
+
+/* YES/NO button press */
+.yegeon-bet-btn {
+  transition: all 0.15s ease;
+}
+
+.yegeon-bet-btn:active {
+  transform: scale(0.97);
+}
+
+/* Bet success pop-in animation */
+@keyframes bet-success-pop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bet-success-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bet-spinner {
+  to { transform: rotate(360deg); }
+}
+
+.yegeon-root .animate-bet-pop {
+  animation: bet-success-pop 0.4s ease-out forwards;
+}
+
+.yegeon-root .animate-bet-fade {
+  animation: bet-success-fade 0.3s ease-out forwards;
+}
+
+.yegeon-root .animate-bet-spinner {
+  animation: bet-spinner 0.8s linear infinite;
+}
+
+/* Comment thread connector */
+.yegeon-reply-line {
+  position: relative;
+}
+
+.yegeon-reply-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  bottom: 0;
+  width: 2px;
+  background: rgb(var(--color-canvas-100));
+}
