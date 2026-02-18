@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ThumbsUp, MessageCircle } from "lucide-react"
 import { formatRelativeTime } from "@/lib/utils"
 import type { Comment } from "@/lib/yegeon-types"
-import UserAvatar from "./UserAvatar"
+import UserAvatar from "../common/UserAvatar"
 
 interface CommentSectionProps {
   comments: Comment[]

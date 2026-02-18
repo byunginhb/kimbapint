@@ -8,7 +8,7 @@ import {
   calculateExpectedProfit,
   formatPresetAmount,
 } from "@/lib/yegeon-utils"
-import { Spinner, CheckCircleIcon } from "./BettingIcons"
+import { Spinner, CheckCircleIcon } from "../common/BettingIcons"
 
 type BetState = "idle" | "confirming" | "submitting" | "success"
 

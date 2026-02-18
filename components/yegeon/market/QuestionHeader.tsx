@@ -2,10 +2,10 @@ import Link from "next/link"
 import { Clock, Users, TrendingUp, CheckCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { formatVolume, getUserByUsername } from "@/lib/yegeon-data"
-import UserAvatar from "./UserAvatar"
+import UserAvatar from "../common/UserAvatar"
 import { formatDate } from "@/lib/utils"
 import type { YeGeonMarket } from "@/lib/yegeon-types"
-import TopicTags from "./TopicTags"
+import TopicTags from "../feed/TopicTags"
 
 interface QuestionHeaderProps {
   market: YeGeonMarket

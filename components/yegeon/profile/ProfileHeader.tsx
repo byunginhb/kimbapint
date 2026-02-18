@@ -1,5 +1,5 @@
 import { Calendar, Users } from "lucide-react"
-import UserAvatar from "./UserAvatar"
+import UserAvatar from "../common/UserAvatar"
 import { formatDate } from "@/lib/utils"
 import type { YeGeonUser } from "@/lib/yegeon-types"
 

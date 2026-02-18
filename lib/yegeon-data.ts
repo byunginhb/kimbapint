@@ -561,6 +561,10 @@ export const comments: Comment[] = [
   },
 ]
 
+export function getCurrentUser(): YeGeonUser {
+  return users[0]
+}
+
 export function getUserByUsername(username: string): YeGeonUser | undefined {
   return users.find((u) => u.username === username)
 }

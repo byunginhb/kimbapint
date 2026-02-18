@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Figtree } from "next/font/google"
-import { ThemeProvider, YeGeonRoot } from "@/components/yegeon/ThemeContext"
+import { ThemeProvider, YeGeonRoot } from "@/components/yegeon/common/ThemeContext"
+import YeGeonShell from "@/components/yegeon/common/YeGeonShell"
 import "./yegeon.css"
 
 const figtree = Figtree({
@@ -23,7 +24,7 @@ export default function YeGeonLayout({
   return (
     <ThemeProvider>
       <YeGeonRoot className={figtree.variable}>
-        {children}
+        <YeGeonShell>{children}</YeGeonShell>
       </YeGeonRoot>
     </ThemeProvider>
   )
