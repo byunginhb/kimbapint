@@ -40,6 +40,7 @@
   --color-no-400: 249 120 82;
   --color-no-500: 247 88 54;
   --color-no-600: 220 65 34;
+  --color-green-500: 34 197 94;
 
   background-color: rgb(var(--color-canvas-0));
   color: rgb(var(--color-ink-900));
@@ -86,6 +87,7 @@
   --color-no-400: 247 88 54;
   --color-no-500: 249 120 82;
   --color-no-600: 250 155 118;
+  --color-green-500: 74 222 128;
 }
 
 /* ============================================
@@ -110,6 +112,7 @@
 .yegeon-root .yg-bg-no-600\/20 { background-color: rgb(var(--color-no-600) / 0.2); }
 .yegeon-root .yg-bg-no-100\/10 { background-color: rgb(var(--color-no-100) / 0.1); }
 .yegeon-root .yg-bg-primary-100\/20 { background-color: rgb(var(--color-primary-100) / 0.2); }
+.yegeon-root .yg-bg-green-500 { background-color: rgb(var(--color-green-500)); }
 
 /* --- Text --- */
 .yegeon-root .yg-text-ink-1000 { color: rgb(var(--color-ink-1000)); }
@@ -127,6 +130,7 @@
 .yegeon-root .yg-text-yes-500 { color: rgb(var(--color-yes-500)); }
 .yegeon-root .yg-text-no-400 { color: rgb(var(--color-no-400)); }
 .yegeon-root .yg-text-no-500 { color: rgb(var(--color-no-500)); }
+.yegeon-root .yg-text-green-500 { color: rgb(var(--color-green-500)); }
 
 /* --- Border --- */
 .yegeon-root .yg-border-canvas-100 { border-color: rgb(var(--color-canvas-100)); }
@@ -150,6 +154,9 @@
 .yegeon-root .hover\:yg-text-ink-700:hover { color: rgb(var(--color-ink-700)); }
 .yegeon-root .hover\:yg-text-primary-400:hover { color: rgb(var(--color-primary-400)); }
 .yegeon-root .hover\:yg-text-primary-500:hover { color: rgb(var(--color-primary-500)); }
+
+/* --- Placeholder --- */
+.yegeon-root .placeholder\:yg-text-ink-400::placeholder { color: rgb(var(--color-ink-400)); }
 .yegeon-root .hover\:yg-border-canvas-100:hover { border-color: rgb(var(--color-canvas-100)); }
 .yegeon-root .hover\:yg-border-yes-600:hover { border-color: rgb(var(--color-yes-600)); }
 .yegeon-root .hover\:yg-border-no-600:hover { border-color: rgb(var(--color-no-600)); }
@@ -324,4 +331,30 @@
   bottom: 0;
   width: 2px;
   background: rgb(var(--color-canvas-100));
+}
+
+/* Compact row hover */
+.yegeon-row-hover {
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid rgb(var(--color-canvas-100));
+}
+
+.yegeon-row-hover:hover {
+  background-color: rgb(var(--color-canvas-50));
+}
+
+/* Sort tab active underline */
+.yegeon-sort-tab-active {
+  position: relative;
+  color: rgb(var(--color-ink-1000));
+}
+
+.yegeon-sort-tab-active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgb(var(--color-ink-1000));
 }

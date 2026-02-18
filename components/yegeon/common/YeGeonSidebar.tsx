@@ -17,7 +17,7 @@ import {
   LogOut,
 } from "lucide-react"
 import { useTheme } from "./ThemeContext"
-import { getCurrentUser, formatYeGeonCurrency } from "@/lib/yegeon-data"
+import { getCurrentUser, getUnreadNotificationCount } from "@/lib/yegeon-data"
 import UserAvatar from "./UserAvatar"
 
 interface YeGeonSidebarProps {
@@ -33,14 +33,14 @@ interface NavItem {
 
 const mainNav: NavItem[] = [
   { label: "둘러보기", icon: <Search className="h-5 w-5" />, href: "/yegeon" },
-  { label: "탐색", icon: <Compass className="h-5 w-5" />, href: "#" },
-  { label: "알림", icon: <Bell className="h-5 w-5" />, href: "#" },
-  { label: "리그", icon: <Trophy className="h-5 w-5" />, href: "#" },
-  { label: "포럼", icon: <MessageSquare className="h-5 w-5" />, href: "#" },
+  { label: "탐색", icon: <Compass className="h-5 w-5" />, href: "/yegeon/explore" },
+  { label: "알림", icon: <Bell className="h-5 w-5" />, href: "/yegeon/notifications" },
+  { label: "리그", icon: <Trophy className="h-5 w-5" />, href: "/yegeon/leagues" },
+  { label: "포럼", icon: <MessageSquare className="h-5 w-5" />, href: "/yegeon/forum" },
   {
     label: "상점",
     icon: <ShoppingBag className="h-5 w-5" />,
-    href: "#",
+    href: "/yegeon/shop",
     badge: "NEW",
   },
 ]
@@ -49,39 +49,56 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
   const pathname = usePathname()
   const { theme, toggleTheme } = useTheme()
   const user = getCurrentUser()
+  const unreadCount = getUnreadNotificationCount()
 
   return (
-    <aside className="flex h-full flex-col gap-1 overflow-y-auto px-3 py-4">
+    <aside className="flex h-full flex-col overflow-y-auto px-5 py-5">
+      {/* Logo */}
+      <Link
+        href="/yegeon"
+        onClick={onNavigate}
+        className="mb-4 px-1"
+      >
+        <span className="yegeon-logo text-xl font-extrabold tracking-widest">
+          YEGEON
+        </span>
+      </Link>
+
       {/* User profile */}
       <Link
         href={`/yegeon/${user.username}`}
         onClick={onNavigate}
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:yg-bg-canvas-50"
+        className="mb-5 flex items-center gap-3 rounded-lg px-1 py-1 transition-colors hover:yg-bg-canvas-50"
       >
-        <UserAvatar size={36} />
+        <UserAvatar
+          size={40}
+          displayName={user.displayName}
+          colorSeed={user.username}
+        />
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold yg-text-ink-900">
             {user.displayName}
           </p>
           <p className="text-xs yg-text-ink-400">
-            {formatYeGeonCurrency(user.balance)}
+            Ⓜ{user.balance.toLocaleString("ko-KR")}
           </p>
         </div>
       </Link>
 
-      {/* Divider */}
-      <div className="my-1 border-t yg-border-canvas-100" />
-
       {/* Main navigation */}
       <nav className="flex flex-col gap-0.5">
         {mainNav.map((item) => {
-          const isActive = item.href !== "#" && pathname === item.href
+          const isActive =
+            item.href === "/yegeon"
+              ? pathname === "/yegeon"
+              : pathname.startsWith(item.href)
+          const showUnread = item.label === "알림" && unreadCount > 0
           return (
             <Link
               key={item.label}
               href={item.href}
               onClick={onNavigate}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
                   ? "yg-bg-primary-100/20 yg-text-primary-500"
                   : "yg-text-ink-600 hover:yg-bg-canvas-50 hover:yg-text-ink-1000"
@@ -89,8 +106,13 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
             >
               {item.icon}
               <span className="flex-1">{item.label}</span>
-              {item.badge && (
+              {showUnread && (
                 <span className="rounded-full yg-bg-primary-500 px-1.5 py-0.5 text-[10px] font-bold text-white">
+                  {unreadCount}
+                </span>
+              )}
+              {item.badge && (
+                <span className="rounded-full yg-bg-green-500 px-1.5 py-0.5 text-[10px] font-bold text-white">
                   {item.badge}
                 </span>
               )}
@@ -99,30 +121,24 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
         })}
       </nav>
 
-      {/* Divider */}
-      <div className="my-1 border-t yg-border-canvas-100" />
-
       {/* Action buttons */}
-      <div className="flex flex-col gap-2 px-3">
+      <div className="mt-5 flex flex-col gap-2.5">
         <button
           type="button"
-          className="rounded-lg border yg-border-canvas-100 px-4 py-2 text-sm font-medium yg-text-ink-700 transition-colors hover:yg-bg-canvas-50"
+          className="rounded-lg border yg-border-canvas-100 px-4 py-2.5 text-sm font-medium yg-text-ink-700 transition-colors hover:yg-bg-canvas-50"
         >
           마켓 만들기
         </button>
         <button
           type="button"
-          className="rounded-lg yg-bg-primary-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:yg-bg-primary-600"
+          className="rounded-lg yg-bg-primary-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:yg-bg-primary-600"
         >
-          마나 받기
+          Ⓜ 마나 받기
         </button>
       </div>
 
       {/* Spacer */}
       <div className="flex-1" />
-
-      {/* Divider */}
-      <div className="my-1 border-t yg-border-canvas-100" />
 
       {/* Bottom links */}
       <nav className="flex flex-col gap-0.5">
@@ -148,11 +164,11 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm yg-text-ink-600 transition-colors hover:yg-bg-canvas-50 hover:yg-text-ink-1000"
         >
           {theme === "light" ? (
-            <Moon className="h-5 w-5" />
-          ) : (
             <Sun className="h-5 w-5" />
+          ) : (
+            <Moon className="h-5 w-5" />
           )}
-          다크 모드
+          {theme === "light" ? "라이트" : "다크"}
         </button>
         <span
           role="none"

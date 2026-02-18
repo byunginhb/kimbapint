@@ -1,101 +1,120 @@
 import Link from "next/link"
-import { MessageCircle, Users, TrendingUp } from "lucide-react"
+import { Users, Gem } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { formatVolume, getCommentsByMarketId } from "@/lib/yegeon-data"
+import { getUserByUsername } from "@/lib/yegeon-data"
 import type { YeGeonMarket } from "@/lib/yegeon-types"
-import TopicTags from "./TopicTags"
+import UserAvatar from "@/components/yegeon/common/UserAvatar"
 
 interface MarketFeedCardProps {
   market: YeGeonMarket
 }
 
+function getRecentChange(market: YeGeonMarket): number | null {
+  const history = market.probabilityHistory
+  if (history.length < 2) return null
+  const current = history[history.length - 1].probability
+  const previous = history[history.length - 2].probability
+  const diff = Math.round((current - previous) * 100)
+  return diff === 0 ? null : diff
+}
+
 export default function MarketFeedCard({ market }: MarketFeedCardProps) {
   const isBinary = market.type === "binary"
-  const commentCount = getCommentsByMarketId(market.id).length
+  const creator = getUserByUsername(market.creatorUsername)
+  const change = isBinary ? getRecentChange(market) : null
 
   return (
     <Link href={`/yegeon/question/${market.slug}`}>
-      <div className="yegeon-card-hover rounded-lg border yg-border-canvas-100 yg-bg-canvas-50/50 p-4">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0 flex-1">
-            <h3 className="text-sm font-semibold leading-snug yg-text-ink-900 sm:text-base">
-              {market.title}
-            </h3>
+      <div className="yegeon-row-hover flex items-center gap-3 px-2 py-3">
+        {/* Creator avatar */}
+        <UserAvatar
+          size={24}
+          displayName={creator?.displayName}
+          colorSeed={creator?.username}
+        />
 
-            <div className="mt-2 flex items-center gap-3 text-xs yg-text-ink-400">
-              <span className="flex items-center gap-1">
-                <Users className="h-3.5 w-3.5" />
-                {market.totalTraders.toLocaleString("ko-KR")}명
-              </span>
-              <span className="flex items-center gap-1">
-                <TrendingUp className="h-3.5 w-3.5" />
-                {formatVolume(market.volume)}
-              </span>
-              <span className="flex items-center gap-1">
-                <MessageCircle className="h-3.5 w-3.5" />
-                {commentCount}
-              </span>
-            </div>
+        {/* Title — truncate to single line */}
+        <span className="min-w-0 flex-1 truncate text-sm font-medium yg-text-ink-900">
+          {market.title}
+        </span>
 
-            <TopicTags tags={market.tags} className="mt-2.5" />
-          </div>
+        {/* Traders count — hidden on mobile */}
+        <span className="hidden items-center gap-1 text-xs yg-text-ink-400 sm:flex">
+          <Users className="h-3.5 w-3.5" />
+          {market.totalTraders.toLocaleString("ko-KR")}
+        </span>
 
-          <div className="flex-shrink-0 text-right">
-            {isBinary ? (
-              <BinaryProbability probability={market.probability} />
-            ) : (
-              <MultiChoicePreview options={market.options ?? []} />
-            )}
-          </div>
-        </div>
+        {/* Gem icon — hidden on mobile */}
+        <Gem className="hidden h-3.5 w-3.5 yg-text-ink-300 sm:block" />
+
+        {/* Probability / options */}
+        {isBinary ? (
+          <BinaryDisplay probability={market.probability} change={change} />
+        ) : (
+          <MultiChoiceBar options={market.options ?? []} />
+        )}
+
+        {/* Bet button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+          }}
+          className="shrink-0 rounded-full border yg-border-canvas-100 px-3 py-1 text-xs font-medium yg-text-ink-600 transition-colors hover:yg-bg-canvas-50"
+        >
+          베팅
+        </button>
       </div>
     </Link>
   )
 }
 
-function BinaryProbability({ probability }: { probability: number }) {
+function BinaryDisplay({
+  probability,
+  change,
+}: {
+  probability: number
+  change: number | null
+}) {
   const percent = Math.round(probability * 100)
-  const isYesFavored = probability >= 0.5
 
   return (
-    <div className="flex flex-col items-end gap-1">
-      <span
-        className={cn(
-          "text-2xl font-bold tabular-nums",
-          isYesFavored ? "yg-text-yes-500" : "yg-text-no-500"
-        )}
-      >
+    <div className="flex shrink-0 items-center gap-2">
+      <span className="text-sm font-bold tabular-nums yg-text-ink-900">
         {percent}%
       </span>
-      <span className="text-xs yg-text-ink-400">확률</span>
+      {change !== null && (
+        <span
+          className={cn(
+            "text-xs font-medium tabular-nums",
+            change > 0 ? "yg-text-yes-500" : "yg-text-no-500"
+          )}
+        >
+          {change > 0 ? `+${change}` : change}
+        </span>
+      )}
     </div>
   )
 }
 
-function MultiChoicePreview({
+function MultiChoiceBar({
   options,
 }: {
   options: { label: string; probability: number; color: string }[]
 }) {
-  const top = options.slice(0, 2)
   return (
-    <div className="flex flex-col gap-1">
-      {top.map((opt) => (
-        <div key={opt.label} className="flex items-center gap-2 text-right">
-          <span className="text-xs yg-text-ink-400">{opt.label}</span>
-          <span
-            className="text-sm font-bold tabular-nums"
-            style={{ color: opt.color }}
-          >
-            {Math.round(opt.probability * 100)}%
-          </span>
-        </div>
+    <div className="flex h-5 w-24 shrink-0 overflow-hidden rounded-full">
+      {options.map((opt) => (
+        <div
+          key={opt.label}
+          style={{
+            width: `${Math.round(opt.probability * 100)}%`,
+            backgroundColor: opt.color,
+          }}
+          title={`${opt.label}: ${Math.round(opt.probability * 100)}%`}
+        />
       ))}
-      {options.length > 2 && (
-        <span className="text-xs yg-text-ink-400">
-          +{options.length - 2}개 선택지
-        </span>
-      )}
     </div>
   )
 }

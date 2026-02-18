@@ -5,6 +5,7 @@ import type { Category } from "@/lib/yegeon-types"
 
 const categories: Category[] = [
   "전체",
+  "팔로우",
   "정치",
   "기술",
   "스포츠",

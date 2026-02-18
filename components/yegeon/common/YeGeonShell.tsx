@@ -20,12 +20,15 @@ function ShellInner({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <YeGeonNav />
+      {/* Nav — mobile only */}
+      <div className="lg:hidden">
+        <YeGeonNav />
+      </div>
 
       <div className="flex flex-1">
-        {/* Desktop sidebar — always visible at lg+ */}
-        <div className="hidden w-64 shrink-0 border-r yg-border-canvas-100 yg-bg-canvas-0 lg:block">
-          <div className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto">
+        {/* Desktop sidebar — always visible at lg+, full height */}
+        <div className="hidden w-64 shrink-0 yg-bg-canvas-0 lg:block">
+          <div className="sticky top-0 h-screen overflow-y-auto">
             <YeGeonSidebar />
           </div>
         </div>

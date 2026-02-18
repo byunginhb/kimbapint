@@ -1,6 +1,47 @@
+export type NotificationType = "trade" | "comment" | "reply" | "follow"
+
+export interface YeGeonNotification {
+  id: string
+  type: NotificationType
+  fromUsername: string
+  marketId?: string
+  marketTitle?: string
+  message: string
+  timestamp: string
+  isRead: boolean
+}
+
+export type LeagueTier =
+  | "마스터"
+  | "다이아몬드"
+  | "플래티넘"
+  | "골드"
+  | "실버"
+  | "브론즈"
+
+export interface LeagueMember {
+  rank: number
+  username: string
+  manaEarned: number
+}
+
+export interface LeagueGroup {
+  id: string
+  name: string
+  tier: LeagueTier
+  members: LeagueMember[]
+  promotionLine: number
+}
+
+export interface LeagueSeason {
+  number: number
+  month: string
+  endDate: string
+}
+
 export type MarketType = "binary" | "multiple_choice"
 export type MarketStatus = "open" | "closed" | "resolved"
-export type Category = "전체" | "정치" | "기술" | "스포츠" | "문화" | "비즈니스" | "재미"
+export type Category = "전체" | "팔로우" | "정치" | "기술" | "스포츠" | "문화" | "비즈니스" | "재미"
 export type SortOption = "popular" | "trending" | "newest"
 export type TradeDirection = "YES" | "NO"
 

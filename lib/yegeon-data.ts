@@ -1,45 +1,52 @@
 import type {
   YeGeonUser,
   YeGeonMarket,
+  YeGeonNotification,
   Trade,
   Comment,
   Category,
   ProbabilityPoint,
-} from "./yegeon-types"
+  LeagueTier,
+  LeagueGroup,
+  LeagueSeason,
+} from "./yegeon-types";
 
 function generateProbabilityHistory(
   current: number,
-  days: number = 30
+  days: number = 30,
 ): ProbabilityPoint[] {
-  const points: ProbabilityPoint[] = []
-  const now = new Date()
-  let prob = Math.max(0.05, Math.min(0.95, current + (Math.random() - 0.5) * 0.3))
+  const points: ProbabilityPoint[] = [];
+  const now = new Date();
+  let prob = Math.max(
+    0.05,
+    Math.min(0.95, current + (Math.random() - 0.5) * 0.3),
+  );
 
   for (let i = days; i >= 0; i--) {
-    const date = new Date(now)
-    date.setDate(date.getDate() - i)
+    const date = new Date(now);
+    date.setDate(date.getDate() - i);
     points.push({
       date: date.toISOString().split("T")[0],
       probability: Math.round(prob * 100) / 100,
-    })
-    const drift = (current - prob) * 0.1
-    const noise = (Math.random() - 0.5) * 0.08
-    prob = Math.max(0.02, Math.min(0.98, prob + drift + noise))
+    });
+    const drift = (current - prob) * 0.1;
+    const noise = (Math.random() - 0.5) * 0.08;
+    prob = Math.max(0.02, Math.min(0.98, prob + drift + noise));
   }
 
-  const last = points[points.length - 1]
-  if (last) {
-    last.probability = current
+  if (points.length > 0) {
+    const lastIndex = points.length - 1;
+    points[lastIndex] = { ...points[lastIndex], probability: current };
   }
 
-  return points
+  return points;
 }
 
 export const users: YeGeonUser[] = [
   {
     id: "u1",
-    username: "jinwoo_kim",
-    displayName: "김진우",
+    username: "kb_ham",
+    displayName: "함경범",
     avatarUrl: "https://api.dicebear.com/9.x/thumbs/svg?seed=jinwoo",
     bio: "정치/경제 예측 전문가. 데이터 기반 분석을 좋아합니다.",
     createdAt: "2024-03-15",
@@ -111,7 +118,7 @@ export const users: YeGeonUser[] = [
     investedAmount: 95800,
     netWorth: 220300,
   },
-]
+];
 
 export const markets: YeGeonMarket[] = [
   {
@@ -123,7 +130,7 @@ export const markets: YeGeonMarket[] = [
     type: "binary",
     status: "open",
     category: "정치",
-    creatorUsername: "jinwoo_kim",
+    creatorUsername: "kb_ham",
     createdAt: "2025-11-01",
     closeDate: "2026-12-31",
     probability: 0.28,
@@ -199,7 +206,7 @@ export const markets: YeGeonMarket[] = [
     type: "binary",
     status: "open",
     category: "정치",
-    creatorUsername: "jinwoo_kim",
+    creatorUsername: "kb_ham",
     createdAt: "2025-08-01",
     closeDate: "2027-02-28",
     probability: 0.12,
@@ -275,7 +282,7 @@ export const markets: YeGeonMarket[] = [
     type: "multiple_choice",
     status: "open",
     category: "문화",
-    creatorUsername: "jinwoo_kim",
+    creatorUsername: "kb_ham",
     createdAt: "2025-10-01",
     closeDate: "2026-12-15",
     probability: 0.35,
@@ -286,7 +293,7 @@ export const markets: YeGeonMarket[] = [
       { id: "opt1", label: "손흥민", probability: 0.35, color: "#14b8a6" },
       { id: "opt2", label: "봉준호", probability: 0.25, color: "#8b5cf6" },
       { id: "opt3", label: "BTS", probability: 0.15, color: "#f59e0b" },
-      { id: "opt4", label: "이미경", probability: 0.10, color: "#ef4444" },
+      { id: "opt4", label: "이미경", probability: 0.1, color: "#ef4444" },
       { id: "opt5", label: "해당 없음", probability: 0.15, color: "#64748b" },
     ],
     probabilityHistory: generateProbabilityHistory(0.35),
@@ -304,18 +311,18 @@ export const markets: YeGeonMarket[] = [
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-12-28",
     closeDate: "2026-12-30",
-    probability: 0.30,
+    probability: 0.3,
     volume: 15670000,
     totalTraders: 4892,
     tags: ["주식", "투자", "코스피"],
     options: [
-      { id: "opt1", label: "삼성전자", probability: 0.30, color: "#3b82f6" },
+      { id: "opt1", label: "삼성전자", probability: 0.3, color: "#3b82f6" },
       { id: "opt2", label: "SK하이닉스", probability: 0.28, color: "#14b8a6" },
       { id: "opt3", label: "네이버", probability: 0.18, color: "#22c55e" },
       { id: "opt4", label: "카카오", probability: 0.12, color: "#f59e0b" },
       { id: "opt5", label: "기타", probability: 0.12, color: "#64748b" },
     ],
-    probabilityHistory: generateProbabilityHistory(0.30),
+    probabilityHistory: generateProbabilityHistory(0.3),
     isResolved: false,
   },
   {
@@ -356,7 +363,7 @@ export const markets: YeGeonMarket[] = [
     probabilityHistory: generateProbabilityHistory(0.82),
     isResolved: false,
   },
-]
+];
 
 export const trades: Trade[] = [
   {
@@ -364,7 +371,7 @@ export const trades: Trade[] = [
     marketId: "m8",
     marketTitle: "BTS 완전체 컴백이 2026년에 이루어질까?",
     marketSlug: "bts-full-comeback-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "YES",
     amount: 5000,
     probability: 0.68,
@@ -375,7 +382,7 @@ export const trades: Trade[] = [
     marketId: "m2",
     marketTitle: "삼성전자 주가가 2026년 말까지 10만원을 돌파할까?",
     marketSlug: "samsung-stock-100k-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "YES",
     amount: 12000,
     probability: 0.39,
@@ -386,7 +393,7 @@ export const trades: Trade[] = [
     marketId: "m1",
     marketTitle: "2026년 대한민국 대통령 지지율이 40%를 넘길까?",
     marketSlug: "president-approval-40-percent-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "NO",
     amount: 8000,
     probability: 0.31,
@@ -397,7 +404,7 @@ export const trades: Trade[] = [
     marketId: "m3",
     marketTitle: "2026 FIFA 월드컵 아시아 예선에서 한국이 1위로 통과할까?",
     marketSlug: "korea-worldcup-qualifier-first-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "YES",
     amount: 15000,
     probability: 0.62,
@@ -408,7 +415,7 @@ export const trades: Trade[] = [
     marketId: "m5",
     marketTitle: "2026년 한국의 출산율이 반등할까?",
     marketSlug: "korea-birth-rate-rebound-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "NO",
     amount: 20000,
     probability: 0.15,
@@ -419,10 +426,10 @@ export const trades: Trade[] = [
     marketId: "m7",
     marketTitle: "2026년 안에 남북 정상회담이 열릴까?",
     marketSlug: "inter-korean-summit-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "NO",
     amount: 10000,
-    probability: 0.10,
+    probability: 0.1,
     timestamp: "2026-02-02T13:30:00Z",
   },
   {
@@ -430,7 +437,7 @@ export const trades: Trade[] = [
     marketId: "m9",
     marketTitle: "2026년 올해의 한국인은 누가 될까?",
     marketSlug: "korean-person-of-year-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "YES",
     amount: 7000,
     probability: 0.32,
@@ -442,7 +449,7 @@ export const trades: Trade[] = [
     marketId: "m11",
     marketTitle: "한국이 2026년 안에 AI 규제법을 통과시킬까?",
     marketSlug: "korea-ai-regulation-2026",
-    username: "jinwoo_kim",
+    username: "kb_ham",
     direction: "YES",
     amount: 6000,
     probability: 0.35,
@@ -470,7 +477,7 @@ export const trades: Trade[] = [
     probability: 0.52,
     timestamp: "2026-02-05T09:00:00Z",
   },
-]
+];
 
 export const comments: Comment[] = [
   {
@@ -487,8 +494,8 @@ export const comments: Comment[] = [
       {
         id: "c1r1",
         marketId: "m8",
-        username: "jinwoo_kim",
-        displayName: "김진우",
+        username: "kb_ham",
+        displayName: "함경범",
         avatarUrl: "https://api.dicebear.com/9.x/thumbs/svg?seed=jinwoo",
         content:
           "동의합니다. 하이브 실적 발표에서도 2026년 그룹 활동 언급이 있었어요.",
@@ -559,60 +566,347 @@ export const comments: Comment[] = [
     likes: 42,
     replies: [],
   },
-]
+];
 
 export function getCurrentUser(): YeGeonUser {
-  return users[0]
+  return users[0];
 }
 
 export function getUserByUsername(username: string): YeGeonUser | undefined {
-  return users.find((u) => u.username === username)
+  return users.find((u) => u.username === username);
 }
 
 export function getMarketBySlug(slug: string): YeGeonMarket | undefined {
-  return markets.find((m) => m.slug === slug)
+  return markets.find((m) => m.slug === slug);
 }
 
 export function getMarketsByCategory(category: Category): YeGeonMarket[] {
-  if (category === "전체") return markets
-  return markets.filter((m) => m.category === category)
+  if (category === "전체") return markets;
+  return markets.filter((m) => m.category === category);
 }
 
 export function getTradesByUsername(username: string): Trade[] {
-  return trades.filter((t) => t.username === username)
+  return trades.filter((t) => t.username === username);
 }
 
 export function getCommentsByMarketId(marketId: string): Comment[] {
-  return comments.filter((c) => c.marketId === marketId)
+  return comments.filter((c) => c.marketId === marketId);
 }
 
 export function getRelatedMarkets(
   currentSlug: string,
-  limit: number = 3
+  limit: number = 3,
 ): YeGeonMarket[] {
-  const current = getMarketBySlug(currentSlug)
-  if (!current) return markets.slice(0, limit)
+  const current = getMarketBySlug(currentSlug);
+  if (!current) return markets.slice(0, limit);
 
   return markets
     .filter((m) => m.slug !== currentSlug)
     .filter(
       (m) =>
         m.category === current.category ||
-        m.tags.some((t) => current.tags.includes(t))
+        m.tags.some((t) => current.tags.includes(t)),
     )
-    .slice(0, limit)
+    .slice(0, limit);
 }
 
 export function formatVolume(volume: number): string {
   if (volume >= 100000000) {
-    return `${(volume / 100000000).toFixed(1)}억`
+    return `${(volume / 100000000).toFixed(1)}억`;
   }
   if (volume >= 10000) {
-    return `${Math.floor(volume / 10000)}만`
+    return `${Math.floor(volume / 10000)}만`;
   }
-  return volume.toLocaleString("ko-KR")
+  return volume.toLocaleString("ko-KR");
 }
 
 export function formatYeGeonCurrency(amount: number): string {
-  return `₩${amount.toLocaleString("ko-KR")}`
+  return `₩${amount.toLocaleString("ko-KR")}`;
+}
+
+export const notifications: YeGeonNotification[] = [
+  {
+    id: "n1",
+    type: "trade",
+    fromUsername: "soyeon_park",
+    marketId: "m8",
+    marketTitle: "BTS 완전체 컴백이 2026년에 이루어질까?",
+    message: "박소연님이 YES에 ₩9,000을 베팅했습니다",
+    timestamp: "2026-02-18T08:30:00Z",
+    isRead: false,
+  },
+  {
+    id: "n2",
+    type: "comment",
+    fromUsername: "minho_lee",
+    marketId: "m2",
+    marketTitle: "삼성전자 주가가 2026년 말까지 10만원을 돌파할까?",
+    message: "이민호님이 댓글을 남겼습니다: \"HBM3E 양산이 본격화되는 시점...\"",
+    timestamp: "2026-02-18T07:15:00Z",
+    isRead: false,
+  },
+  {
+    id: "n3",
+    type: "reply",
+    fromUsername: "hyunwoo_jung",
+    marketId: "m2",
+    marketTitle: "삼성전자 주가가 2026년 말까지 10만원을 돌파할까?",
+    message: "정현우님이 회원님의 댓글에 답글을 남겼습니다",
+    timestamp: "2026-02-18T06:00:00Z",
+    isRead: false,
+  },
+  {
+    id: "n4",
+    type: "follow",
+    fromUsername: "yuna_choi",
+    message: "최유나님이 회원님을 팔로우하기 시작했습니다",
+    timestamp: "2026-02-17T22:45:00Z",
+    isRead: false,
+  },
+  {
+    id: "n5",
+    type: "trade",
+    fromUsername: "minho_lee",
+    marketId: "m11",
+    marketTitle: "한국이 2026년 안에 AI 규제법을 통과시킬까?",
+    message: "이민호님이 YES에 ₩15,000을 베팅했습니다",
+    timestamp: "2026-02-17T18:20:00Z",
+    isRead: true,
+  },
+  {
+    id: "n6",
+    type: "comment",
+    fromUsername: "soyeon_park",
+    marketId: "m4",
+    marketTitle: "넷플릭스에서 한국 드라마가 2026년 글로벌 1위를 차지할까?",
+    message: "박소연님이 댓글을 남겼습니다: \"최근 넷플릭스 트렌드를 보면...\"",
+    timestamp: "2026-02-17T14:10:00Z",
+    isRead: true,
+  },
+  {
+    id: "n7",
+    type: "follow",
+    fromUsername: "hyunwoo_jung",
+    message: "정현우님이 회원님을 팔로우하기 시작했습니다",
+    timestamp: "2026-02-17T10:30:00Z",
+    isRead: true,
+  },
+  {
+    id: "n8",
+    type: "trade",
+    fromUsername: "yuna_choi",
+    marketId: "m3",
+    marketTitle: "2026 FIFA 월드컵 아시아 예선에서 한국이 1위로 통과할까?",
+    message: "최유나님이 YES에 ₩20,000을 베팅했습니다",
+    timestamp: "2026-02-16T21:00:00Z",
+    isRead: true,
+  },
+  {
+    id: "n9",
+    type: "reply",
+    fromUsername: "soyeon_park",
+    marketId: "m8",
+    marketTitle: "BTS 완전체 컴백이 2026년에 이루어질까?",
+    message: "박소연님이 회원님의 댓글에 답글을 남겼습니다",
+    timestamp: "2026-02-16T16:45:00Z",
+    isRead: true,
+  },
+  {
+    id: "n10",
+    type: "comment",
+    fromUsername: "minho_lee",
+    marketId: "m7",
+    marketTitle: "2026년 안에 남북 정상회담이 열릴까?",
+    message: "이민호님이 댓글을 남겼습니다: \"외교 채널이 다시 열릴 가능성은...\"",
+    timestamp: "2026-02-16T09:20:00Z",
+    isRead: true,
+  },
+];
+
+export function getNotifications(): YeGeonNotification[] {
+  return notifications;
+}
+
+export function getUnreadNotificationCount(): number {
+  return notifications.filter((n) => !n.isRead).length;
+}
+
+export function getCategoriesWithCounts(): { category: Category; count: number }[] {
+  const categoryList: Category[] = ["정치", "기술", "스포츠", "문화", "비즈니스", "재미"];
+  return categoryList
+    .map((category) => ({
+      category,
+      count: markets.filter((m) => m.category === category).length,
+    }))
+    .filter((c) => c.count > 0);
+}
+
+// ===== League Data =====
+
+export const LEAGUE_TIERS: LeagueTier[] = [
+  "마스터",
+  "다이아몬드",
+  "플래티넘",
+  "골드",
+  "실버",
+  "브론즈",
+];
+
+export const TIER_EMOJIS: Record<LeagueTier, string> = {
+  마스터: "🏆",
+  다이아몬드: "💎",
+  플래티넘: "🪙",
+  골드: "🥇",
+  실버: "🥈",
+  브론즈: "🥉",
+};
+
+export const TIER_COLORS: Record<LeagueTier, string> = {
+  마스터: "#e11d48",
+  다이아몬드: "#6366f1",
+  플래티넘: "#06b6d4",
+  골드: "#eab308",
+  실버: "#94a3b8",
+  브론즈: "#d97706",
+};
+
+export const CURRENT_SEASON: LeagueSeason = {
+  number: 12,
+  month: "2월",
+  endDate: "2026-02-28T23:59:59Z",
+};
+
+const CURRENT_USER_TIER: LeagueTier = "실버";
+const CURRENT_USER_GROUP = "영리한 독수리";
+
+export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
+  마스터: [
+    {
+      id: "master-1",
+      name: "전설의 예언자",
+      tier: "마스터",
+      promotionLine: 0,
+      members: [
+        { rank: 1, username: "hyunwoo_jung", manaEarned: 98700 },
+        { rank: 2, username: "minho_lee", manaEarned: 52100 },
+      ],
+    },
+  ],
+  다이아몬드: [
+    {
+      id: "diamond-1",
+      name: "빛나는 수정",
+      tier: "다이아몬드",
+      promotionLine: 2,
+      members: [
+        { rank: 1, username: "trader_kim", manaEarned: 41200 },
+        { rank: 2, username: "forecast_pro", manaEarned: 38900 },
+        { rank: 3, username: "data_guru", manaEarned: 29100 },
+        { rank: 4, username: "market_owl", manaEarned: 21500 },
+        { rank: 5, username: "signal_fox", manaEarned: 18700 },
+      ],
+    },
+  ],
+  플래티넘: [
+    {
+      id: "plat-1",
+      name: "예리한 매",
+      tier: "플래티넘",
+      promotionLine: 2,
+      members: [
+        { rank: 1, username: "stat_master", manaEarned: 22800 },
+        { rank: 2, username: "prob_ace", manaEarned: 19400 },
+        { rank: 3, username: "insight_park", manaEarned: 14600 },
+        { rank: 4, username: "quant_lee", manaEarned: 11200 },
+        { rank: 5, username: "alpha_choi", manaEarned: 8900 },
+        { rank: 6, username: "beta_jung", manaEarned: 6100 },
+      ],
+    },
+  ],
+  골드: [
+    {
+      id: "gold-1",
+      name: "황금 사자",
+      tier: "골드",
+      promotionLine: 2,
+      members: [
+        { rank: 1, username: "soyeon_park", manaEarned: 15300 },
+        { rank: 2, username: "gold_trader", manaEarned: 12800 },
+        { rank: 3, username: "rising_star", manaEarned: 8700 },
+        { rank: 4, username: "smart_bet", manaEarned: 5400 },
+        { rank: 5, username: "lucky_seven", manaEarned: 3200 },
+        { rank: 6, username: "steady_win", manaEarned: 1800 },
+        { rank: 7, username: "careful_play", manaEarned: 900 },
+      ],
+    },
+  ],
+  실버: [
+    {
+      id: "silver-1",
+      name: "영리한 독수리",
+      tier: "실버",
+      promotionLine: 2,
+      members: [
+        { rank: 1, username: "sharp_eye", manaEarned: 11372 },
+        { rank: 2, username: "trend_follow", manaEarned: 8301 },
+        { rank: 3, username: "kb_ham", manaEarned: 4650 },
+        { rank: 4, username: "new_trader", manaEarned: 2580 },
+        { rank: 5, username: "learn_bet", manaEarned: 1420 },
+        { rank: 6, username: "try_hard", manaEarned: 820 },
+        { rank: 7, username: "first_step", manaEarned: 310 },
+        { rank: 8, username: "beginner_1", manaEarned: 150 },
+      ],
+    },
+  ],
+  브론즈: [
+    {
+      id: "bronze-1",
+      name: "용감한 올빼미",
+      tier: "브론즈",
+      promotionLine: 2,
+      members: [
+        { rank: 1, username: "yuna_choi", manaEarned: 3200 },
+        { rank: 2, username: "newbie_park", manaEarned: 1100 },
+        { rank: 3, username: "curious_cat", manaEarned: 650 },
+        { rank: 4, username: "slow_steady", manaEarned: 280 },
+        { rank: 5, username: "fresh_start", manaEarned: 120 },
+        { rank: 6, username: "hello_world", manaEarned: -41 },
+      ],
+    },
+  ],
+};
+
+export function getCurrentUserLeague() {
+  return {
+    tier: CURRENT_USER_TIER,
+    groupName: CURRENT_USER_GROUP,
+    rank: 3,
+    manaEarned: 4650,
+  };
+}
+
+export function getLeagueGroups(tier: LeagueTier): LeagueGroup[] {
+  return leagueGroups[tier];
+}
+
+export function getPromotionRequirement(tier: LeagueTier): number {
+  const requirements: Record<LeagueTier, number> = {
+    브론즈: 100,
+    실버: 500,
+    골드: 2000,
+    플래티넘: 8000,
+    다이아몬드: 20000,
+    마스터: 0,
+  };
+  return requirements[tier];
+}
+
+export function getPromotionTargetTier(tier: LeagueTier): LeagueTier | null {
+  const index = LEAGUE_TIERS.indexOf(tier);
+  return index > 0 ? LEAGUE_TIERS[index - 1] : null;
+}
+
+export function getMemberDisplayName(username: string): string {
+  const user = getUserByUsername(username);
+  return user?.displayName ?? username;
 }

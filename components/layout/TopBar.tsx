@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Clock, Archive, TrendingUp } from "lucide-react";
+import { Clock, Archive, TrendingUp, Eye } from "lucide-react";
 
 export function TopBar() {
   const [currentTime, setCurrentTime] = useState<string | null>(null);
@@ -65,6 +65,16 @@ export function TopBar() {
             <TrendingUp className="w-3 h-3 shrink-0" />
             <span className="hidden sm:inline">MARKETS</span>
             <span className="sm:hidden">MKT</span>
+          </Link>
+
+          {/* 예견(YeGeon) 버튼 */}
+          <Link
+            href="/yegeon"
+            className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-amber-900/50 border border-amber-500 rounded text-amber-400 hover:bg-amber-900 transition-all font-mono text-xs"
+          >
+            <Eye className="w-3 h-3 shrink-0" />
+            <span className="hidden sm:inline">YEGEON</span>
+            <span className="sm:hidden">YG</span>
           </Link>
 
           {/* STATUS */}
