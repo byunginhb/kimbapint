@@ -68,7 +68,7 @@ export default function ShopPage() {
       )}
 
       {/* Package grid */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 px-52">
         {PACKAGES.map((pkg) => (
           <ManaPackageCard
             key={pkg.id}
