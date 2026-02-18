@@ -18,7 +18,7 @@ export default function BingoPage() {
     .map((card, i) => ({ ...card, rank: i + 1 }))
 
   return (
-    <div className="px-4 py-6">
+    <div className="mx-auto w-full max-w-3xl px-4 py-6">
       {/* Header */}
       <h1 className="mb-1 text-xl font-bold yg-text-ink-900">예견 Bingo</h1>
       <p className="mb-5 text-sm yg-text-ink-500">
