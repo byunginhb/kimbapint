@@ -343,6 +343,96 @@
   background-color: rgb(var(--color-canvas-50));
 }
 
+/* ============================================
+   Bingo
+   ============================================ */
+
+/* Bingo cell base */
+.yegeon-bingo-cell {
+  width: 0;
+  flex: 1 1 0%;
+  min-height: 100px;
+  padding: 8px 10px;
+}
+
+/* Cell size helper for column prob row */
+.yegeon-bingo-cell-size {
+  width: 0;
+  flex: 1 1 0%;
+  min-height: 28px;
+}
+
+/* Active cell */
+.yegeon-bingo-cell-active {
+  background-color: rgb(var(--color-canvas-50));
+  border: 1px solid rgb(var(--color-canvas-100));
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.yegeon-bingo-cell-active:hover {
+  border-color: rgb(var(--color-ink-400));
+}
+
+/* Resolved YES cell */
+.yegeon-bingo-cell-yes {
+  background-color: rgb(var(--color-yes-600) / 0.12);
+  border: 1px solid rgb(var(--color-yes-600) / 0.5);
+}
+
+/* Resolved NO cell */
+.yegeon-bingo-cell-no {
+  background-color: rgb(var(--color-no-600) / 0.12);
+  border: 1px solid rgb(var(--color-no-600) / 0.5);
+}
+
+/* FREE SPACE */
+.yegeon-root .yg-bg-bingo-free {
+  background-color: rgb(161 130 48 / 0.2);
+}
+
+.yegeon-root .yg-text-bingo-free {
+  color: rgb(202 138 4);
+}
+
+.yegeon-root .yg-border-bingo-free {
+  border-color: rgb(161 130 48 / 0.4);
+}
+
+.yegeon-root.dark .yg-bg-bingo-free {
+  background-color: rgb(161 130 48 / 0.15);
+}
+
+.yegeon-root.dark .yg-text-bingo-free {
+  color: rgb(250 204 21);
+}
+
+.yegeon-root.dark .yg-border-bingo-free {
+  border-color: rgb(161 130 48 / 0.3);
+}
+
+/* Grid wrapper - constrain width like reference design */
+.yegeon-bingo-grid-wrapper {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+}
+
+/* Mini grid (card preview) */
+.yegeon-bingo-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.yegeon-bingo-mini-cell {
+  width: 100%;
+  height: 100%;
+}
+
 /* Sort tab active underline */
 .yegeon-sort-tab-active {
   position: relative;

@@ -119,3 +119,36 @@ export interface Comment {
   likes: number
   replies: Comment[]
 }
+
+// ===== Bingo Types =====
+
+export type BingoCellStatus = "active" | "resolved_yes" | "resolved_no" | "free_space"
+export type BingoCardStatus = "active" | "won" | "lost"
+
+export interface BingoCellData {
+  slug: string
+  question: string
+  prob: number
+  resolved: boolean | null
+  url: string
+  status: BingoCellStatus
+}
+
+export interface BingoLineData {
+  indices: number[]
+  probability: number
+  isComplete: boolean
+  isBlocked: boolean
+}
+
+export interface BingoCardData {
+  cardId: string
+  username: string
+  displayName: string
+  status: BingoCardStatus
+  winProbability: number
+  targetWinProb: number
+  purchasePrice: number
+  createdTime: number
+  grid: BingoCellData[]
+}

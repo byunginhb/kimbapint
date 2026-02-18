@@ -10,6 +10,7 @@ import {
   Trophy,
   MessageSquare,
   ShoppingBag,
+  Grid3X3,
   Info,
   Star,
   Moon,
@@ -38,11 +39,12 @@ const mainNav: NavItem[] = [
   { label: "리그", icon: <Trophy className="h-5 w-5" />, href: "/yegeon/leagues" },
   { label: "포럼", icon: <MessageSquare className="h-5 w-5" />, href: "/yegeon/forum" },
   {
-    label: "상점",
-    icon: <ShoppingBag className="h-5 w-5" />,
-    href: "/yegeon/shop",
+    label: "빙고",
+    icon: <Grid3X3 className="h-5 w-5" />,
+    href: "/yegeon/bingo",
     badge: "NEW",
   },
+  { label: "상점", icon: <ShoppingBag className="h-5 w-5" />, href: "/yegeon/shop" },
 ]
 
 export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
