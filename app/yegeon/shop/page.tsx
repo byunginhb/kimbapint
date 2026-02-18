@@ -45,7 +45,7 @@ export default function ShopPage() {
   )
 
   return (
-    <div className="px-4 py-6">
+    <div className="mx-auto w-full max-w-3xl px-4 py-6">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-xl font-bold yg-text-ink-900">마나 상점</h1>
@@ -68,7 +68,7 @@ export default function ShopPage() {
       )}
 
       {/* Package grid */}
-      <div className="grid grid-cols-2 gap-3 px-52">
+      <div className="grid grid-cols-2 gap-3">
         {PACKAGES.map((pkg) => (
           <ManaPackageCard
             key={pkg.id}
