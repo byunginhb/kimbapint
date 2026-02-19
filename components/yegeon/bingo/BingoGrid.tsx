@@ -24,7 +24,7 @@ function LineProbLabel({ line, className }: { line: BingoLineData; className?: s
 
   return (
     <span
-      className={`flex items-center justify-center text-xs font-medium tabular-nums ${colorClass} ${className ?? ""}`}
+      className={`flex items-center justify-center text-[10px] font-medium tabular-nums ${colorClass} ${className ?? ""}`}
     >
       {probText}
     </span>
@@ -34,7 +34,6 @@ function LineProbLabel({ line, className }: { line: BingoLineData; className?: s
 export default function BingoGrid({ grid, lines }: BingoGridProps) {
   const rowLines = lines.slice(0, ROW_COUNT)
   const colLines = lines.slice(ROW_COUNT, ROW_COUNT + COL_COUNT)
-  const diagLines = lines.slice(ROW_COUNT + COL_COUNT)
 
   return (
     <div className="yegeon-bingo-grid-wrapper">
@@ -47,7 +46,7 @@ export default function BingoGrid({ grid, lines }: BingoGridProps) {
               return <BingoCell key={index} cell={grid[index]} index={index} />
             })}
             {/* Row probability */}
-            <div className="flex w-14 shrink-0 items-center justify-center">
+            <div className="flex w-10 shrink-0 items-center justify-center">
               <LineProbLabel line={rowLines[row]} />
             </div>
           </div>
@@ -60,17 +59,8 @@ export default function BingoGrid({ grid, lines }: BingoGridProps) {
               <LineProbLabel line={line} />
             </div>
           ))}
-          {/* Diagonal probs in right corner */}
-          <div className="flex w-14 shrink-0 items-center justify-center gap-2">
-            <div className="flex flex-col items-center text-[10px]">
-              <span className="yg-text-ink-400">\</span>
-              <LineProbLabel line={diagLines[0]} className="!text-[10px]" />
-            </div>
-            <div className="flex flex-col items-center text-[10px]">
-              <span className="yg-text-ink-400">/</span>
-              <LineProbLabel line={diagLines[1]} className="!text-[10px]" />
-            </div>
-          </div>
+          {/* Spacer to align with row probability column */}
+          <div className="w-10 shrink-0" />
         </div>
       </div>
     </div>
