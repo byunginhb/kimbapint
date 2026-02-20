@@ -1,0 +1,33 @@
+{
+  "topbar": {
+    "locationsMonitored": "{count} LOCATIONS MONITORED",
+    "locationsShort": "{count} LOC",
+    "status": "STATUS",
+    "operational": "OPERATIONAL"
+  },
+  "header": {
+    "title": "MoD Kimbap Index",
+    "threatLevel": "Threat Level",
+    "realTimeMonitoring": "Real-time Monitoring"
+  },
+  "footer": {
+    "disclaimer": "This site was created for prototype purposes. It has no relation to actual military intelligence and all data is fictional.",
+    "madeIn": "Made in Korea"
+  },
+  "yegeon": {
+    "browse": "Browse",
+    "explore": "Explore",
+    "notifications": "Notifications",
+    "leagues": "Leagues",
+    "forum": "Forum",
+    "bingo": "Bingo",
+    "shop": "Shop",
+    "createMarket": "Create Market",
+    "getMana": "Ⓜ Get Mana",
+    "about": "About",
+    "recommend": "Recommend",
+    "light": "Light",
+    "dark": "Dark",
+    "logout": "Log out"
+  }
+}

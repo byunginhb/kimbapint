@@ -1,4 +1,5 @@
-import Link from "next/link"
+import { useTranslations, useLocale } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { Clock, Users, TrendingUp, CheckCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { formatVolume, getUserByUsername } from "@/lib/yegeon-data"
@@ -12,6 +13,8 @@ interface QuestionHeaderProps {
 }
 
 export default function QuestionHeader({ market }: QuestionHeaderProps) {
+  const t = useTranslations("yMarket")
+  const locale = useLocale()
   const creator = getUserByUsername(market.creatorUsername)
 
   return (
@@ -25,7 +28,7 @@ export default function QuestionHeader({ market }: QuestionHeaderProps) {
               : "yg-bg-canvas-100 yg-text-ink-400"
           )}
         >
-          {market.status === "open" ? "진행 중" : "종료"}
+          {market.status === "open" ? t("open") : t("closed")}
         </span>
         <span>{market.category}</span>
       </div>
@@ -46,15 +49,15 @@ export default function QuestionHeader({ market }: QuestionHeaderProps) {
         )}
         <span className="flex items-center gap-1">
           <Clock className="h-3.5 w-3.5" />
-          마감: {formatDate(market.closeDate)}
+          {t("deadline")}: {formatDate(market.closeDate, locale)}
         </span>
         <span className="flex items-center gap-1">
           <Users className="h-3.5 w-3.5" />
-          {market.totalTraders.toLocaleString("ko-KR")}명 참여
+          {t("traders", { count: market.totalTraders.toLocaleString(locale === "ko" ? "ko-KR" : "en-US") })}
         </span>
         <span className="flex items-center gap-1">
           <TrendingUp className="h-3.5 w-3.5" />
-          {formatVolume(market.volume)} 거래량
+          {formatVolume(market.volume, locale)} {t("volume")}
         </span>
       </div>
 
@@ -63,7 +66,7 @@ export default function QuestionHeader({ market }: QuestionHeaderProps) {
       {market.isResolved && market.resolution && (
         <div className="mt-3 flex items-center gap-2 rounded-lg yg-bg-yes-100/10 px-3 py-2 text-sm yg-text-yes-500">
           <CheckCircle className="h-4 w-4" />
-          결의: {market.resolution}
+          {t("resolution")}: {market.resolution}
         </div>
       )}
 

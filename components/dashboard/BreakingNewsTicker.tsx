@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Zap, ChevronDown } from "lucide-react";
 
 interface NewsItem {
@@ -35,6 +36,8 @@ const newsItems: NewsItem[] = [
 ];
 
 export function BreakingNewsTicker() {
+  const t = useTranslations("breakingNews");
+
   return (
     <div className="bg-gray-900/80 border-y border-gray-700 py-2 px-4">
       <div className="flex items-center gap-4 overflow-hidden">
@@ -65,7 +68,7 @@ export function BreakingNewsTicker() {
 
         {/* 더보기 버튼 */}
         <button className="flex-shrink-0 flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs">
-          <span className="hidden sm:inline">더 많은 예측</span>
+          <span className="hidden sm:inline">{t("morePredictions")}</span>
           <ChevronDown className="w-4 h-4" />
         </button>
       </div>

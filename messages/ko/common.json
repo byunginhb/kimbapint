@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "title": "국방부 김밥 지수 - 실시간 군사 긴장 지표 | KimbapINT",
+    "description": "국방부 김밥 지수(KimbapINT)는 국방부 주변 김밥집 인기도를 추적하여 군사 활동의 비공식 OSINT 지표를 제공합니다.",
+    "ogTitle": "국방부 김밥 지수 - 실시간 OSINT 대시보드",
+    "ogDescription": "국방부 주변 김밥집 인기도를 지정학적 지표로 추적합니다."
+  },
+  "regions": {
+    "all": "전체",
+    "korean_peninsula": "한반도",
+    "northeast_asia": "동북아",
+    "southeast_asia": "동남아",
+    "americas": "미주",
+    "middle_east": "중동"
+  },
+  "regionDescriptions": {
+    "all": "모든 지역",
+    "korean_peninsula": "남북한 관련",
+    "northeast_asia": "한중일 및 대만",
+    "southeast_asia": "동남아시아",
+    "americas": "미국 및 아메리카",
+    "middle_east": "중동 지역"
+  },
+  "threatLevel": {
+    "low": { "label": "낮음", "description": "정상 수준의 김밥 주문량" },
+    "medium": { "label": "보통", "description": "평균보다 높은 김밥 주문량 감지" },
+    "high": { "label": "높음", "description": "비정상적으로 높은 김밥 주문량" },
+    "critical": { "label": "심각", "description": "역대 최고 수준의 김밥 주문량" }
+  },
+  "shopStatus": {
+    "nominal": "정상",
+    "busy": "바쁨",
+    "closed": "영업종료",
+    "spike": "급증"
+  },
+  "kimbapcon": {
+    "1": { "description": "최고 경계 - 전면전 임박" },
+    "2": { "description": "고도 경계 - 심각한 군사적 긴장" },
+    "3": { "description": "상승 경계 - 긴장 고조" },
+    "4": { "description": "일반 경계 - 정상 모니터링" },
+    "5": { "description": "평시 상태 - 안정적" }
+  },
+  "categories": {
+    "all": "전체",
+    "following": "팔로우",
+    "politics": "정치",
+    "technology": "기술",
+    "sports": "스포츠",
+    "culture": "문화",
+    "business": "비즈니스",
+    "fun": "재미"
+  },
+  "leagueTiers": {
+    "master": "마스터",
+    "diamond": "다이아몬드",
+    "platinum": "플래티넘",
+    "gold": "골드",
+    "silver": "실버",
+    "bronze": "브론즈"
+  }
+}

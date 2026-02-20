@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl"
 import { TrendingUp, MessageCircle, Reply, UserPlus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getUserByUsername } from "@/lib/yegeon-data"
@@ -17,6 +18,7 @@ interface NotificationItemProps {
 }
 
 export default function NotificationItem({ notification }: NotificationItemProps) {
+  const locale = useLocale()
   const user = getUserByUsername(notification.fromUsername)
 
   return (
@@ -45,7 +47,7 @@ export default function NotificationItem({ notification }: NotificationItemProps
           <span className="yg-text-primary-500">
             {TYPE_ICONS[notification.type]}
           </span>
-          <span>{formatRelativeTime(notification.timestamp)}</span>
+          <span>{formatRelativeTime(notification.timestamp, locale)}</span>
         </div>
       </div>
 

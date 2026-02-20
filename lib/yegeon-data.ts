@@ -129,7 +129,7 @@ export const markets: YeGeonMarket[] = [
       "현재 대통령의 갤럽코리아 기준 지지율이 2026년 12월 31일까지 40%를 넘기는 주간 조사 결과가 1회 이상 발표되면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "정치",
+    category: "politics",
     creatorUsername: "kb_ham",
     createdAt: "2025-11-01",
     closeDate: "2026-12-31",
@@ -148,7 +148,7 @@ export const markets: YeGeonMarket[] = [
       "삼성전자 보통주(005930) 종가 기준으로 2026년 12월 30일까지 100,000원 이상을 기록하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-12-15",
     closeDate: "2026-12-30",
@@ -167,7 +167,7 @@ export const markets: YeGeonMarket[] = [
       "2026 FIFA 월드컵 아시아 최종예선 조별리그에서 대한민국이 조 1위로 본선 진출하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "스포츠",
+    category: "sports",
     creatorUsername: "yuna_choi",
     createdAt: "2025-09-20",
     closeDate: "2026-06-15",
@@ -186,7 +186,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 넷플릭스 글로벌 Top 10 주간 차트(TV 비영어 부문)에서 한국 드라마가 1위를 1회 이상 차지하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "문화",
+    category: "culture",
     creatorUsername: "soyeon_park",
     createdAt: "2025-10-10",
     closeDate: "2026-12-31",
@@ -205,7 +205,7 @@ export const markets: YeGeonMarket[] = [
       "통계청 발표 2026년 합계출산율이 2025년 대비 상승(소수점 셋째자리 이상)하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "정치",
+    category: "politics",
     creatorUsername: "kb_ham",
     createdAt: "2025-08-01",
     closeDate: "2027-02-28",
@@ -224,7 +224,7 @@ export const markets: YeGeonMarket[] = [
       "카카오뱅크(323410) 시가총액이 2026년 12월 31일까지 30조원을 1일이라도 넘기면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-11-20",
     closeDate: "2026-12-31",
@@ -243,7 +243,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 12월 31일까지 남한과 북한 정상 간의 공식 정상회담이 개최되면 YES로 결의합니다. 비공식 접촉은 포함하지 않습니다.",
     type: "binary",
     status: "open",
-    category: "정치",
+    category: "politics",
     creatorUsername: "minho_lee",
     createdAt: "2025-07-15",
     closeDate: "2026-12-31",
@@ -262,7 +262,7 @@ export const markets: YeGeonMarket[] = [
       "BTS 7인 완전체로 신규 앨범 발매 또는 공식 콘서트를 2026년 12월 31일까지 개최하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "문화",
+    category: "culture",
     creatorUsername: "soyeon_park",
     createdAt: "2025-06-01",
     closeDate: "2026-12-31",
@@ -281,7 +281,7 @@ export const markets: YeGeonMarket[] = [
       "타임지 선정 '올해의 인물' 후보 중 한국인이 선정될 경우, 해당 인물로 결의합니다. 선정되지 않으면 '해당 없음'으로 결의됩니다.",
     type: "multiple_choice",
     status: "open",
-    category: "문화",
+    category: "culture",
     creatorUsername: "kb_ham",
     createdAt: "2025-10-01",
     closeDate: "2026-12-15",
@@ -307,7 +307,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 1월 2일 시가 대비 12월 30일 종가 기준 상승률이 가장 높은 종목으로 결의합니다.",
     type: "multiple_choice",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-12-28",
     closeDate: "2026-12-30",
@@ -333,7 +333,7 @@ export const markets: YeGeonMarket[] = [
       "국회에서 인공지능 관련 규제 법안이 본회의를 통과하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "기술",
+    category: "technology",
     creatorUsername: "minho_lee",
     createdAt: "2025-11-05",
     closeDate: "2026-12-31",
@@ -352,7 +352,7 @@ export const markets: YeGeonMarket[] = [
       "2026 아이치-나고야 아시안게임 e스포츠 종목에서 한국이 금메달 1개 이상 획득하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "스포츠",
+    category: "sports",
     creatorUsername: "yuna_choi",
     createdAt: "2025-09-01",
     closeDate: "2026-09-30",
@@ -371,7 +371,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 12월 31일까지 K-POP 아티스트(솔로/그룹)의 곡이 빌보드 HOT 100 차트 1위를 기록하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "문화",
+    category: "culture",
     creatorUsername: "soyeon_park",
     createdAt: "2025-11-10",
     closeDate: "2026-12-31",
@@ -390,7 +390,7 @@ export const markets: YeGeonMarket[] = [
       "한국은행이 2026년 12월 31일까지 디지털 원화 시범 운영을 공식 개시하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-10-20",
     closeDate: "2026-12-31",
@@ -409,7 +409,7 @@ export const markets: YeGeonMarket[] = [
       "산업통상자원부 발표 기준 2026년 반도체 연간 수출액이 1000억달러를 초과하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "minho_lee",
     createdAt: "2025-12-01",
     closeDate: "2027-01-31",
@@ -428,7 +428,7 @@ export const markets: YeGeonMarket[] = [
       "한국은행 발표 2026년 연간 실질 GDP 성장률이 3.0% 이상이면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-11-15",
     closeDate: "2027-03-31",
@@ -447,7 +447,7 @@ export const markets: YeGeonMarket[] = [
       "KB부동산 기준 서울 아파트 평균 매매가격이 2026년 12월 31일까지 15억원을 초과하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "kb_ham",
     createdAt: "2025-10-05",
     closeDate: "2026-12-31",
@@ -466,7 +466,7 @@ export const markets: YeGeonMarket[] = [
       "코스피 종가가 2026년 12월 30일까지 3000 이상을 1일이라도 기록하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-12-20",
     closeDate: "2026-12-30",
@@ -485,7 +485,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 국내 신차 판매 중 전기차(BEV) 비중이 연간 기준 15%를 초과하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "기술",
+    category: "technology",
     creatorUsername: "minho_lee",
     createdAt: "2025-09-15",
     closeDate: "2027-01-31",
@@ -504,7 +504,7 @@ export const markets: YeGeonMarket[] = [
       "네이버 AI 검색(큐:) 사용 비율이 전체 검색의 50%를 넘기는 월간 리포트가 발표되면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "기술",
+    category: "technology",
     creatorUsername: "minho_lee",
     createdAt: "2025-11-25",
     closeDate: "2026-12-31",
@@ -523,7 +523,7 @@ export const markets: YeGeonMarket[] = [
       "한국형 발사체 누리호(KSLV-II)의 상업 위성 탑재 발사가 2026년 내 성공하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "기술",
+    category: "technology",
     creatorUsername: "minho_lee",
     createdAt: "2025-08-20",
     closeDate: "2026-12-31",
@@ -542,7 +542,7 @@ export const markets: YeGeonMarket[] = [
       "손흥민 선수가 2025-26 EPL 시즌 공식 리그 경기에서 20골 이상 기록하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "스포츠",
+    category: "sports",
     creatorUsername: "yuna_choi",
     createdAt: "2025-08-15",
     closeDate: "2026-05-31",
@@ -561,7 +561,7 @@ export const markets: YeGeonMarket[] = [
       "블랙핑크 4인이 참여하는 공식 월드투어가 2026년 내 1회 이상 공연되면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "문화",
+    category: "culture",
     creatorUsername: "soyeon_park",
     createdAt: "2025-07-20",
     closeDate: "2026-12-31",
@@ -580,7 +580,7 @@ export const markets: YeGeonMarket[] = [
       "제98회 아카데미 시상식에서 한국 영화 또는 한국인 감독/배우가 수상하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "문화",
+    category: "culture",
     creatorUsername: "soyeon_park",
     createdAt: "2025-10-01",
     closeDate: "2026-03-31",
@@ -599,7 +599,7 @@ export const markets: YeGeonMarket[] = [
       "SK하이닉스 2026년 연간 영업이익이 역대 최고치를 갱신하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-12-10",
     closeDate: "2027-01-31",
@@ -618,7 +618,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 내 가상자산 양도소득에 대한 과세가 실제로 시행 개시되면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "kb_ham",
     createdAt: "2025-09-10",
     closeDate: "2026-12-31",
@@ -637,7 +637,7 @@ export const markets: YeGeonMarket[] = [
       "국민연금 보험료율 또는 지급률 변경을 포함한 개혁 법안이 2026년 내 국회 본회의를 통과하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "정치",
+    category: "politics",
     creatorUsername: "kb_ham",
     createdAt: "2025-08-25",
     closeDate: "2026-12-31",
@@ -656,7 +656,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 내 탄소중립 관련 법률 개정안이 국회를 통과하여 규제가 강화되면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "정치",
+    category: "politics",
     creatorUsername: "minho_lee",
     createdAt: "2025-11-01",
     closeDate: "2026-12-31",
@@ -675,7 +675,7 @@ export const markets: YeGeonMarket[] = [
       "통계청 발표 2026년 말 주민등록인구가 5200만명 미만이면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "정치",
+    category: "politics",
     creatorUsername: "kb_ham",
     createdAt: "2025-07-01",
     closeDate: "2027-02-28",
@@ -694,7 +694,7 @@ export const markets: YeGeonMarket[] = [
       "2026년 내 기업가치 1조원 이상으로 평가받는 한국 스타트업이 신규 3개 이상 등장하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-12-05",
     closeDate: "2026-12-31",
@@ -713,7 +713,7 @@ export const markets: YeGeonMarket[] = [
       "2026 월드 베이스볼 클래식에서 한국 대표팀이 4강(준결승) 이상 진출하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "스포츠",
+    category: "sports",
     creatorUsername: "yuna_choi",
     createdAt: "2025-11-20",
     closeDate: "2026-03-31",
@@ -732,7 +732,7 @@ export const markets: YeGeonMarket[] = [
       "SK하이닉스+삼성전자의 HBM 글로벌 시장 점유율이 2026년 내 50%를 초과하는 분기 보고가 나오면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "기술",
+    category: "technology",
     creatorUsername: "minho_lee",
     createdAt: "2025-12-15",
     closeDate: "2026-12-31",
@@ -751,7 +751,7 @@ export const markets: YeGeonMarket[] = [
       "통계청 발표 2026년 연평균 실업률이 3.0% 이하이면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-10-10",
     closeDate: "2027-02-28",
@@ -770,7 +770,7 @@ export const markets: YeGeonMarket[] = [
       "클락슨리서치 기준 2026년 연간 선박 수주량에서 한국이 세계 1위를 기록하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "hyunwoo_jung",
     createdAt: "2025-09-05",
     closeDate: "2027-01-31",
@@ -789,7 +789,7 @@ export const markets: YeGeonMarket[] = [
       "농림축산식품부 발표 2026년 K-푸드 연간 수출액이 100억달러를 초과하면 YES로 결의합니다.",
     type: "binary",
     status: "open",
-    category: "비즈니스",
+    category: "business",
     creatorUsername: "soyeon_park",
     createdAt: "2025-10-15",
     closeDate: "2027-01-31",
@@ -1018,7 +1018,7 @@ export function getMarketBySlug(slug: string): YeGeonMarket | undefined {
 }
 
 export function getMarketsByCategory(category: Category): YeGeonMarket[] {
-  if (category === "전체") return markets;
+  if (category === "all") return markets;
   return markets.filter((m) => m.category === category);
 }
 
@@ -1047,18 +1047,18 @@ export function getRelatedMarkets(
     .slice(0, limit);
 }
 
-export function formatVolume(volume: number): string {
+export function formatVolume(volume: number, locale = "ko"): string {
   if (volume >= 100000000) {
     return `${(volume / 100000000).toFixed(1)}억`;
   }
   if (volume >= 10000) {
     return `${Math.floor(volume / 10000)}만`;
   }
-  return volume.toLocaleString("ko-KR");
+  return volume.toLocaleString(locale === "ko" ? "ko-KR" : "en-US");
 }
 
-export function formatYeGeonCurrency(amount: number): string {
-  return `₩${amount.toLocaleString("ko-KR")}`;
+export function formatYeGeonCurrency(amount: number, locale = "ko"): string {
+  return `₩${amount.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}`;
 }
 
 export const notifications: YeGeonNotification[] = [
@@ -1169,7 +1169,7 @@ export function getUnreadNotificationCount(): number {
 }
 
 export function getCategoriesWithCounts(): { category: Category; count: number }[] {
-  const categoryList: Category[] = ["정치", "기술", "스포츠", "문화", "비즈니스", "재미"];
+  const categoryList: Category[] = ["politics", "technology", "sports", "culture", "business", "fun"];
   return categoryList
     .map((category) => ({
       category,
@@ -1181,30 +1181,30 @@ export function getCategoriesWithCounts(): { category: Category; count: number }
 // ===== League Data =====
 
 export const LEAGUE_TIERS: LeagueTier[] = [
-  "마스터",
-  "다이아몬드",
-  "플래티넘",
-  "골드",
-  "실버",
-  "브론즈",
+  "master",
+  "diamond",
+  "platinum",
+  "gold",
+  "silver",
+  "bronze",
 ];
 
 export const TIER_EMOJIS: Record<LeagueTier, string> = {
-  마스터: "🏆",
-  다이아몬드: "💎",
-  플래티넘: "🪙",
-  골드: "🥇",
-  실버: "🥈",
-  브론즈: "🥉",
+  master: "🏆",
+  diamond: "💎",
+  platinum: "🪙",
+  gold: "🥇",
+  silver: "🥈",
+  bronze: "🥉",
 };
 
 export const TIER_COLORS: Record<LeagueTier, string> = {
-  마스터: "#e11d48",
-  다이아몬드: "#6366f1",
-  플래티넘: "#06b6d4",
-  골드: "#eab308",
-  실버: "#94a3b8",
-  브론즈: "#d97706",
+  master: "#e11d48",
+  diamond: "#6366f1",
+  platinum: "#06b6d4",
+  gold: "#eab308",
+  silver: "#94a3b8",
+  bronze: "#d97706",
 };
 
 export const CURRENT_SEASON: LeagueSeason = {
@@ -1213,15 +1213,15 @@ export const CURRENT_SEASON: LeagueSeason = {
   endDate: "2026-02-28T23:59:59Z",
 };
 
-const CURRENT_USER_TIER: LeagueTier = "실버";
+const CURRENT_USER_TIER: LeagueTier = "silver";
 const CURRENT_USER_GROUP = "영리한 독수리";
 
 export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
-  마스터: [
+  master: [
     {
       id: "master-1",
       name: "전설의 예언자",
-      tier: "마스터",
+      tier: "master",
       promotionLine: 0,
       members: [
         { rank: 1, username: "hyunwoo_jung", manaEarned: 98700 },
@@ -1229,11 +1229,11 @@ export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
       ],
     },
   ],
-  다이아몬드: [
+  diamond: [
     {
       id: "diamond-1",
       name: "빛나는 수정",
-      tier: "다이아몬드",
+      tier: "diamond",
       promotionLine: 2,
       members: [
         { rank: 1, username: "trader_kim", manaEarned: 41200 },
@@ -1244,11 +1244,11 @@ export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
       ],
     },
   ],
-  플래티넘: [
+  platinum: [
     {
       id: "plat-1",
       name: "예리한 매",
-      tier: "플래티넘",
+      tier: "platinum",
       promotionLine: 2,
       members: [
         { rank: 1, username: "stat_master", manaEarned: 22800 },
@@ -1260,11 +1260,11 @@ export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
       ],
     },
   ],
-  골드: [
+  gold: [
     {
       id: "gold-1",
       name: "황금 사자",
-      tier: "골드",
+      tier: "gold",
       promotionLine: 2,
       members: [
         { rank: 1, username: "soyeon_park", manaEarned: 15300 },
@@ -1277,11 +1277,11 @@ export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
       ],
     },
   ],
-  실버: [
+  silver: [
     {
       id: "silver-1",
       name: "영리한 독수리",
-      tier: "실버",
+      tier: "silver",
       promotionLine: 2,
       members: [
         { rank: 1, username: "sharp_eye", manaEarned: 11372 },
@@ -1295,11 +1295,11 @@ export const leagueGroups: Record<LeagueTier, LeagueGroup[]> = {
       ],
     },
   ],
-  브론즈: [
+  bronze: [
     {
       id: "bronze-1",
       name: "용감한 올빼미",
-      tier: "브론즈",
+      tier: "bronze",
       promotionLine: 2,
       members: [
         { rank: 1, username: "yuna_choi", manaEarned: 3200 },
@@ -1328,12 +1328,12 @@ export function getLeagueGroups(tier: LeagueTier): LeagueGroup[] {
 
 export function getPromotionRequirement(tier: LeagueTier): number {
   const requirements: Record<LeagueTier, number> = {
-    브론즈: 100,
-    실버: 500,
-    골드: 2000,
-    플래티넘: 8000,
-    다이아몬드: 20000,
-    마스터: 0,
+    bronze: 100,
+    silver: 500,
+    gold: 2000,
+    platinum: 8000,
+    diamond: 20000,
+    master: 0,
   };
   return requirements[tier];
 }

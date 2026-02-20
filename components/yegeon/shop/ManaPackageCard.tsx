@@ -1,5 +1,6 @@
 "use client"
 
+import { useLocale } from "next-intl"
 import { Check, Loader2, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -24,6 +25,7 @@ export default function ManaPackageCard({
   purchaseState,
   onPurchase,
 }: ManaPackageCardProps) {
+  const locale = useLocale()
   const totalMana = pkg.mana + pkg.bonus
   const isLoading = purchaseState === "loading"
   const isSuccess = purchaseState === "success"
@@ -48,19 +50,19 @@ export default function ManaPackageCard({
 
       {/* Mana amount */}
       <p className="text-2xl font-extrabold yg-text-ink-900">
-        Ⓜ {totalMana.toLocaleString("ko-KR")}
+        Ⓜ {totalMana.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
       </p>
 
       {/* Bonus info */}
       {pkg.bonus > 0 && (
         <p className="text-xs font-medium yg-text-yes-500">
-          +{pkg.bonus.toLocaleString("ko-KR")} 보너스
+          +{pkg.bonus.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")} 보너스
         </p>
       )}
 
       {/* Price */}
       <p className="text-sm font-semibold yg-text-ink-600">
-        ₩{pkg.price.toLocaleString("ko-KR")}
+        ₩{pkg.price.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
       </p>
 
       {/* Buy button */}

@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { MarketCard } from "./MarketCard";
 import { RegionFilter } from "./RegionFilter";
 import { getMarketsByRegion } from "@/lib/mock-data";
 import type { Region } from "@/lib/types";
 
 export function MarketGrid() {
-  const [selectedRegion, setSelectedRegion] = useState<Region>("전체");
+  const t = useTranslations("markets");
+  const [selectedRegion, setSelectedRegion] = useState<Region>("all");
   const markets = getMarketsByRegion(selectedRegion);
 
   return (
@@ -15,9 +17,9 @@ export function MarketGrid() {
       {/* 헤더 */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-xl font-semibold text-neutral-50">지정학적 리스크 예측</h2>
+          <h2 className="text-xl font-semibold text-neutral-50">{t("gridTitle")}</h2>
           <p className="text-sm text-neutral-400 mt-1">
-            김밥 지수와 연관된 지정학적 이벤트 예측 시장
+            {t("gridSubtitle")}
           </p>
         </div>
         <RegionFilter selectedRegion={selectedRegion} onRegionChange={setSelectedRegion} />
@@ -33,7 +35,7 @@ export function MarketGrid() {
       {/* 결과 없음 */}
       {markets.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-neutral-500">해당 지역의 예측 시장이 없습니다.</p>
+          <p className="text-neutral-500">{t("noMarketsGrid")}</p>
         </div>
       )}
     </div>

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { Star } from "lucide-react"
 import type { BingoCellData } from "@/lib/yegeon-types"
 import { FREE_SPACE_INDEX } from "@/lib/yegeon-bingo-utils"

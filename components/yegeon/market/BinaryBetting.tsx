@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { useLocale } from "next-intl"
 import { cn } from "@/lib/utils"
 import {
   formatCurrency,
@@ -21,6 +22,7 @@ interface BinaryBettingProps {
 }
 
 export default function BinaryBetting({ probability }: BinaryBettingProps) {
+  const locale = useLocale()
   const [amount, setAmount] = useState<string>("1000")
   const [selectedSide, setSelectedSide] = useState<"YES" | "NO" | null>(null)
   const [betState, setBetState] = useState<BetState>("idle")
@@ -86,10 +88,10 @@ export default function BinaryBetting({ probability }: BinaryBettingProps) {
             style={{ animationDelay: "0.1s" }}
           >
             <span className="text-sm yg-text-ink-600">
-              {selectedSide} {formatCurrency(numericAmount)}
+              {selectedSide} {formatCurrency(numericAmount, locale)}
             </span>
             <span className="text-xs yg-text-ink-400">
-              예상 수익 {formatCurrency(expectedProfit)}
+              예상 수익 {formatCurrency(expectedProfit, locale)}
             </span>
           </div>
         </div>
@@ -195,7 +197,7 @@ export default function BinaryBetting({ probability }: BinaryBettingProps) {
                 isDisabled && "opacity-60"
               )}
             >
-              {formatPresetAmount(preset)}
+              {formatPresetAmount(preset, locale)}
             </button>
           ))}
         </div>
@@ -205,7 +207,7 @@ export default function BinaryBetting({ probability }: BinaryBettingProps) {
         <div className="mb-3 flex items-center justify-between rounded-md px-3 py-2 yg-bg-canvas-50">
           <span className="text-xs yg-text-ink-400">예상 수익</span>
           <span className="text-sm font-medium yg-text-ink-800">
-            {formatCurrency(expectedProfit)}
+            {formatCurrency(expectedProfit, locale)}
           </span>
         </div>
       )}
@@ -240,9 +242,9 @@ export default function BinaryBetting({ probability }: BinaryBettingProps) {
               처리 중...
             </>
           ) : betState === "confirming" ? (
-            `${formatCurrency(numericAmount)} ${selectedSide} 확정하기`
+            `${formatCurrency(numericAmount, locale)} ${selectedSide} 확정하기`
           ) : selectedSide ? (
-            `${selectedSide} ${numericAmount > 0 ? formatCurrency(numericAmount) : ""} 베팅하기`
+            `${selectedSide} ${numericAmount > 0 ? formatCurrency(numericAmount, locale) : ""} 베팅하기`
           ) : (
             "방향을 선택하세요"
           )}

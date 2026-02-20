@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 type ThreatLevel = "LOW" | "MODERATE" | "HIGH" | "CRITICAL";
 
@@ -12,50 +13,54 @@ interface ThreatPair {
   chartData: number[];
 }
 
-const threatPairs: ThreatPair[] = [
-  {
-    id: "us-ru",
-    from: { code: "미국", flag: "🇺🇸" },
-    to: { code: "러시아", flag: "🇷🇺" },
-    level: "MODERATE",
-    chartData: [40, 35, 42, 38, 45, 40, 38, 42, 45, 48, 44, 40],
-  },
-  {
-    id: "ru-ua",
-    from: { code: "러시아", flag: "🇷🇺" },
-    to: { code: "우크라", flag: "🇺🇦" },
-    level: "HIGH",
-    chartData: [50, 55, 52, 60, 58, 65, 62, 58, 55, 52, 58, 55],
-  },
-  {
-    id: "us-cn",
-    from: { code: "미국", flag: "🇺🇸" },
-    to: { code: "중국", flag: "🇨🇳" },
-    level: "MODERATE",
-    chartData: [30, 32, 28, 35, 38, 42, 40, 45, 48, 50, 52, 55],
-  },
-  {
-    id: "cn-tw",
-    from: { code: "중국", flag: "🇨🇳" },
-    to: { code: "대만", flag: "🇹🇼" },
-    level: "HIGH",
-    chartData: [60, 58, 62, 55, 52, 48, 50, 45, 48, 52, 50, 48],
-  },
-  {
-    id: "us-ir",
-    from: { code: "미국", flag: "🇺🇸" },
-    to: { code: "이란", flag: "🇮🇷" },
-    level: "CRITICAL",
-    chartData: [50, 55, 60, 58, 65, 70, 75, 78, 80, 85, 82, 88],
-  },
-  {
-    id: "us-ve",
-    from: { code: "미국", flag: "🇺🇸" },
-    to: { code: "베네수엘라", flag: "🇻🇪" },
-    level: "CRITICAL",
-    chartData: [70, 68, 72, 65, 68, 62, 58, 55, 60, 58, 55, 52],
-  },
-];
+function useThreatPairs() {
+  const t = useTranslations("countries");
+  const threatPairs: ThreatPair[] = [
+    {
+      id: "us-ru",
+      from: { code: t("us"), flag: "🇺🇸" },
+      to: { code: t("ru"), flag: "🇷🇺" },
+      level: "MODERATE",
+      chartData: [40, 35, 42, 38, 45, 40, 38, 42, 45, 48, 44, 40],
+    },
+    {
+      id: "ru-ua",
+      from: { code: t("ru"), flag: "🇷🇺" },
+      to: { code: t("ua"), flag: "🇺🇦" },
+      level: "HIGH",
+      chartData: [50, 55, 52, 60, 58, 65, 62, 58, 55, 52, 58, 55],
+    },
+    {
+      id: "us-cn",
+      from: { code: t("us"), flag: "🇺🇸" },
+      to: { code: t("cn"), flag: "🇨🇳" },
+      level: "MODERATE",
+      chartData: [30, 32, 28, 35, 38, 42, 40, 45, 48, 50, 52, 55],
+    },
+    {
+      id: "cn-tw",
+      from: { code: t("cn"), flag: "🇨🇳" },
+      to: { code: t("tw"), flag: "🇹🇼" },
+      level: "HIGH",
+      chartData: [60, 58, 62, 55, 52, 48, 50, 45, 48, 52, 50, 48],
+    },
+    {
+      id: "us-ir",
+      from: { code: t("us"), flag: "🇺🇸" },
+      to: { code: t("ir"), flag: "🇮🇷" },
+      level: "CRITICAL",
+      chartData: [50, 55, 60, 58, 65, 70, 75, 78, 80, 85, 82, 88],
+    },
+    {
+      id: "us-ve",
+      from: { code: t("us"), flag: "🇺🇸" },
+      to: { code: t("ve"), flag: "🇻🇪" },
+      level: "CRITICAL",
+      chartData: [70, 68, 72, 65, 68, 62, 58, 55, 60, 58, 55, 52],
+    },
+  ];
+  return threatPairs;
+}
 
 const levelStyles: Record<
   ThreatLevel,
@@ -126,7 +131,7 @@ function MiniChart({
   );
 }
 
-function ThreatCard({ pair }: { pair: ThreatPair }) {
+function ThreatCard({ pair, analyzeLabel }: { pair: ThreatPair; analyzeLabel: string }) {
   const styles = levelStyles[pair.level];
 
   return (
@@ -134,7 +139,6 @@ function ThreatCard({ pair }: { pair: ThreatPair }) {
       href={`/polypulse/${pair.id}`}
       className={`block bg-gray-900/60 border ${styles.border} rounded-lg p-4 hover:bg-gray-800/60 transition-colors`}
     >
-      {/* 헤더: 국기 + 레벨 뱃지 */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-xl">{pair.from.flag}</span>
@@ -148,28 +152,27 @@ function ThreatCard({ pair }: { pair: ThreatPair }) {
         </span>
       </div>
 
-      {/* 국가 코드 */}
       <p className="text-sm text-gray-400 font-mono mb-3">
         {pair.from.code} / {pair.to.code}
       </p>
 
-      {/* 차트 */}
       <div className="mb-2">
         <MiniChart data={pair.chartData} color={styles.chart} />
       </div>
 
-      {/* 분석 링크 */}
       <span className="text-xs text-gray-500 hover:text-gray-300 transition-colors font-mono">
-        분석하기 →
+        {analyzeLabel}
       </span>
     </Link>
   );
 }
 
 export function PolyPulseThreatMonitor() {
+  const t = useTranslations("polyPulseMonitor");
+  const threatPairs = useThreatPairs();
+
   return (
     <div className="py-8">
-      {/* 헤더 */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <span className="px-2 py-0.5 text-[10px] font-mono bg-green-500/20 text-green-400 border border-green-500/50 rounded">
@@ -179,21 +182,20 @@ export function PolyPulseThreatMonitor() {
             <span className="text-purple-400">↗</span>
             <span className="font-bold">PolyPulse</span>
             <span className="text-gray-400">—</span>
-            <span className="text-gray-300">양자 위협 모니터</span>
+            <span className="text-gray-300">{t("title")}</span>
           </h2>
         </div>
         <Link
           href="/polypulse"
           className="hidden sm:flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg text-sm text-gray-300 hover:bg-gray-800 transition-colors font-mono"
         >
-          PolyPulse 열기 →
+          {t("openPolyPulse")}
         </Link>
       </div>
 
-      {/* 카드 그리드 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {threatPairs.map((pair) => (
-          <ThreatCard key={pair.id} pair={pair} />
+          <ThreatCard key={pair.id} pair={pair} analyzeLabel={t("analyze")} />
         ))}
       </div>
     </div>

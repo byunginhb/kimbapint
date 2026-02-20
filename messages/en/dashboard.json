@@ -1,0 +1,99 @@
+{
+  "threatLevelCard": {
+    "currentLevel": "Current Threat Level",
+    "anomalyDetected": "Anomaly Detected",
+    "todayOrders": "Today's Deliveries",
+    "change24h": "24h Change"
+  },
+  "deliveryStats": {
+    "title": "Delivery Stats",
+    "comparedToAvg": "{percent}% vs weekly avg",
+    "todayOrders": "Today's Orders",
+    "weeklyAvg": "Weekly Average",
+    "topLocations": "Top Delivery Locations",
+    "unit": "orders"
+  },
+  "trendChart": {
+    "title": "7-Day Delivery Trend",
+    "dailyOrders": "Daily Orders",
+    "average": "Average",
+    "ordersTooltip": "Orders",
+    "averageTooltip": "Average"
+  },
+  "scanning": {
+    "messages": [
+      "Scanning kimbap frequencies...",
+      "Analyzing delivery patterns near MoD...",
+      "Monitoring anomalies in Yongsan area...",
+      "Collecting real-time data...",
+      "Detecting kimbap shops near JCS HQ...",
+      "Analyzing overtime patterns..."
+    ]
+  },
+  "hero": {
+    "kimbapIndex": "Kimbap Index",
+    "tagline": "Intelligence, one roll at a time"
+  },
+  "nothingIndex": {
+    "geoIndex": "Kimbap Geopolitical Index",
+    "status": "Status",
+    "description": "A real-time doomsday clock tracking 33 high-risk markets. The higher the index, the closer we are to a major geopolitical event.",
+    "maxRisk": "Highest Risk",
+    "levels": {
+      "nothing": "Nothing Ever Happens",
+      "maybe": "Something Might Happen",
+      "happening": "Something Is Happening",
+      "itsOver": "It Happened"
+    }
+  },
+  "osintFeed": {
+    "pauseScroll": "Pause auto-scroll"
+  },
+  "marketIntel": {
+    "title": "Market Intelligence",
+    "live": "Live",
+    "description": "Real-time OSINT analysis matched with prediction markets. Click a tweet to see related markets, or check",
+    "topMarkets": "TOP Markets",
+    "descriptionSuffix": "for comprehensive insights from the full report.",
+    "tipTweet": "Click tweet → View related markets",
+    "tipToggle": "Live/Top toggle → Switch views",
+    "tipRelevance": "Relevance % → Match quality",
+    "noChange": "No change",
+    "sinceTweet": "since tweet",
+    "details": "Details",
+    "viewMarket": "View Market →",
+    "tradingBanner": "Trade geopolitics on Polymarket",
+    "trading": "Trade",
+    "close": "Close",
+    "classified": "CLASSIFIED // OFFICIAL USE ONLY // PIZZA INTELLIGENCE DIVISION"
+  },
+  "polyPulseMonitor": {
+    "title": "Quantum Threat Monitor",
+    "openPolyPulse": "Open PolyPulse →",
+    "analyze": "Analyze →"
+  },
+  "breakingNews": {
+    "morePredictions": "More Predictions"
+  },
+  "featureCards": {
+    "polyGlobeDesc": "Real-time 3D visualization of global prediction markets",
+    "polyGlobeEnter": "Enter PolyGlobe",
+    "trumpDesc": "Track Trump speech mentions and narratives",
+    "trumpExplore": "Explore Mentions"
+  },
+  "filterTabs": {
+    "weekdays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  },
+  "shopCard": {
+    "popularTimes": "Popular Times Analysis"
+  },
+  "countries": {
+    "us": "USA",
+    "ru": "Russia",
+    "ua": "Ukraine",
+    "cn": "China",
+    "tw": "Taiwan",
+    "ir": "Iran",
+    "ve": "Venezuela"
+  }
+}

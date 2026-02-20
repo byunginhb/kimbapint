@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { REGION_CONFIG, type Region } from "@/lib/types";
 
@@ -8,9 +9,11 @@ interface RegionFilterProps {
   onRegionChange: (region: Region) => void;
 }
 
-const regions: Region[] = ["전체", "한반도", "동북아", "동남아", "미주", "중동"];
+const regions: Region[] = ["all", "korean_peninsula", "northeast_asia", "southeast_asia", "americas", "middle_east"];
 
 export function RegionFilter({ selectedRegion, onRegionChange }: RegionFilterProps) {
+  const t = useTranslations("regions");
+
   return (
     <div className="flex flex-wrap gap-2">
       {regions.map((region) => {
@@ -30,7 +33,7 @@ export function RegionFilter({ selectedRegion, onRegionChange }: RegionFilterPro
             )}
           >
             <span className="mr-1.5">{config.emoji}</span>
-            {region}
+            {t(region)}
           </button>
         );
       })}

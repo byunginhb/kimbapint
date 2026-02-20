@@ -1,4 +1,5 @@
-import Link from "next/link"
+import { useTranslations, useLocale } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { Users, Gem } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getUserByUsername } from "@/lib/yegeon-data"
@@ -19,6 +20,8 @@ function getRecentChange(market: YeGeonMarket): number | null {
 }
 
 export default function MarketFeedCard({ market }: MarketFeedCardProps) {
+  const t = useTranslations("yFeed")
+  const locale = useLocale()
   const isBinary = market.type === "binary"
   const creator = getUserByUsername(market.creatorUsername)
   const change = isBinary ? getRecentChange(market) : null
@@ -41,7 +44,7 @@ export default function MarketFeedCard({ market }: MarketFeedCardProps) {
         {/* Traders count — hidden on mobile */}
         <span className="hidden items-center gap-1 text-xs yg-text-ink-400 sm:flex">
           <Users className="h-3.5 w-3.5" />
-          {market.totalTraders.toLocaleString("ko-KR")}
+          {market.totalTraders.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
         </span>
 
         {/* Gem icon — hidden on mobile */}
@@ -63,7 +66,7 @@ export default function MarketFeedCard({ market }: MarketFeedCardProps) {
           }}
           className="shrink-0 rounded-full border yg-border-canvas-100 px-3 py-1 text-xs font-medium yg-text-ink-600 transition-colors hover:yg-bg-canvas-50"
         >
-          베팅
+          {t("bet")}
         </button>
       </div>
     </Link>

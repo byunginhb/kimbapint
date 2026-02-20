@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl"
 import { Calendar, Users } from "lucide-react"
 import UserAvatar from "../common/UserAvatar"
 import { formatDate } from "@/lib/utils"
@@ -8,6 +9,8 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({ user }: ProfileHeaderProps) {
+  const locale = useLocale()
+
   return (
     <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
       <UserAvatar size={80} />
@@ -20,18 +23,18 @@ export default function ProfileHeader({ user }: ProfileHeaderProps) {
         <div className="mt-2 flex flex-wrap items-center gap-4 text-xs yg-text-ink-400">
           <span className="flex items-center gap-1">
             <Calendar className="h-3.5 w-3.5" />
-            {formatDate(user.createdAt)} 가입
+            {formatDate(user.createdAt, locale)} 가입
           </span>
           <span className="flex items-center gap-1">
             <Users className="h-3.5 w-3.5" />
             <span className="font-medium yg-text-ink-800">
-              {user.followersCount.toLocaleString("ko-KR")}
+              {user.followersCount.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
             </span>
             팔로워
           </span>
           <span>
             <span className="font-medium yg-text-ink-800">
-              {user.followingCount.toLocaleString("ko-KR")}
+              {user.followingCount.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
             </span>{" "}
             팔로잉
           </span>

@@ -34,7 +34,8 @@ body {
 
 /* DOUGHCON 글로우 애니메이션 */
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow:
       0 0 0 1px rgba(59, 130, 246, 0.6),
       0 0 20px rgba(59, 130, 246, 0.4),
@@ -52,6 +53,23 @@ body {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Alert 숨쉬기 애니메이션 */
+@keyframes alert-breathe {
+  0%,
+  100% {
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.1);
+  }
+  50% {
+    border-color: rgba(239, 68, 68, 1);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+}
+
+.animate-alert-breathe {
+  animation: alert-breathe 1s ease-in-out infinite;
 }
 
 /* 티커 애니메이션 */

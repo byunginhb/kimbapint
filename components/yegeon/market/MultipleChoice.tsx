@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import { useLocale } from "next-intl"
 import { cn } from "@/lib/utils"
 import type { MarketOption } from "@/lib/yegeon-types"
 import {
@@ -22,6 +23,7 @@ interface MultipleChoiceProps {
 }
 
 export default function MultipleChoice({ options }: MultipleChoiceProps) {
+  const locale = useLocale()
   const [selected, setSelected] = useState<string | null>(null)
   const [amount, setAmount] = useState<string>("1000")
   const [betState, setBetState] = useState<BetState>("idle")
@@ -97,10 +99,10 @@ export default function MultipleChoice({ options }: MultipleChoiceProps) {
               </span>
             </div>
             <span className="text-sm yg-text-ink-600">
-              {formatCurrency(numericAmount)}
+              {formatCurrency(numericAmount, locale)}
             </span>
             <span className="text-xs yg-text-ink-400">
-              예상 수익 {formatCurrency(expectedProfit)}
+              예상 수익 {formatCurrency(expectedProfit, locale)}
             </span>
           </div>
         </div>
@@ -205,7 +207,7 @@ export default function MultipleChoice({ options }: MultipleChoiceProps) {
                     isDisabled && "opacity-60"
                   )}
                 >
-                  {formatPresetAmount(preset)}
+                  {formatPresetAmount(preset, locale)}
                 </button>
               ))}
             </div>
@@ -215,7 +217,7 @@ export default function MultipleChoice({ options }: MultipleChoiceProps) {
             <div className="mb-3 flex items-center justify-between rounded-md px-3 py-2 yg-bg-canvas-50">
               <span className="text-xs yg-text-ink-400">예상 수익</span>
               <span className="text-sm font-medium yg-text-ink-800">
-                {formatCurrency(expectedProfit)}
+                {formatCurrency(expectedProfit, locale)}
               </span>
             </div>
           )}
@@ -248,7 +250,7 @@ export default function MultipleChoice({ options }: MultipleChoiceProps) {
                   처리 중...
                 </>
               ) : betState === "confirming" && selectedOption ? (
-                `${formatCurrency(numericAmount)} ${selectedOption.label} 확정하기`
+                `${formatCurrency(numericAmount, locale)} ${selectedOption.label} 확정하기`
               ) : (
                 "선택지에 베팅하기"
               )}

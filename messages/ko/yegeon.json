@@ -1,0 +1,87 @@
+{
+  "yFooter": {
+    "brand": "예견",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "contact": "문의",
+    "disclaimer": "예견은 실제 화폐를 사용하지 않는 가상 예측 마켓입니다."
+  },
+  "yNav": {
+    "openMenu": "메뉴 열기",
+    "search": "검색"
+  },
+  "yFeed": {
+    "searchPlaceholder": "마켓 검색...",
+    "noMarkets": "해당 카테고리에 마켓이 없습니다.",
+    "bet": "베팅"
+  },
+  "ySort": {
+    "popular": "인기순",
+    "trending": "화제순",
+    "newest": "최신순",
+    "allStatus": "모든 상태",
+    "myBets": "내 베팅",
+    "sortSettings": "정렬 설정"
+  },
+  "yMarket": {
+    "open": "진행 중",
+    "closed": "종료",
+    "deadline": "마감",
+    "traders": "{count}명 참여",
+    "volume": "거래량",
+    "resolution": "결의",
+    "relatedMarkets": "관련 마켓",
+    "notFound": "마켓을 찾을 수 없습니다.",
+    "goBack": "메인으로 돌아가기",
+    "back": "뒤로"
+  },
+  "yComments": {
+    "count": "댓글 {count}개",
+    "placeholder": "댓글을 작성하세요...",
+    "replies": "{count}개 답글"
+  },
+  "yTrade": {
+    "noHistory": "거래 내역이 없습니다.",
+    "buyAt": "에 매수"
+  },
+  "yBingo": {
+    "title": "예견 Bingo",
+    "description": "예측 마켓 기반 5x5 빙고 카드. 한 줄을 완성하면 우승!",
+    "allCards": "전체 카드",
+    "leaderboard": "리더보드",
+    "user": "유저",
+    "cards": "카드",
+    "wins": "승리",
+    "winRate": "승률",
+    "winProb": "승률",
+    "target": "목표",
+    "cardNotFound": "카드를 찾을 수 없습니다.",
+    "backToList": "목록으로 돌아가기",
+    "cardDetails": "카드 상세 정보",
+    "createdAt": "생성일",
+    "purchasePrice": "구매가",
+    "targetWinRate": "목표 승률",
+    "currentWinRate": "현재 승률",
+    "preview": "빙고 카드 미리보기"
+  },
+  "yLeagues": {
+    "title": "리그",
+    "fullLeaderboard": "전체 리더보드 →",
+    "description": "매월 트레이딩 수익을 기반으로 경쟁하세요.",
+    "season": "시즌 {number}: {month}",
+    "endsIn": "종료까지 {remaining}",
+    "viewPrizes": "상품 보기",
+    "staying": "{tier} 잔류 중",
+    "group": "그룹",
+    "rankings": "랭킹",
+    "activity": "활동",
+    "promotionReq": "{tier}에서 승급하려면 Ⓜ{amount} 이상 획득해야 합니다.",
+    "noActivity": "아직 이번 시즌의 활동 기록이 없습니다.",
+    "promoteTo": "{tier}로 승급",
+    "timeFormat": "{days}일 {hours}시간 {minutes}분"
+  },
+  "yExplore": {
+    "title": "탐색",
+    "marketCount": "{count}개 마켓"
+  }
+}

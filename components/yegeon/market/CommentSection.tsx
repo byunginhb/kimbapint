@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import { useTranslations, useLocale } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { ThumbsUp, MessageCircle } from "lucide-react"
 import { formatRelativeTime } from "@/lib/utils"
 import type { Comment } from "@/lib/yegeon-types"
@@ -12,10 +13,13 @@ interface CommentSectionProps {
 }
 
 export default function CommentSection({ comments }: CommentSectionProps) {
+  const t = useTranslations("yComments")
+  const locale = useLocale()
+
   return (
     <div>
       <h3 className="mb-4 text-sm font-medium yg-text-ink-600">
-        댓글 {comments.length}개
+        {t("count", { count: comments.length })}
       </h3>
 
       <div className="mb-4 flex gap-3">
@@ -23,7 +27,7 @@ export default function CommentSection({ comments }: CommentSectionProps) {
         <div className="flex-1">
           <div className="rounded-lg border yg-border-canvas-100 yg-bg-canvas-50 px-3 py-2">
             <span className="text-sm yg-text-ink-400">
-              댓글을 작성하세요...
+              {t("placeholder")}
             </span>
           </div>
         </div>
@@ -39,6 +43,8 @@ export default function CommentSection({ comments }: CommentSectionProps) {
 }
 
 function CommentItem({ comment, isReply = false }: { comment: Comment; isReply?: boolean }) {
+  const t = useTranslations("yComments")
+  const locale = useLocale()
   const [showReplies, setShowReplies] = useState(true)
 
   return (
@@ -57,7 +63,7 @@ function CommentItem({ comment, isReply = false }: { comment: Comment; isReply?:
               {comment.displayName}
             </Link>
             <span className="text-xs yg-text-ink-400">
-              {formatRelativeTime(comment.timestamp)}
+              {formatRelativeTime(comment.timestamp, locale)}
             </span>
           </div>
 
@@ -76,7 +82,7 @@ function CommentItem({ comment, isReply = false }: { comment: Comment; isReply?:
                 className="flex items-center gap-1 text-xs yg-text-ink-400 hover:yg-text-ink-600"
               >
                 <MessageCircle className="h-3.5 w-3.5" />
-                {comment.replies.length}개 답글
+                {t("replies", { count: comment.replies.length })}
               </button>
             )}
           </div>

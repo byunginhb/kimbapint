@@ -1,0 +1,87 @@
+{
+  "yFooter": {
+    "brand": "YeGeon",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "disclaimer": "YeGeon is a virtual prediction market that does not use real currency."
+  },
+  "yNav": {
+    "openMenu": "Open menu",
+    "search": "Search"
+  },
+  "yFeed": {
+    "searchPlaceholder": "Search markets...",
+    "noMarkets": "No markets in this category.",
+    "bet": "Bet"
+  },
+  "ySort": {
+    "popular": "Popular",
+    "trending": "Trending",
+    "newest": "Newest",
+    "allStatus": "All Status",
+    "myBets": "My Bets",
+    "sortSettings": "Sort settings"
+  },
+  "yMarket": {
+    "open": "Open",
+    "closed": "Closed",
+    "deadline": "Deadline",
+    "traders": "{count} traders",
+    "volume": "Volume",
+    "resolution": "Resolution",
+    "relatedMarkets": "Related Markets",
+    "notFound": "Market not found.",
+    "goBack": "Back to main",
+    "back": "Back"
+  },
+  "yComments": {
+    "count": "{count} comments",
+    "placeholder": "Write a comment...",
+    "replies": "{count} replies"
+  },
+  "yTrade": {
+    "noHistory": "No trade history.",
+    "buyAt": " bought at"
+  },
+  "yBingo": {
+    "title": "YeGeon Bingo",
+    "description": "5x5 bingo cards based on prediction markets. Complete a line to win!",
+    "allCards": "All Cards",
+    "leaderboard": "Leaderboard",
+    "user": "User",
+    "cards": "Cards",
+    "wins": "Wins",
+    "winRate": "Win Rate",
+    "winProb": "Win Prob",
+    "target": "Target",
+    "cardNotFound": "Card not found.",
+    "backToList": "Back to list",
+    "cardDetails": "Card Details",
+    "createdAt": "Created",
+    "purchasePrice": "Purchase Price",
+    "targetWinRate": "Target Win Rate",
+    "currentWinRate": "Current Win Rate",
+    "preview": "Bingo card preview"
+  },
+  "yLeagues": {
+    "title": "Leagues",
+    "fullLeaderboard": "Full Leaderboard →",
+    "description": "Compete based on monthly trading profits.",
+    "season": "Season {number}: {month}",
+    "endsIn": "{remaining} remaining",
+    "viewPrizes": "View Prizes",
+    "staying": "Staying in {tier}",
+    "group": "Group",
+    "rankings": "Rankings",
+    "activity": "Activity",
+    "promotionReq": "Earn Ⓜ{amount}+ to promote from {tier}.",
+    "noActivity": "No activity recorded this season yet.",
+    "promoteTo": "Promote to {tier}",
+    "timeFormat": "{days}d {hours}h {minutes}m"
+  },
+  "yExplore": {
+    "title": "Explore",
+    "marketCount": "{count} markets"
+  }
+}

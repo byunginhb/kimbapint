@@ -1,6 +1,6 @@
 export type ThreatLevel = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
 
-export type Region = "전체" | "한반도" | "동북아" | "동남아" | "미주" | "중동";
+export type Region = "all" | "korean_peninsula" | "northeast_asia" | "southeast_asia" | "americas" | "middle_east";
 
 export interface Market {
   id: string;
@@ -45,41 +45,33 @@ export interface DashboardState {
 
 export const THREAT_LEVEL_CONFIG: Record<
   ThreatLevel,
-  { label: string; color: string; bgColor: string; description: string }
+  { color: string; bgColor: string }
 > = {
   LOW: {
-    label: "낮음",
     color: "text-green-500",
     bgColor: "bg-green-500/10",
-    description: "정상 수준의 김밥 주문량",
   },
   MEDIUM: {
-    label: "보통",
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/10",
-    description: "평균보다 높은 김밥 주문량 감지",
   },
   HIGH: {
-    label: "높음",
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
-    description: "비정상적으로 높은 김밥 주문량",
   },
   CRITICAL: {
-    label: "심각",
     color: "text-red-500",
     bgColor: "bg-red-500/10",
-    description: "역대 최고 수준의 김밥 주문량",
   },
 };
 
-export const REGION_CONFIG: Record<Region, { emoji: string; description: string }> = {
-  전체: { emoji: "🌏", description: "모든 지역" },
-  한반도: { emoji: "🇰🇷", description: "남북한 관련" },
-  동북아: { emoji: "🗾", description: "한중일 및 대만" },
-  동남아: { emoji: "🌴", description: "동남아시아" },
-  미주: { emoji: "🇺🇸", description: "미국 및 아메리카" },
-  중동: { emoji: "🕌", description: "중동 지역" },
+export const REGION_CONFIG: Record<Region, { emoji: string }> = {
+  all: { emoji: "🌏" },
+  korean_peninsula: { emoji: "🇰🇷" },
+  northeast_asia: { emoji: "🗾" },
+  southeast_asia: { emoji: "🌴" },
+  americas: { emoji: "🇺🇸" },
+  middle_east: { emoji: "🕌" },
 };
 
 // 김밥집 관련 타입
@@ -118,28 +110,24 @@ export interface KimbapShopDetail extends KimbapShop {
 
 export const SHOP_STATUS_CONFIG: Record<
   ShopStatus,
-  { label: string; color: string; bgColor: string; borderColor: string }
+  { color: string; bgColor: string; borderColor: string }
 > = {
   NOMINAL: {
-    label: "정상",
     color: "text-green-400",
     bgColor: "bg-green-900/20",
     borderColor: "border-green-500/40",
   },
   BUSY: {
-    label: "바쁨",
     color: "text-yellow-400",
     bgColor: "bg-yellow-900/20",
     borderColor: "border-yellow-500/40",
   },
   CLOSED: {
-    label: "영업종료",
     color: "text-gray-400",
     bgColor: "bg-gray-800",
     borderColor: "border-gray-600",
   },
   SPIKE: {
-    label: "급증",
     color: "text-red-400",
     bgColor: "bg-red-900/20",
     borderColor: "border-red-500/40",
@@ -199,36 +187,31 @@ export interface MajorEvent {
 
 export const KIMBAPCON_LEVELS: Record<
   number,
-  { name: string; color: string; bgColor: string; description: string }
+  { name: string; color: string; bgColor: string }
 > = {
   1: {
     name: "KIMBAPCON 1",
     color: "text-red-500",
     bgColor: "bg-red-500/20",
-    description: "최고 경계 - 전면전 임박",
   },
   2: {
     name: "KIMBAPCON 2",
     color: "text-orange-500",
     bgColor: "bg-orange-500/20",
-    description: "고도 경계 - 심각한 군사적 긴장",
   },
   3: {
     name: "KIMBAPCON 3",
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/20",
-    description: "상승 경계 - 긴장 고조",
   },
   4: {
     name: "KIMBAPCON 4",
     color: "text-blue-500",
     bgColor: "bg-blue-500/20",
-    description: "일반 경계 - 정상 모니터링",
   },
   5: {
     name: "KIMBAPCON 5",
     color: "text-green-500",
     bgColor: "bg-green-500/20",
-    description: "평시 상태 - 안정적",
   },
 };

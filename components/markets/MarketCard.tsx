@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Card } from "@/components/ui/Card";
 import { Badge, TrendBadge } from "@/components/ui/Badge";
 import type { Market } from "@/lib/types";
@@ -13,6 +14,9 @@ interface MarketCardProps {
 }
 
 export function MarketCard({ market }: MarketCardProps) {
+  const tRegions = useTranslations("regions");
+  const tMarkets = useTranslations("markets");
+  const locale = useLocale();
   const regionConfig = REGION_CONFIG[market.region];
   const probabilityPercent = (market.probability * 100).toFixed(1);
 
@@ -34,7 +38,7 @@ export function MarketCard({ market }: MarketCardProps) {
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-3">
           <Badge variant="region">
-            {regionConfig.emoji} {market.region}
+            {regionConfig.emoji} {tRegions(market.region)}
           </Badge>
           <TrendIcon className={`h-4 w-4 ${trendColor}`} />
         </div>
@@ -56,14 +60,14 @@ export function MarketCard({ market }: MarketCardProps) {
               {probabilityPercent}
             </span>
             <span className="text-lg text-neutral-500 ml-1">%</span>
-            <p className="text-xs text-neutral-500 mt-1">예측 확률</p>
+            <p className="text-xs text-neutral-500 mt-1">{tMarkets("predictionProb")}</p>
           </div>
 
           <div className="text-right">
             <p className="text-sm font-mono text-neutral-300">
-              ₩{formatNumber(market.volume24h)}
+              ₩{formatNumber(market.volume24h, locale)}
             </p>
-            <p className="text-xs text-neutral-500">24시간 거래량</p>
+            <p className="text-xs text-neutral-500">{tMarkets("volume24h")}</p>
           </div>
         </div>
 
@@ -71,9 +75,9 @@ export function MarketCard({ market }: MarketCardProps) {
         <div className="pt-3 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-500">
           <div className="flex items-center gap-1">
             <Calendar className="h-3 w-3" />
-            <span>마감: {formatDate(market.endDate)}</span>
+            <span>{tMarkets("deadline")}: {formatDate(market.endDate, locale)}</span>
           </div>
-          <span>총 ₩{formatNumber(market.totalVolume)}</span>
+          <span>{tMarkets("total")} ₩{formatNumber(market.totalVolume, locale)}</span>
         </div>
       </Card>
     </Link>

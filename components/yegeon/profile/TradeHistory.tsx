@@ -1,4 +1,5 @@
-import Link from "next/link"
+import { useTranslations, useLocale } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { ArrowUpRight, ArrowDownRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { formatRelativeTime } from "@/lib/utils"
@@ -10,10 +11,13 @@ interface TradeHistoryProps {
 }
 
 export default function TradeHistory({ trades }: TradeHistoryProps) {
+  const t = useTranslations("yTrade")
+  const locale = useLocale()
+
   if (trades.length === 0) {
     return (
       <div className="py-8 text-center text-sm yg-text-ink-400">
-        거래 내역이 없습니다.
+        {t("noHistory")}
       </div>
     )
   }
@@ -49,14 +53,14 @@ export default function TradeHistory({ trades }: TradeHistoryProps) {
                   {trade.optionLabel ? ` (${trade.optionLabel})` : ""}
                 </span>
                 <span>·</span>
-                <span>{Math.round(trade.probability * 100)}%에 매수</span>
+                <span>{Math.round(trade.probability * 100)}%{t("buyAt")}</span>
                 <span>·</span>
-                <span>{formatRelativeTime(trade.timestamp)}</span>
+                <span>{formatRelativeTime(trade.timestamp, locale)}</span>
               </div>
             </div>
 
             <span className="whitespace-nowrap text-sm font-medium yg-text-ink-800">
-              {formatYeGeonCurrency(trade.amount)}
+              {formatYeGeonCurrency(trade.amount, locale)}
             </span>
           </div>
         </Link>

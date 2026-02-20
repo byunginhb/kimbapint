@@ -22,7 +22,7 @@ export const mockMarkets: Market[] = [
     probability: 0.085,
     volume24h: 245000000,
     totalVolume: 1250000000,
-    region: "한반도",
+    region: "korean_peninsula",
     endDate: "2025-12-31",
     trend: "stable",
     createdAt: "2024-01-15",
@@ -35,7 +35,7 @@ export const mockMarkets: Market[] = [
     probability: 0.42,
     volume24h: 189000000,
     totalVolume: 890000000,
-    region: "한반도",
+    region: "korean_peninsula",
     endDate: "2025-02-28",
     trend: "up",
     createdAt: "2024-02-01",
@@ -48,7 +48,7 @@ export const mockMarkets: Market[] = [
     probability: 0.175,
     volume24h: 520000000,
     totalVolume: 3200000000,
-    region: "동북아",
+    region: "northeast_asia",
     endDate: "2025-12-31",
     trend: "up",
     createdAt: "2024-01-01",
@@ -61,7 +61,7 @@ export const mockMarkets: Market[] = [
     probability: 0.28,
     volume24h: 78000000,
     totalVolume: 420000000,
-    region: "동북아",
+    region: "northeast_asia",
     endDate: "2025-06-30",
     trend: "down",
     createdAt: "2024-03-15",
@@ -74,7 +74,7 @@ export const mockMarkets: Market[] = [
     probability: 0.12,
     volume24h: 320000000,
     totalVolume: 1800000000,
-    region: "동남아",
+    region: "southeast_asia",
     endDate: "2025-12-31",
     trend: "stable",
     createdAt: "2024-02-20",
@@ -87,7 +87,7 @@ export const mockMarkets: Market[] = [
     probability: 0.095,
     volume24h: 410000000,
     totalVolume: 2100000000,
-    region: "중동",
+    region: "middle_east",
     endDate: "2025-12-31",
     trend: "up",
     createdAt: "2024-01-10",
@@ -100,7 +100,7 @@ export const mockMarkets: Market[] = [
     probability: 0.31,
     volume24h: 280000000,
     totalVolume: 1500000000,
-    region: "한반도",
+    region: "korean_peninsula",
     endDate: "2025-12-31",
     trend: "up",
     createdAt: "2024-01-05",
@@ -113,7 +113,7 @@ export const mockMarkets: Market[] = [
     probability: 0.15,
     volume24h: 95000000,
     totalVolume: 620000000,
-    region: "미주",
+    region: "americas",
     endDate: "2025-12-31",
     trend: "stable",
     createdAt: "2024-04-01",
@@ -147,7 +147,7 @@ export const mockDashboardState: DashboardState = {
 };
 
 export function getMarketsByRegion(region: Region): Market[] {
-  if (region === "전체") return mockMarkets;
+  if (region === "all") return mockMarkets;
   return mockMarkets.filter((market) => market.region === region);
 }
 

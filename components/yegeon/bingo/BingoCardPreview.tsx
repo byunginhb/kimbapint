@@ -1,4 +1,5 @@
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import type { BingoCardData } from "@/lib/yegeon-types"
 import { FREE_SPACE_INDEX } from "@/lib/yegeon-bingo-utils"
 import UserAvatar from "@/components/yegeon/common/UserAvatar"
@@ -8,9 +9,9 @@ interface BingoCardPreviewProps {
   card: BingoCardData
 }
 
-function MiniGrid({ grid }: { grid: BingoCardData["grid"] }) {
+function MiniGrid({ grid, ariaLabel }: { grid: BingoCardData["grid"]; ariaLabel: string }) {
   return (
-    <div className="yegeon-bingo-mini-grid" role="img" aria-label="빙고 카드 미리보기">
+    <div className="yegeon-bingo-mini-grid" role="img" aria-label={ariaLabel}>
       {grid.map((cell, i) => {
         let colorClass = "yg-bg-canvas-100"
         if (i === FREE_SPACE_INDEX) colorClass = "yg-bg-bingo-free"
@@ -23,12 +24,14 @@ function MiniGrid({ grid }: { grid: BingoCardData["grid"] }) {
 }
 
 export default function BingoCardPreview({ card }: BingoCardPreviewProps) {
+  const t = useTranslations("yBingo")
+
   return (
     <Link
       href={`/yegeon/bingo/${card.cardId}`}
       className="yegeon-card-hover flex items-center gap-4 rounded-xl border yg-border-canvas-100 p-4"
     >
-      <MiniGrid grid={card.grid} />
+      <MiniGrid grid={card.grid} ariaLabel={t("preview")} />
 
       <div className="flex min-w-0 flex-1 flex-col gap-1.5">
         <div className="flex items-center gap-2">
@@ -40,13 +43,13 @@ export default function BingoCardPreview({ card }: BingoCardPreviewProps) {
         </div>
         <div className="flex items-center gap-3 text-xs yg-text-ink-500">
           <span>
-            승률{" "}
+            {t("winProb")}{" "}
             <span className="font-bold yg-text-ink-900">
               {(card.winProbability * 100).toFixed(0)}%
             </span>
           </span>
           <span>
-            목표{" "}
+            {t("target")}{" "}
             <span className="font-medium">
               {(card.targetWinProb * 100).toFixed(0)}%
             </span>

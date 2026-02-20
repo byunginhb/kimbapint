@@ -12,12 +12,12 @@ export interface YeGeonNotification {
 }
 
 export type LeagueTier =
-  | "마스터"
-  | "다이아몬드"
-  | "플래티넘"
-  | "골드"
-  | "실버"
-  | "브론즈"
+  | "master"
+  | "diamond"
+  | "platinum"
+  | "gold"
+  | "silver"
+  | "bronze"
 
 export interface LeagueMember {
   rank: number
@@ -41,7 +41,7 @@ export interface LeagueSeason {
 
 export type MarketType = "binary" | "multiple_choice"
 export type MarketStatus = "open" | "closed" | "resolved"
-export type Category = "전체" | "팔로우" | "정치" | "기술" | "스포츠" | "문화" | "비즈니스" | "재미"
+export type Category = "all" | "following" | "politics" | "technology" | "sports" | "culture" | "business" | "fun"
 export type SortOption = "popular" | "trending" | "newest"
 export type TradeDirection = "YES" | "NO"
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations, useLocale } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { Badge, TrendBadge } from "@/components/ui/Badge";
 import { THREAT_LEVEL_CONFIG, type ThreatLevel as ThreatLevelType } from "@/lib/types";
@@ -19,8 +20,12 @@ export function ThreatLevel({
   change24h,
   anomalyDetected,
 }: ThreatLevelProps) {
+  const t = useTranslations("threatLevel");
+  const tCard = useTranslations("threatLevelCard");
+  const locale = useLocale();
   const config = THREAT_LEVEL_CONFIG[level];
   const isPositiveChange = change24h > 0;
+  const levelKey = level.toLowerCase() as "low" | "medium" | "high" | "critical";
 
   return (
     <Card className="relative overflow-hidden">
@@ -38,11 +43,11 @@ export function ThreatLevel({
       <div className="relative">
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-neutral-400">현재 위협 레벨</span>
+          <span className="text-sm text-neutral-400">{tCard("currentLevel")}</span>
           {anomalyDetected && (
             <Badge variant="warning" className="gap-1">
               <AlertTriangle className="h-3 w-3" />
-              이상 징후
+              {tCard("anomalyDetected")}
             </Badge>
           )}
         </div>
@@ -51,25 +56,25 @@ export function ThreatLevel({
         <div className="flex items-end gap-4 mb-4">
           <div>
             <span className={cn("text-5xl font-bold", config.color)}>
-              {config.label}
+              {t(`${levelKey}.label`)}
             </span>
             <span className="text-lg text-neutral-500 ml-2">({level})</span>
           </div>
         </div>
 
         {/* 설명 */}
-        <p className="text-sm text-neutral-400 mb-4">{config.description}</p>
+        <p className="text-sm text-neutral-400 mb-4">{t(`${levelKey}.description`)}</p>
 
         {/* 통계 */}
         <div className="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-800">
           <div>
-            <p className="text-xs text-neutral-500 mb-1">오늘 배달 건수</p>
+            <p className="text-xs text-neutral-500 mb-1">{tCard("todayOrders")}</p>
             <p className="text-2xl font-semibold font-mono text-neutral-50">
-              {formatNumber(deliveryCount)}
+              {formatNumber(deliveryCount, locale)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-neutral-500 mb-1">24시간 변화</p>
+            <p className="text-xs text-neutral-500 mb-1">{tCard("change24h")}</p>
             <div className="flex items-center gap-2">
               {isPositiveChange ? (
                 <TrendingUp className="h-4 w-4 text-green-500" />

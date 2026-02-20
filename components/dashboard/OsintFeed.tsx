@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Satellite, Wifi, Pause, ExternalLink, TrendingUp } from "lucide-react";
 
 interface FeedItem {
@@ -39,6 +40,8 @@ const mockFeedItems: FeedItem[] = [
 ];
 
 export function OsintFeed() {
+  const t = useTranslations("osintFeed");
+
   return (
     <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-3 shadow-lg">
       {/* 헤더 */}
@@ -57,7 +60,7 @@ export function OsintFeed() {
             AUTO-SCROLL
           </div>
           <button
-            title="자동 스크롤 일시정지"
+            title={t("pauseScroll")}
             className="p-1 rounded transition-colors text-green-400 hover:text-green-300 hover:bg-green-900/20"
           >
             <Pause className="w-3 h-3" />
@@ -87,11 +90,10 @@ export function OsintFeed() {
               className="relative flex-shrink-0 w-[calc(100vw-4rem)] sm:w-80"
             >
               <div
-                className={`bg-gray-900/60 border rounded-lg transition-all duration-300 hover:bg-gray-800/60 p-2 h-32 flex flex-col overflow-hidden ${
-                  item.isAlert
-                    ? "border-red-500 shadow-lg shadow-red-500/20"
-                    : "border-gray-700"
-                }`}
+                className={`bg-gray-900/60 border rounded-lg transition-all duration-300 hover:bg-gray-800/60 p-2 h-32 flex flex-col overflow-hidden ${item.isAlert
+                  ? "animate-alert-breathe"
+                  : "border-gray-700"
+                  }`}
               >
                 {/* 상단 */}
                 <div className="flex items-center justify-between mb-1">

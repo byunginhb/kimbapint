@@ -1,17 +1,18 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import type { Category } from "@/lib/yegeon-types"
 
 const categories: Category[] = [
-  "전체",
-  "팔로우",
-  "정치",
-  "기술",
-  "스포츠",
-  "문화",
-  "비즈니스",
-  "재미",
+  "all",
+  "following",
+  "politics",
+  "technology",
+  "sports",
+  "culture",
+  "business",
+  "fun",
 ]
 
 interface CategoryTabsProps {
@@ -20,6 +21,8 @@ interface CategoryTabsProps {
 }
 
 export default function CategoryTabs({ selected, onChange }: CategoryTabsProps) {
+  const t = useTranslations("categories")
+
   return (
     <div className="scrollbar-hide flex gap-1 overflow-x-auto border-b yg-border-canvas-100 pb-px">
       {categories.map((cat) => (
@@ -33,7 +36,7 @@ export default function CategoryTabs({ selected, onChange }: CategoryTabsProps) 
               : "yg-text-ink-400 hover:yg-text-ink-800"
           )}
         >
-          {cat}
+          {t(cat)}
         </button>
       ))}
     </div>

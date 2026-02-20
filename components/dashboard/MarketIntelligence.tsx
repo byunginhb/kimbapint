@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { TrendingUp, HelpCircle, ChevronDown } from "lucide-react";
 
 interface OsintTweet {
@@ -137,7 +138,8 @@ function TweetCard({ tweet }: { tweet: OsintTweet }) {
   );
 }
 
-function MarketCard({ market }: { market: MarketItem }) {
+function IntelMarketCard({ market }: { market: MarketItem }) {
+  const t = useTranslations("marketIntel")
   return (
     <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
       <div className="flex items-start gap-3">
@@ -156,9 +158,9 @@ function MarketCard({ market }: { market: MarketItem }) {
                 {market.priceChange >= 0 ? "▲" : "▼"} {Math.abs(market.priceChange)}¢
               </span>
             ) : (
-              "변동 없음"
+              t("noChange")
             )}{" "}
-            (트윗 이후)
+            ({t("sinceTweet")})
           </p>
         </div>
         <div className="flex flex-col items-end">
@@ -174,13 +176,13 @@ function MarketCard({ market }: { market: MarketItem }) {
         </span>
         <div className="flex items-center gap-2">
           <button className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronDown className="w-4 h-4 inline" /> 상세 보기
+            <ChevronDown className="w-4 h-4 inline" /> {t("details")}
           </button>
           <a
             href="#"
             className="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded text-white transition-colors font-mono"
           >
-            마켓 보기 →
+            {t("viewMarket")}
           </a>
         </div>
       </div>
@@ -189,6 +191,7 @@ function MarketCard({ market }: { market: MarketItem }) {
 }
 
 export function MarketIntelligence() {
+  const t = useTranslations("marketIntel");
   const [activeTab, setActiveTab] = useState<"Live" | "Top">("Live");
 
   return (
@@ -198,11 +201,11 @@ export function MarketIntelligence() {
         <div className="flex items-center gap-3">
           <TrendingUp className="w-5 h-5 text-cyan-400" />
           <h2 className="text-lg font-bold text-white font-mono tracking-wider">
-            마켓 인텔리전스
+            {t("title")}
           </h2>
           <span className="flex items-center gap-1.5 text-xs">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-gray-400">실시간</span>
+            <span className="text-gray-400">{t("live")}</span>
           </span>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -218,21 +221,21 @@ export function MarketIntelligence() {
         <HelpCircle className="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm text-gray-300 mb-2">
-            실시간 OSINT 분석과 예측 마켓 매칭. 트윗을 선택하면 관련 마켓을 볼 수 있고,{" "}
+            {t("description")}{" "}
             <a href="#" className="text-cyan-400 hover:underline">
-              TOP 마켓
+              {t("topMarkets")}
             </a>
-            에서 전체 리포트의 종합 인사이트를 확인하세요.
+            {t("descriptionSuffix")}
           </p>
           <div className="flex flex-wrap gap-4 text-xs text-gray-500">
             <span>
-              <span className="text-green-400">●</span> 트윗 클릭 → 관련 마켓 보기
+              <span className="text-green-400">●</span> {t("tipTweet")}
             </span>
             <span>
-              <span className="text-green-400">●</span> Live/Top 토글 → 뷰 전환
+              <span className="text-green-400">●</span> {t("tipToggle")}
             </span>
             <span>
-              <span className="text-yellow-400">●</span> 관련도 % → 매칭 품질
+              <span className="text-yellow-400">●</span> {t("tipRelevance")}
             </span>
           </div>
         </div>
@@ -249,21 +252,19 @@ export function MarketIntelligence() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setActiveTab("Live")}
-            className={`px-3 py-1 text-xs font-mono rounded transition-colors ${
-              activeTab === "Live"
+            className={`px-3 py-1 text-xs font-mono rounded transition-colors ${activeTab === "Live"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-800 text-gray-400 hover:text-white"
-            }`}
+              }`}
           >
             Live
           </button>
           <button
             onClick={() => setActiveTab("Top")}
-            className={`px-3 py-1 text-xs font-mono rounded transition-colors ${
-              activeTab === "Top"
+            className={`px-3 py-1 text-xs font-mono rounded transition-colors ${activeTab === "Top"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-800 text-gray-400 hover:text-white"
-            }`}
+              }`}
           >
             Top
           </button>
@@ -273,17 +274,14 @@ export function MarketIntelligence() {
 
       {/* 콘텐츠 그리드 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* 왼쪽: OSINT 피드 */}
         <div className="space-y-3">
           {osintTweets.map((tweet) => (
             <TweetCard key={tweet.id} tweet={tweet} />
           ))}
         </div>
-
-        {/* 오른쪽: 마켓 목록 */}
         <div className="space-y-3">
           {markets.map((market) => (
-            <MarketCard key={market.id} market={market} />
+            <IntelMarketCard key={market.id} market={market} />
           ))}
         </div>
       </div>
@@ -295,7 +293,7 @@ export function MarketIntelligence() {
             Polymarket
           </span>
           <span className="text-white font-medium">
-            Polymarket에서 지정학 트레이딩
+            {t("tradingBanner")}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -303,17 +301,17 @@ export function MarketIntelligence() {
             href="#"
             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-white text-sm font-medium transition-colors"
           >
-            트레이딩
+            {t("trading")}
           </a>
           <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-white text-sm transition-colors">
-            닫기
+            {t("close")}
           </button>
         </div>
       </div>
 
       {/* 푸터 */}
       <div className="mt-8 text-center text-xs text-gray-600 font-mono tracking-wider">
-        기밀 // 공식 사용만 // 피자 인텔리전스 부서
+        {t("classified")}
       </div>
     </div>
   );

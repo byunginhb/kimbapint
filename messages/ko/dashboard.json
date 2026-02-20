@@ -1,0 +1,99 @@
+{
+  "threatLevelCard": {
+    "currentLevel": "현재 위협 레벨",
+    "anomalyDetected": "이상 징후",
+    "todayOrders": "오늘 배달 건수",
+    "change24h": "24시간 변화"
+  },
+  "deliveryStats": {
+    "title": "배달 통계",
+    "comparedToAvg": "주간 평균 대비 {percent}%",
+    "todayOrders": "오늘 주문",
+    "weeklyAvg": "주간 평균",
+    "topLocations": "상위 배달 위치",
+    "unit": "건"
+  },
+  "trendChart": {
+    "title": "7일 배달 추이",
+    "dailyOrders": "일별 주문",
+    "average": "평균",
+    "ordersTooltip": "주문",
+    "averageTooltip": "평균"
+  },
+  "scanning": {
+    "messages": [
+      "김밥 주파수 스캔중...",
+      "국방부 주변 배달 패턴 분석중...",
+      "용산 지역 이상 징후 모니터링...",
+      "실시간 데이터 수집중...",
+      "합참 주변 김밥집 탐지중...",
+      "야근 패턴 분석중..."
+    ]
+  },
+  "hero": {
+    "kimbapIndex": "김밥 지수",
+    "tagline": "한 줄씩 전하는 정보"
+  },
+  "nothingIndex": {
+    "geoIndex": "김밥 지정학 지수",
+    "status": "상태",
+    "description": "33개 고위험 마켓을 추적하는 실시간 종말 시계. 지수가 높을수록 대형 지정학적 사건에 가까워집니다.",
+    "maxRisk": "최고 위험",
+    "levels": {
+      "nothing": "아무 일도 없음",
+      "maybe": "뭔가 있을지도",
+      "happening": "뭔가 벌어지는 중",
+      "itsOver": "터졌다"
+    }
+  },
+  "osintFeed": {
+    "pauseScroll": "자동 스크롤 일시정지"
+  },
+  "marketIntel": {
+    "title": "마켓 인텔리전스",
+    "live": "실시간",
+    "description": "실시간 OSINT 분석과 예측 마켓 매칭. 트윗을 선택하면 관련 마켓을 볼 수 있고,",
+    "topMarkets": "TOP 마켓",
+    "descriptionSuffix": "에서 전체 리포트의 종합 인사이트를 확인하세요.",
+    "tipTweet": "트윗 클릭 → 관련 마켓 보기",
+    "tipToggle": "Live/Top 토글 → 뷰 전환",
+    "tipRelevance": "관련도 % → 매칭 품질",
+    "noChange": "변동 없음",
+    "sinceTweet": "트윗 이후",
+    "details": "상세 보기",
+    "viewMarket": "마켓 보기 →",
+    "tradingBanner": "Polymarket에서 지정학 트레이딩",
+    "trading": "트레이딩",
+    "close": "닫기",
+    "classified": "기밀 // 공식 사용만 // 피자 인텔리전스 부서"
+  },
+  "polyPulseMonitor": {
+    "title": "양자 위협 모니터",
+    "openPolyPulse": "PolyPulse 열기 →",
+    "analyze": "분석하기 →"
+  },
+  "breakingNews": {
+    "morePredictions": "더 많은 예측"
+  },
+  "featureCards": {
+    "polyGlobeDesc": "글로벌 예측 마켓의 실시간 3D 시각화",
+    "polyGlobeEnter": "PolyGlobe 입장",
+    "trumpDesc": "트럼프 발언록 언급 및 내러티브 추적",
+    "trumpExplore": "언급 탐색"
+  },
+  "filterTabs": {
+    "weekdays": ["일", "월", "화", "수", "목", "금", "토"]
+  },
+  "shopCard": {
+    "popularTimes": "인기 시간대 분석"
+  },
+  "countries": {
+    "us": "미국",
+    "ru": "러시아",
+    "ua": "우크라",
+    "cn": "중국",
+    "tw": "대만",
+    "ir": "이란",
+    "ve": "베네수엘라"
+  }
+}

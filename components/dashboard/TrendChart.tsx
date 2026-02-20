@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
 import { getWeekdayLabels } from "@/lib/mock-data";
 import {
@@ -20,6 +21,7 @@ interface TrendChartProps {
 }
 
 export function TrendChart({ weeklyOrders, weeklyAverage }: TrendChartProps) {
+  const t = useTranslations("trendChart");
   const labels = getWeekdayLabels();
   const data = weeklyOrders.map((orders, index) => ({
     day: labels[index],
@@ -31,15 +33,15 @@ export function TrendChart({ weeklyOrders, weeklyAverage }: TrendChartProps) {
     <Card>
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-4">
-        <span className="text-sm text-neutral-400">7일 배달 추이</span>
+        <span className="text-sm text-neutral-400">{t("title")}</span>
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-1">
             <div className="h-2 w-2 rounded-full bg-green-500" />
-            <span className="text-neutral-500">일별 주문</span>
+            <span className="text-neutral-500">{t("dailyOrders")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="h-2 w-2 rounded-full bg-neutral-500" />
-            <span className="text-neutral-500">평균</span>
+            <span className="text-neutral-500">{t("average")}</span>
           </div>
         </div>
       </div>
@@ -75,8 +77,8 @@ export function TrendChart({ weeklyOrders, weeklyAverage }: TrendChartProps) {
               }}
               labelStyle={{ color: "#a3a3a3" }}
               formatter={(value, name) => [
-                `${value}건`,
-                name === "orders" ? "주문" : "평균",
+                `${value}`,
+                name === "orders" ? t("ordersTooltip") : t("averageTooltip"),
               ]}
             />
             <Area

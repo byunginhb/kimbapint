@@ -5,14 +5,20 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatNumber(num: number): string {
-  return new Intl.NumberFormat("ko-KR").format(num);
+function toLocaleCode(locale: string): string {
+  return locale === "ko" ? "ko-KR" : "en-US";
 }
 
-export function formatCurrency(num: number): string {
-  return new Intl.NumberFormat("ko-KR", {
+export function formatNumber(num: number, locale = "ko"): string {
+  return new Intl.NumberFormat(toLocaleCode(locale)).format(num);
+}
+
+export function formatCurrency(num: number, locale = "ko"): string {
+  const loc = toLocaleCode(locale);
+  const currency = locale === "ko" ? "KRW" : "USD";
+  return new Intl.NumberFormat(loc, {
     style: "currency",
-    currency: "KRW",
+    currency,
     maximumFractionDigits: 0,
   }).format(num);
 }
@@ -21,25 +27,23 @@ export function formatPercent(num: number): string {
   return `${(num * 100).toFixed(1)}%`;
 }
 
-export function formatDate(date: string | Date): string {
-  return new Intl.DateTimeFormat("ko-KR", {
+export function formatDate(date: string | Date, locale = "ko"): string {
+  return new Intl.DateTimeFormat(toLocaleCode(locale), {
     year: "numeric",
     month: "long",
     day: "numeric",
   }).format(new Date(date));
 }
 
-export function formatRelativeTime(date: string | Date): string {
-  const now = new Date();
-  const target = new Date(date);
-  const diff = now.getTime() - target.getTime();
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
+export function formatRelativeTime(date: string | Date, locale = "ko"): string {
+  const loc = locale === "ko" ? "ko" : "en";
+  const rtf = new Intl.RelativeTimeFormat(loc, { numeric: "auto" });
+  const diff = new Date(date).getTime() - Date.now();
+  const absDiff = Math.abs(diff);
 
-  if (minutes < 1) return "방금 전";
-  if (minutes < 60) return `${minutes}분 전`;
-  if (hours < 24) return `${hours}시간 전`;
-  if (days < 7) return `${days}일 전`;
-  return formatDate(date);
+  if (absDiff < 60000) return rtf.format(0, "minute");
+  if (absDiff < 3600000) return rtf.format(Math.round(diff / 60000), "minute");
+  if (absDiff < 86400000) return rtf.format(Math.round(diff / 3600000), "hour");
+  if (absDiff < 604800000) return rtf.format(Math.round(diff / 86400000), "day");
+  return formatDate(date, locale);
 }

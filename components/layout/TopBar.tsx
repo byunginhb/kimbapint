@@ -1,11 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Clock, Archive, TrendingUp, Eye } from "lucide-react";
 
+const LOCALE_OPTIONS = [
+  { value: "ko" as const, flag: "🇰🇷", label: "KO" },
+  { value: "en" as const, flag: "🇺🇸", label: "EN" },
+];
+
 export function TopBar() {
+  const locale = useLocale();
+  const t = useTranslations("topbar");
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [currentTime, setCurrentTime] = useState<string | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -16,17 +29,56 @@ export function TopBar() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setLangOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const currentOption = LOCALE_OPTIONS.find((o) => o.value === locale) ?? LOCALE_OPTIONS[0];
+
+  function switchLocale(newLocale: "ko" | "en") {
+    setLangOpen(false);
+    router.replace(pathname, { locale: newLocale });
+  }
+
   return (
     <div className="bg-gray-900 border-b border-gray-700 px-3 pr-24 sm:px-6 py-1.5 sm:py-2">
       <div className="flex flex-row flex-wrap sm:flex-nowrap sm:items-center sm:justify-between text-xs gap-2 sm:gap-0">
         {/* 왼쪽 */}
         <div className="flex flex-row flex-wrap sm:flex-nowrap sm:items-center gap-2 sm:gap-4">
           {/* 언어 선택 */}
-          <div className="relative">
-            <button className="flex items-center gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-slate-900/50 border border-slate-700 rounded text-slate-300 hover:bg-slate-800 hover:text-white transition-all font-mono text-xs">
-              <span className="text-base">🇰🇷</span>
-              <span className="uppercase hidden sm:inline">KO</span>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setLangOpen((prev) => !prev)}
+              className="flex items-center gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-slate-900/50 border border-slate-700 rounded text-slate-300 hover:bg-slate-800 hover:text-white transition-all font-mono text-xs"
+            >
+              <span className="text-base">{currentOption.flag}</span>
+              <span className="uppercase hidden sm:inline">{currentOption.label}</span>
             </button>
+
+            {langOpen && (
+              <div className="absolute top-full left-0 mt-1 z-50 bg-gray-800 border border-gray-600 rounded shadow-lg py-1 min-w-[100px]">
+                {LOCALE_OPTIONS.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => switchLocale(option.value)}
+                    className={`flex items-center gap-2 w-full px-3 py-1.5 text-xs font-mono transition-colors ${
+                      option.value === locale
+                        ? "bg-gray-700 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    }`}
+                  >
+                    <span className="text-base">{option.flag}</span>
+                    <span>{option.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* 시간 */}
@@ -39,8 +91,8 @@ export function TopBar() {
           <div className="flex items-center gap-2 text-xs">
             <span className="w-2 h-2 rounded-full flex-shrink-0 bg-yellow-400 animate-pulse" />
             <span className="text-gray-400">
-              <span className="sm:hidden">5 LOC</span>
-              <span className="hidden sm:inline">5 LOCATIONS MONITORED</span>
+              <span className="sm:hidden">{t("locationsShort", { count: 5 })}</span>
+              <span className="hidden sm:inline">{t("locationsMonitored", { count: 5 })}</span>
             </span>
           </div>
         </div>
@@ -79,8 +131,8 @@ export function TopBar() {
 
           {/* STATUS */}
           <div className="flex items-center gap-2 text-xs">
-            <span className="text-gray-400 hidden sm:inline">STATUS:</span>
-            <span className="text-green-400">OPERATIONAL</span>
+            <span className="text-gray-400 hidden sm:inline">{t("status")}:</span>
+            <span className="text-green-400">{t("operational")}</span>
           </div>
         </div>
       </div>

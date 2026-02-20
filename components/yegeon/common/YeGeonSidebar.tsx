@@ -1,8 +1,8 @@
 "use client"
 
 import type { ReactNode } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useTranslations, useLocale } from "next-intl"
+import { Link, usePathname } from "@/i18n/navigation"
 import {
   Search,
   Compass,
@@ -25,30 +25,34 @@ interface YeGeonSidebarProps {
   onNavigate?: () => void
 }
 
+type YeGeonNavKey = "browse" | "explore" | "notifications" | "leagues" | "forum" | "bingo" | "shop"
+
 interface NavItem {
-  label: string
+  labelKey: YeGeonNavKey
   icon: ReactNode
   href: string
   badge?: string
 }
 
 const mainNav: NavItem[] = [
-  { label: "둘러보기", icon: <Search className="h-5 w-5" />, href: "/yegeon" },
-  { label: "탐색", icon: <Compass className="h-5 w-5" />, href: "/yegeon/explore" },
-  { label: "알림", icon: <Bell className="h-5 w-5" />, href: "/yegeon/notifications" },
-  { label: "리그", icon: <Trophy className="h-5 w-5" />, href: "/yegeon/leagues" },
-  { label: "포럼", icon: <MessageSquare className="h-5 w-5" />, href: "/yegeon/forum" },
+  { labelKey: "browse", icon: <Search className="h-5 w-5" />, href: "/yegeon" },
+  { labelKey: "explore", icon: <Compass className="h-5 w-5" />, href: "/yegeon/explore" },
+  { labelKey: "notifications", icon: <Bell className="h-5 w-5" />, href: "/yegeon/notifications" },
+  { labelKey: "leagues", icon: <Trophy className="h-5 w-5" />, href: "/yegeon/leagues" },
+  { labelKey: "forum", icon: <MessageSquare className="h-5 w-5" />, href: "/yegeon/forum" },
   {
-    label: "빙고",
+    labelKey: "bingo",
     icon: <Grid3X3 className="h-5 w-5" />,
     href: "/yegeon/bingo",
     badge: "NEW",
   },
-  { label: "상점", icon: <ShoppingBag className="h-5 w-5" />, href: "/yegeon/shop" },
+  { labelKey: "shop", icon: <ShoppingBag className="h-5 w-5" />, href: "/yegeon/shop" },
 ]
 
 export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
+  const t = useTranslations("yegeon")
   const pathname = usePathname()
+  const locale = useLocale()
   const { theme, toggleTheme } = useTheme()
   const user = getCurrentUser()
   const unreadCount = getUnreadNotificationCount()
@@ -82,7 +86,7 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
             {user.displayName}
           </p>
           <p className="text-xs yg-text-ink-400">
-            Ⓜ{user.balance.toLocaleString("ko-KR")}
+            Ⓜ{user.balance.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
           </p>
         </div>
       </Link>
@@ -94,10 +98,10 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
             item.href === "/yegeon"
               ? pathname === "/yegeon"
               : pathname.startsWith(item.href)
-          const showUnread = item.label === "알림" && unreadCount > 0
+          const showUnread = item.labelKey === "notifications" && unreadCount > 0
           return (
             <Link
-              key={item.label}
+              key={item.labelKey}
               href={item.href}
               onClick={onNavigate}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
@@ -107,7 +111,7 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
               }`}
             >
               {item.icon}
-              <span className="flex-1">{item.label}</span>
+              <span className="flex-1">{t(item.labelKey)}</span>
               {showUnread && (
                 <span className="rounded-full yg-bg-primary-500 px-1.5 py-0.5 text-[10px] font-bold text-white">
                   {unreadCount}
@@ -129,13 +133,13 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           type="button"
           className="rounded-lg border yg-border-canvas-100 px-4 py-2.5 text-sm font-medium yg-text-ink-700 transition-colors hover:yg-bg-canvas-50"
         >
-          마켓 만들기
+          {t("createMarket")}
         </button>
         <button
           type="button"
           className="rounded-lg yg-bg-primary-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:yg-bg-primary-600"
         >
-          Ⓜ 마나 받기
+          {t("getMana")}
         </button>
       </div>
 
@@ -150,7 +154,7 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm yg-text-ink-400 cursor-default"
         >
           <Info className="h-5 w-5" />
-          소개
+          {t("about")}
         </span>
         <span
           role="none"
@@ -158,7 +162,7 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm yg-text-ink-400 cursor-default"
         >
           <Star className="h-5 w-5" />
-          추천
+          {t("recommend")}
         </span>
         <button
           type="button"
@@ -170,7 +174,7 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           ) : (
             <Moon className="h-5 w-5" />
           )}
-          {theme === "light" ? "라이트" : "다크"}
+          {theme === "light" ? t("light") : t("dark")}
         </button>
         <span
           role="none"
@@ -178,7 +182,7 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm yg-text-ink-400 cursor-default"
         >
           <LogOut className="h-5 w-5" />
-          로그아웃
+          {t("logout")}
         </span>
       </nav>
     </aside>

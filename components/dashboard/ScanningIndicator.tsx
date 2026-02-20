@@ -1,26 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
-const scanningMessages = [
-  "김밥 주파수 스캔중...",
-  "국방부 주변 배달 패턴 분석중...",
-  "용산 지역 이상 징후 모니터링...",
-  "실시간 데이터 수집중...",
-  "합참 주변 김밥집 탐지중...",
-  "야근 패턴 분석중...",
-];
-
 export function ScanningIndicator() {
+  const t = useTranslations("scanning");
+  const messages = [
+    t("messages.0"),
+    t("messages.1"),
+    t("messages.2"),
+    t("messages.3"),
+    t("messages.4"),
+    t("messages.5"),
+  ];
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setMessageIndex((prev) => (prev + 1) % scanningMessages.length);
+      setMessageIndex((prev) => (prev + 1) % messages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [messages.length]);
 
   return (
     <div className="flex items-center gap-3">
@@ -37,7 +38,7 @@ export function ScanningIndicator() {
           "animate-pulse"
         )}
       >
-        {scanningMessages[messageIndex]}
+        {messages[messageIndex]}
       </span>
     </div>
   );

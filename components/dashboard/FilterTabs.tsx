@@ -1,11 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Filter, Map } from "lucide-react";
 
-const days = ["일", "월", "화", "수", "목", "금", "토"];
-
 export function FilterTabs() {
+  const t = useTranslations("filterTabs");
+  const days = [
+    t("weekdays.0"),
+    t("weekdays.1"),
+    t("weekdays.2"),
+    t("weekdays.3"),
+    t("weekdays.4"),
+    t("weekdays.5"),
+    t("weekdays.6"),
+  ];
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
   const [activeFilter, setActiveFilter] = useState<"all" | "filter" | "map">("all");
 
@@ -73,7 +82,6 @@ export function FilterTabs() {
             LIVE
           </button>
 
-          {/* 프로필 아바타 */}
           <div className="w-8 h-8 rounded-full bg-gray-700 border border-gray-600 flex items-center justify-center text-lg">
             🍙
           </div>

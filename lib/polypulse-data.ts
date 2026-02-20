@@ -1,54 +1,42 @@
 // PolyPulse 위협 레벨 타입
 export type PolyPulseThreatLevel = "LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL";
 
-// 위협 레벨 설정
+// 위협 레벨 설정 (label/description은 번역 파일에서 관리)
 export const THREAT_LEVEL_CONFIG: Record<PolyPulseThreatLevel, {
-  label: string;
   color: string;
   bgColor: string;
   borderColor: string;
   chartColor: string;
-  description: string;
 }> = {
   LOW: {
-    label: "낮음",
     color: "text-green-400",
     bgColor: "bg-green-900/30",
     borderColor: "border-green-500/30",
     chartColor: "#22c55e",
-    description: "정상 수준의 양자 언급",
   },
   MODERATE: {
-    label: "보통",
     color: "text-cyan-400",
     bgColor: "bg-cyan-900/30",
     borderColor: "border-cyan-500/30",
     chartColor: "#06b6d4",
-    description: "약간 상승한 언급 빈도",
   },
   ELEVATED: {
-    label: "상승",
     color: "text-yellow-400",
     bgColor: "bg-yellow-900/30",
     borderColor: "border-yellow-500/30",
     chartColor: "#eab308",
-    description: "주의가 필요한 수준",
   },
   HIGH: {
-    label: "높음",
     color: "text-orange-400",
     bgColor: "bg-orange-900/30",
     borderColor: "border-orange-500/30",
     chartColor: "#f97316",
-    description: "긴장 고조 상태",
   },
   CRITICAL: {
-    label: "위기",
     color: "text-red-400",
     bgColor: "bg-red-900/30",
     borderColor: "border-red-500/30",
     chartColor: "#ef4444",
-    description: "즉각적인 주의 필요",
   },
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Radar, Info } from "lucide-react";
 import { OsintFeed } from "./OsintFeed";
 
@@ -12,6 +13,8 @@ export function HeroSection({
   kimbapconLevel,
   kimbapconStatus,
 }: HeroSectionProps) {
+  const t = useTranslations("hero");
+
   return (
     <div className="py-3 sm:py-4 lg:py-6 border-b border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,11 +35,11 @@ export function HeroSection({
                   className="font-bold tracking-normal sm:tracking-wider leading-none sm:leading-tight text-center sm:text-left whitespace-normal sm:whitespace-nowrap break-words text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-yellow-400"
                   style={{ fontFamily: "var(--font-vt323)" }}
                 >
-                  김밥 지수
+                  {t("kimbapIndex")}
                 </h1>
                 <div className="flex items-center gap-1.5 justify-center sm:justify-start mt-0.5 sm:mt-1 flex-wrap sm:flex-nowrap">
                   <p className="text-gray-400 text-xs sm:text-sm lg:text-base tracking-wider sm:tracking-widest whitespace-nowrap">
-                    한 줄씩 전하는 정보
+                    {t("tagline")}
                   </p>
                   <span className="text-gray-500 text-xs sm:text-sm lg:text-base">
                     |
@@ -53,7 +56,7 @@ export function HeroSection({
               <div className="absolute top-2 right-2 z-10">
                 <button
                   className="p-1.5 rounded-full hover:bg-black/20 transition-colors text-blue-400 relative z-10"
-                  aria-label="KIMBAPCON이란?"
+                  aria-label="KIMBAPCON"
                 >
                   <Info className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>

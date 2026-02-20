@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Badge, LiveBadge } from "@/components/ui/Badge";
 import { THREAT_LEVEL_CONFIG, type ThreatLevel } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,8 @@ interface HeaderProps {
 }
 
 export function Header({ threatLevel }: HeaderProps) {
+  const t = useTranslations("header");
+  const tThreat = useTranslations("threatLevel");
   const config = THREAT_LEVEL_CONFIG[threatLevel];
 
   return (
@@ -24,7 +27,7 @@ export function Header({ threatLevel }: HeaderProps) {
                 <span className="text-neutral-50">Kimbap</span>
                 <span className="text-green-500">INT</span>
               </h1>
-              <p className="text-xs text-neutral-500">국방부 김밥 지수</p>
+              <p className="text-xs text-neutral-500">{t("title")}</p>
             </div>
           </div>
 
@@ -34,7 +37,7 @@ export function Header({ threatLevel }: HeaderProps) {
               <Circle
                 className={cn("h-3 w-3 fill-current", config.color)}
               />
-              <span className="text-sm text-neutral-400">위협 레벨:</span>
+              <span className="text-sm text-neutral-400">{t("threatLevel")}:</span>
               <Badge
                 variant={
                   threatLevel === "LOW"
@@ -46,7 +49,7 @@ export function Header({ threatLevel }: HeaderProps) {
                     : "danger"
                 }
               >
-                {config.label}
+                {tThreat(`${threatLevel.toLowerCase() as "low" | "medium" | "high" | "critical"}.label`)}
               </Badge>
             </div>
           </div>
@@ -55,7 +58,7 @@ export function Header({ threatLevel }: HeaderProps) {
           <div className="flex items-center gap-3">
             <LiveBadge />
             <span className="text-xs text-neutral-500 hidden sm:inline">
-              실시간 모니터링
+              {t("realTimeMonitoring")}
             </span>
           </div>
         </div>

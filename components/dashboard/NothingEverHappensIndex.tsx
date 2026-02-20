@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   PieChart,
   Pie,
@@ -22,11 +23,13 @@ export function NothingEverHappensIndex({
   percentage,
   highestRiskMarket,
 }: NothingEverHappensIndexProps) {
-  const getStatusText = (pct: number) => {
-    if (pct < 30) return "아무 일도 없음";
-    if (pct < 65) return "뭔가 있을지도";
-    if (pct < 99) return "뭔가 벌어지는 중";
-    return "터졌다";
+  const t = useTranslations("nothingIndex");
+
+  const getStatusKey = (pct: number) => {
+    if (pct < 30) return "nothing" as const;
+    if (pct < 65) return "maybe" as const;
+    if (pct < 99) return "happening" as const;
+    return "itsOver" as const;
   };
 
   const getStatusColor = (pct: number) => {
@@ -36,7 +39,8 @@ export function NothingEverHappensIndex({
     return "text-red-400";
   };
 
-  const status = getStatusText(percentage);
+  const statusKey = getStatusKey(percentage);
+  const status = t(`levels.${statusKey}`);
   const statusColor = getStatusColor(percentage);
 
   return (
@@ -45,10 +49,10 @@ export function NothingEverHappensIndex({
         {/* 왼쪽: 타이틀 + 설명 */}
         <div className="flex-1 min-w-0 text-center lg:text-left order-1">
           <p className="text-xs text-gray-500 tracking-[0.2em] font-mono mb-3">
-            김밥 지정학 지수
+            {t("geoIndex")}
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-6">
-            <span className="text-white">상태: </span>
+            <span className="text-white">{t("status")}: </span>
             <span className={statusColor}>{status}</span>
           </h2>
 
@@ -59,30 +63,29 @@ export function NothingEverHappensIndex({
           </button>
 
           <p className="text-gray-400 text-sm lg:text-base mb-6 lg:mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
-            33개 고위험 마켓을 추적하는 실시간 종말 시계. 지수가 높을수록
-            대형 지정학적 사건에 가까워집니다.
+            {t("description")}
           </p>
 
           <div className="hidden lg:block">
-            <HighestRiskCard market={highestRiskMarket} />
+            <HighestRiskCard market={highestRiskMarket} maxRiskLabel={t("maxRisk")} />
           </div>
         </div>
 
         {/* 오른쪽: 게이지 */}
         <div className="w-full max-w-[450px] lg:w-[450px] order-2">
-          <DoomsdayGauge percentage={percentage} />
+          <DoomsdayGauge percentage={percentage} labels={t.raw("levels" as Parameters<typeof t.raw>[0])} />
         </div>
 
         {/* 모바일 Highest Risk */}
         <div className="lg:hidden w-full max-w-md order-3">
-          <HighestRiskCard market={highestRiskMarket} />
+          <HighestRiskCard market={highestRiskMarket} maxRiskLabel={t("maxRisk")} />
         </div>
       </div>
     </div>
   );
 }
 
-function HighestRiskCard({ market }: { market: HighestRiskMarket }) {
+function HighestRiskCard({ market, maxRiskLabel }: { market: HighestRiskMarket; maxRiskLabel: string }) {
   return (
     <div className="bg-gray-900/80 border border-gray-700 rounded-xl p-4">
       <div className="flex items-center gap-4">
@@ -93,7 +96,7 @@ function HighestRiskCard({ market }: { market: HighestRiskMarket }) {
           <div className="flex items-center gap-2 mb-1">
             <span className="text-yellow-500 text-sm">⚠</span>
             <span className="text-xs text-gray-500 tracking-wider font-mono">
-              최고 위험
+              {maxRiskLabel}
             </span>
           </div>
           <p className="text-sm text-white leading-tight line-clamp-2">
@@ -110,8 +113,7 @@ function HighestRiskCard({ market }: { market: HighestRiskMarket }) {
   );
 }
 
-function DoomsdayGauge({ percentage }: { percentage: number }) {
-  // 게이지 구역 데이터 (반원이므로 각 값의 절반만 사용)
+function DoomsdayGauge({ percentage, labels }: { percentage: number; labels: { nothing: string; maybe: string; happening: string; itsOver: string } }) {
   const gaugeData = [
     { name: "Nothing Ever Happens", value: 30, color: "#22c55e" },
     { name: "Something Might Happen", value: 35, color: "#a3a329" },
@@ -119,16 +121,6 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
     { name: "It Happened", value: 1, color: "#ef4444" },
   ];
 
-  // 바늘 위치 계산
-  const needleValue = percentage;
-
-  // 바늘 데이터 (Pie 차트로 바늘 효과)
-  const needleData = [
-    { value: needleValue, color: "transparent" },
-    { value: 100 - needleValue, color: "transparent" },
-  ];
-
-  // 바늘 각도 계산 (반원: 180도 ~ 0도)
   const RADIAN = Math.PI / 180;
   const needleAngle = 180 - (percentage / 100) * 180;
   const needleLength = 120;
@@ -141,7 +133,6 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
     <div className="relative">
       <ResponsiveContainer width="100%" height={280}>
         <PieChart>
-          {/* 배경 게이지 */}
           <Pie
             data={gaugeData}
             cx="50%"
@@ -161,12 +152,10 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
         </PieChart>
       </ResponsiveContainer>
 
-      {/* 바늘 (SVG 오버레이) */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 450 280"
       >
-        {/* 바늘 */}
         <line
           x1={cx}
           y1={cy}
@@ -176,7 +165,6 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
           strokeWidth="4"
           strokeLinecap="round"
         />
-        {/* 중앙 원 */}
         <circle
           cx={cx}
           cy={cy}
@@ -187,14 +175,12 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
         />
       </svg>
 
-      {/* 중앙 숫자 */}
       <div className="absolute inset-0 flex items-center justify-center pt-8">
         <span className="text-5xl font-bold text-cyan-400 font-mono">
           {percentage}
         </span>
       </div>
 
-      {/* 눈금 라벨 */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-between px-8 text-gray-500 text-xs font-mono">
         <span>0</span>
         <span className="ml-8">30</span>
@@ -205,22 +191,19 @@ function DoomsdayGauge({ percentage }: { percentage: number }) {
 
       {/* 구역 라벨 */}
       <div className="absolute top-[15%] left-[8%] text-green-500 text-[11px] font-bold leading-tight text-center">
-        <div>아무 일도</div>
-        <div>없음</div>
+        {labels.nothing}
       </div>
 
       <div className="absolute top-[2%] left-[28%] text-yellow-600 text-[11px] font-bold leading-tight text-center">
-        <div>뭔가</div>
-        <div>있을지도</div>
+        {labels.maybe}
       </div>
 
       <div className="absolute top-[2%] right-[22%] text-orange-500 text-[11px] font-bold leading-tight text-center">
-        <div>뭔가</div>
-        <div>벌어지는 중</div>
+        {labels.happening}
       </div>
 
       <div className="absolute top-[15%] right-[5%] text-red-500 text-[11px] font-bold leading-tight text-center">
-        <div>터졌다</div>
+        {labels.itsOver}
       </div>
     </div>
   );

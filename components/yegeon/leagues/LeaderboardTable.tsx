@@ -1,3 +1,6 @@
+"use client"
+
+import { useTranslations, useLocale } from "next-intl"
 import type { LeagueMember, LeagueTier } from "@/lib/yegeon-types"
 import {
   getMemberDisplayName,
@@ -19,6 +22,9 @@ export default function LeaderboardTable({
   tier,
   currentUsername,
 }: LeaderboardTableProps) {
+  const tTiers = useTranslations("leagueTiers")
+  const t = useTranslations("yLeagues")
+  const locale = useLocale()
   const targetTier = getPromotionTargetTier(tier)
   const tierColor = targetTier ? TIER_COLORS[targetTier] : undefined
 
@@ -40,7 +46,7 @@ export default function LeaderboardTable({
                   className="whitespace-nowrap text-xs font-medium"
                   style={{ color: tierColor }}
                 >
-                  {targetTier}로 승급
+                  {t("promoteTo", { tier: tTiers(targetTier) })}
                 </span>
                 <div className="h-px flex-1" style={{ backgroundColor: tierColor }} />
               </div>
@@ -76,7 +82,7 @@ export default function LeaderboardTable({
                 }`}
               >
                 {member.manaEarned >= 0 ? "+" : ""}Ⓜ
-                {Math.abs(member.manaEarned).toLocaleString("ko-KR")}
+                {Math.abs(member.manaEarned).toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}
               </span>
             </div>
           </div>

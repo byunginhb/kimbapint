@@ -1,0 +1,33 @@
+{
+  "topbar": {
+    "locationsMonitored": "{count}개 지점 모니터링 중",
+    "locationsShort": "{count} LOC",
+    "status": "상태",
+    "operational": "정상 운영"
+  },
+  "header": {
+    "title": "국방부 김밥 지수",
+    "threatLevel": "위협 레벨",
+    "realTimeMonitoring": "실시간 모니터링"
+  },
+  "footer": {
+    "disclaimer": "이 사이트는 프로토타입 목적으로 제작되었습니다. 실제 군사 정보와 무관하며, 모든 데이터는 가상입니다.",
+    "madeIn": "Made in Korea"
+  },
+  "yegeon": {
+    "browse": "둘러보기",
+    "explore": "탐색",
+    "notifications": "알림",
+    "leagues": "리그",
+    "forum": "포럼",
+    "bingo": "빙고",
+    "shop": "상점",
+    "createMarket": "마켓 만들기",
+    "getMana": "Ⓜ 마나 받기",
+    "about": "소개",
+    "recommend": "추천",
+    "light": "라이트",
+    "dark": "다크",
+    "logout": "로그아웃"
+  }
+}

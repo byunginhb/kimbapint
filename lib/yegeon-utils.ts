@@ -1,5 +1,5 @@
-export function formatCurrency(value: number): string {
-  return `₩${value.toLocaleString("ko-KR")}`
+export function formatCurrency(value: number, locale = "ko"): string {
+  return `₩${value.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")}`
 }
 
 export function calculateExpectedProfit(
@@ -10,8 +10,8 @@ export function calculateExpectedProfit(
   return Math.round(amount / probability - amount)
 }
 
-export function formatPresetAmount(preset: number): string {
+export function formatPresetAmount(preset: number, locale = "ko"): string {
   return preset >= 10000
     ? `${preset / 10000}만`
-    : preset.toLocaleString("ko-KR")
+    : preset.toLocaleString(locale === "ko" ? "ko-KR" : "en-US")
 }

@@ -1,14 +1,9 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import { ChevronDown, SlidersHorizontal } from "lucide-react"
 import type { SortOption } from "@/lib/yegeon-types"
-
-const sortOptions: { value: SortOption; label: string }[] = [
-  { value: "popular", label: "인기순" },
-  { value: "trending", label: "화제순" },
-  { value: "newest", label: "최신순" },
-]
 
 interface SortControlsProps {
   selected: SortOption
@@ -16,6 +11,14 @@ interface SortControlsProps {
 }
 
 export default function SortControls({ selected, onChange }: SortControlsProps) {
+  const t = useTranslations("ySort")
+
+  const sortOptions: { value: SortOption; labelKey: "popular" | "trending" | "newest" }[] = [
+    { value: "popular", labelKey: "popular" },
+    { value: "trending", labelKey: "trending" },
+    { value: "newest", labelKey: "newest" },
+  ]
+
   return (
     <div className="flex items-center gap-1 border-b yg-border-canvas-100 pb-px">
       {/* Sort tabs */}
@@ -30,7 +33,7 @@ export default function SortControls({ selected, onChange }: SortControlsProps) 
               : "yg-text-ink-400 hover:yg-text-ink-800"
           )}
         >
-          {opt.label}
+          {t(opt.labelKey)}
         </button>
       ))}
 
@@ -42,7 +45,7 @@ export default function SortControls({ selected, onChange }: SortControlsProps) 
         type="button"
         className="flex items-center gap-1 whitespace-nowrap px-2 py-2 text-sm yg-text-ink-400 transition-colors hover:yg-text-ink-800"
       >
-        모든 상태
+        {t("allStatus")}
         <ChevronDown className="h-3.5 w-3.5" />
       </button>
 
@@ -51,13 +54,13 @@ export default function SortControls({ selected, onChange }: SortControlsProps) 
         type="button"
         className="whitespace-nowrap px-2 py-2 text-sm yg-text-ink-400 transition-colors hover:yg-text-ink-800"
       >
-        내 베팅
+        {t("myBets")}
       </button>
 
       {/* Settings gear */}
       <button
         type="button"
-        aria-label="정렬 설정"
+        aria-label={t("sortSettings")}
         className="rounded p-1.5 yg-text-ink-400 transition-colors hover:yg-bg-canvas-50 hover:yg-text-ink-800"
       >
         <SlidersHorizontal className="h-4 w-4" />

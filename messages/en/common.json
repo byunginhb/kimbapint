@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "title": "MoD Kimbap Index - Real-time Military Tension Indicator | KimbapINT",
+    "description": "KimbapINT tracks the popularity of kimbap restaurants near the Ministry of Defense to provide an unofficial OSINT indicator of military activity.",
+    "ogTitle": "MoD Kimbap Index - Real-time OSINT Dashboard",
+    "ogDescription": "Tracking kimbap restaurant popularity near the Ministry of Defense as a geopolitical indicator."
+  },
+  "regions": {
+    "all": "All",
+    "korean_peninsula": "Korean Peninsula",
+    "northeast_asia": "Northeast Asia",
+    "southeast_asia": "Southeast Asia",
+    "americas": "Americas",
+    "middle_east": "Middle East"
+  },
+  "regionDescriptions": {
+    "all": "All regions",
+    "korean_peninsula": "North and South Korea",
+    "northeast_asia": "Korea, China, Japan & Taiwan",
+    "southeast_asia": "Southeast Asia",
+    "americas": "USA & Americas",
+    "middle_east": "Middle East"
+  },
+  "threatLevel": {
+    "low": { "label": "Low", "description": "Normal kimbap order levels" },
+    "medium": { "label": "Medium", "description": "Above-average kimbap orders detected" },
+    "high": { "label": "High", "description": "Abnormally high kimbap order volume" },
+    "critical": { "label": "Critical", "description": "All-time high kimbap order volume" }
+  },
+  "shopStatus": {
+    "nominal": "Nominal",
+    "busy": "Busy",
+    "closed": "Closed",
+    "spike": "Spike"
+  },
+  "kimbapcon": {
+    "1": { "description": "Maximum Alert - War Imminent" },
+    "2": { "description": "High Alert - Severe Military Tension" },
+    "3": { "description": "Elevated Alert - Rising Tension" },
+    "4": { "description": "General Alert - Normal Monitoring" },
+    "5": { "description": "Peacetime - Stable" }
+  },
+  "categories": {
+    "all": "All",
+    "following": "Following",
+    "politics": "Politics",
+    "technology": "Technology",
+    "sports": "Sports",
+    "culture": "Culture",
+    "business": "Business",
+    "fun": "Fun"
+  },
+  "leagueTiers": {
+    "master": "Master",
+    "diamond": "Diamond",
+    "platinum": "Platinum",
+    "gold": "Gold",
+    "silver": "Silver",
+    "bronze": "Bronze"
+  }
+}

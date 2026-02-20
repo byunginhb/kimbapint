@@ -1,4 +1,5 @@
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import type { YeGeonMarket } from "@/lib/yegeon-types"
 
@@ -7,11 +8,13 @@ interface RelatedMarketsProps {
 }
 
 export default function RelatedMarkets({ markets }: RelatedMarketsProps) {
+  const t = useTranslations("yMarket")
+
   if (markets.length === 0) return null
 
   return (
     <div className="rounded-lg border yg-border-canvas-100 yg-bg-canvas-50/50 p-4">
-      <h3 className="mb-3 text-sm font-medium yg-text-ink-600">관련 마켓</h3>
+      <h3 className="mb-3 text-sm font-medium yg-text-ink-600">{t("relatedMarkets")}</h3>
 
       <div className="flex flex-col gap-2">
         {markets.map((market) => {
