@@ -21,6 +21,7 @@ import {
   AreaChart,
   Area,
 } from "recharts";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { BackButton } from "@/components/ui/BackButton";
 import { getShopById, mockMarkets } from "@/lib/mock-data";
@@ -61,7 +62,7 @@ export default function ShopDetailPage() {
 
           <div className="flex items-center justify-between mt-4">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">🍙</span>
+              <Image src="/kimbap.png" alt="Kimbap" width={36} height={36} />
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold tracking-wide">
                   {shop.name}

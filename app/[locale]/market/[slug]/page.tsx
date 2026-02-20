@@ -13,6 +13,7 @@ import {
   AlertCircle,
   Store,
 } from "lucide-react";
+import Image from "next/image";
 import {
   AreaChart,
   Area,
@@ -334,7 +335,7 @@ export default function MarketDetailPage() {
                   href={`/shop/${shop.id}`}
                   className="flex items-center gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700 hover:bg-gray-800 transition-colors"
                 >
-                  <span className="text-2xl">🍙</span>
+                  <Image src="/kimbap.png" alt="Kimbap" width={28} height={28} />
                   <div className="flex-1 min-w-0">
                     <h4 className="text-sm text-white font-medium truncate">
                       {shop.name}

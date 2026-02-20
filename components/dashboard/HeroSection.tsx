@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Radar, Info } from "lucide-react";
 import { OsintFeed } from "./OsintFeed";
+import Image from "next/image";
 
 interface HeroSectionProps {
   kimbapconLevel: number;
@@ -25,9 +26,7 @@ export function HeroSection({
             <div className="flex items-center gap-2 sm:gap-7 md:gap-8 mb-3 sm:mb-4">
               {/* 김밥 아이콘 */}
               <div className="flex-shrink-0">
-                <div className="w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-4xl sm:text-3xl md:text-4xl lg:text-5xl">
-                  🍙
-                </div>
+                <Image src="/kimbap.png" alt="Kimbap" width={80} height={80} className="w-14 h-14 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20" />
               </div>
 
               <div className="flex-1 min-w-0">

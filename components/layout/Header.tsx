@@ -5,6 +5,7 @@ import { Badge, LiveBadge } from "@/components/ui/Badge";
 import { THREAT_LEVEL_CONFIG, type ThreatLevel } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Circle } from "lucide-react";
+import Image from "next/image";
 
 interface HeaderProps {
   threatLevel: ThreatLevel;
@@ -21,7 +22,7 @@ export function Header({ threatLevel }: HeaderProps) {
         <div className="flex items-center justify-between">
           {/* 로고 */}
           <div className="flex items-center gap-3">
-            <div className="text-2xl">🍙</div>
+            <Image src="/kimbap.png" alt="Kimbap" width={44} height={44} />
             <div>
               <h1 className="text-xl font-bold tracking-tight">
                 <span className="text-neutral-50">Kimbap</span>
@@ -43,10 +44,10 @@ export function Header({ threatLevel }: HeaderProps) {
                   threatLevel === "LOW"
                     ? "success"
                     : threatLevel === "MEDIUM"
-                    ? "warning"
-                    : threatLevel === "HIGH"
-                    ? "warning"
-                    : "danger"
+                      ? "warning"
+                      : threatLevel === "HIGH"
+                        ? "warning"
+                        : "danger"
                 }
               >
                 {tThreat(`${threatLevel.toLowerCase() as "low" | "medium" | "high" | "critical"}.label`)}

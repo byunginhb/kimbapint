@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ExternalLink, Car } from "lucide-react";
+import Image from "next/image";
 import type { KimbapShop } from "@/lib/types";
 
 interface KimbapShopCardProps {
@@ -46,7 +47,7 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🍙</span>
+          <Image src="/kimbap.png" alt="Kimbap" width={24} height={24} />
           <h3 className="font-bold text-white font-mono text-sm uppercase tracking-wide">
             {shop.name}
           </h3>

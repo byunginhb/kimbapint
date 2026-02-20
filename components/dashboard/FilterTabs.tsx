@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Filter, Map } from "lucide-react";
+import Image from "next/image";
 
 export function FilterTabs() {
   const t = useTranslations("filterTabs");
@@ -31,7 +32,7 @@ export function FilterTabs() {
                 : "bg-gray-800/50 border-gray-700 text-gray-400 hover:text-white"
             }`}
           >
-            <span className="text-lg">🍙</span>
+            <Image src="/kimbap.png" alt="Kimbap" width={20} height={20} />
           </button>
           <button
             onClick={() => setActiveFilter("filter")}
@@ -83,7 +84,7 @@ export function FilterTabs() {
           </button>
 
           <div className="w-8 h-8 rounded-full bg-gray-700 border border-gray-600 flex items-center justify-center text-lg">
-            🍙
+            <Image src="/kimbap.png" alt="Kimbap" width={20} height={20} />
           </div>
         </div>
       </div>
