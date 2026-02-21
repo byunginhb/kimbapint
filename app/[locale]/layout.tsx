@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server"
 import { notFound } from "next/navigation"
 import localFont from "next/font/local"
 import { routing } from "@/i18n/routing"
+import GoogleTranslate from "@/components/common/GoogleTranslate"
 import "../globals.css"
 
 const neoDunggeunmo = localFont({
@@ -62,9 +63,10 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
-      <body className={`${neoDunggeunmo.variable} antialiased`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${neoDunggeunmo.variable} antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <GoogleTranslate />
           {children}
         </NextIntlClientProvider>
       </body>

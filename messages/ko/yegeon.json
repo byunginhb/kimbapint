@@ -62,7 +62,11 @@
     "purchasePrice": "구매가",
     "targetWinRate": "목표 승률",
     "currentWinRate": "현재 승률",
-    "preview": "빙고 카드 미리보기"
+    "preview": "빙고 카드 미리보기",
+    "edit": "수정",
+    "confirm": "확정",
+    "cancel": "취소",
+    "editMode": "셀을 드래그하여 위치를 변경하세요"
   },
   "yLeagues": {
     "title": "리그",

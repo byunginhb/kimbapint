@@ -143,3 +143,28 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #4b5563;
 }
+
+/* Google Translate 기본 UI 숨김 */
+.goog-te-banner-frame,
+.goog-te-gadget,
+.skiptranslate,
+#goog-gt-tt,
+.goog-te-menu-frame {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+}
+
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Clock, Archive, TrendingUp, Eye } from "lucide-react";
 
 const LOCALE_OPTIONS = [
@@ -13,7 +13,6 @@ const LOCALE_OPTIONS = [
 export function TopBar() {
   const locale = useLocale();
   const t = useTranslations("topbar");
-  const router = useRouter();
   const pathname = usePathname();
 
   const [currentTime, setCurrentTime] = useState<string | null>(null);
@@ -43,7 +42,8 @@ export function TopBar() {
 
   function switchLocale(newLocale: "ko" | "en") {
     setLangOpen(false);
-    router.replace(pathname, { locale: newLocale });
+    // 전체 새로고침으로 Google Translate DOM 오염 방지
+    window.location.href = `/${newLocale}${pathname}`;
   }
 
   return (

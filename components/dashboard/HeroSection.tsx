@@ -26,7 +26,7 @@ export function HeroSection({
             <div className="flex items-center gap-2 sm:gap-7 md:gap-8 mb-3 sm:mb-4">
               {/* 김밥 아이콘 */}
               <div className="flex-shrink-0">
-                <Image src="/kimbap.png" alt="Kimbap" width={80} height={80} className="w-14 h-14 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20" />
+                <Image src="/kimbap.png" alt="Kimbap" width={80} height={80} className="w-14 h-14 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-40 lg:h-40" />
               </div>
 
               <div className="flex-1 min-w-0">

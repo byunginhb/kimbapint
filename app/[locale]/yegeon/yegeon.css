@@ -432,6 +432,43 @@
   height: 100%;
 }
 
+/* Drag & Drop states */
+.yegeon-bingo-sortable-wrapper .yegeon-bingo-cell {
+  width: auto;
+  flex: none;
+  height: 100%;
+}
+
+.yegeon-bingo-cell-dragging {
+  opacity: 0.5;
+  z-index: 10;
+}
+
+.yegeon-bingo-cell-dragging .yegeon-bingo-cell {
+  border-style: dashed;
+  border-color: rgb(var(--color-primary-400));
+}
+
+.yegeon-bingo-cell-over .yegeon-bingo-cell {
+  border-color: rgb(var(--color-primary-500));
+  border-width: 2px;
+  transform: scale(1.02);
+}
+
+.yegeon-bingo-cell-editing {
+  cursor: grab;
+  user-select: none;
+}
+
+.yegeon-bingo-cell-editing:active {
+  cursor: grabbing;
+}
+
+.yegeon-bingo-cell-fixed {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 /* Sort tab active underline */
 .yegeon-sort-tab-active {
   position: relative;

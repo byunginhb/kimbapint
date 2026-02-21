@@ -62,7 +62,11 @@
     "purchasePrice": "Purchase Price",
     "targetWinRate": "Target Win Rate",
     "currentWinRate": "Current Win Rate",
-    "preview": "Bingo card preview"
+    "preview": "Bingo card preview",
+    "edit": "Edit",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "editMode": "Drag cells to rearrange positions"
   },
   "yLeagues": {
     "title": "Leagues",

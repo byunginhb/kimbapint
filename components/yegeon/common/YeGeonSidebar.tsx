@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react"
 import { useTranslations, useLocale } from "next-intl"
-import { Link, usePathname, useRouter } from "@/i18n/navigation"
+import { Link, usePathname } from "@/i18n/navigation"
 import {
   Search,
   Compass,
@@ -21,11 +21,6 @@ import {
 import { useTheme } from "./ThemeContext"
 import { getCurrentUser, getUnreadNotificationCount } from "@/lib/yegeon-data"
 import UserAvatar from "./UserAvatar"
-
-const LOCALE_OPTIONS = [
-  { value: "ko" as const, flag: "🇰🇷", label: "한국어" },
-  { value: "en" as const, flag: "🇺🇸", label: "English" },
-]
 
 interface YeGeonSidebarProps {
   onNavigate?: () => void
@@ -59,7 +54,6 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
   const t = useTranslations("yegeon")
   const pathname = usePathname()
   const locale = useLocale()
-  const router = useRouter()
   const { theme, toggleTheme } = useTheme()
   const user = getCurrentUser()
   const unreadCount = getUnreadNotificationCount()
@@ -76,6 +70,21 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
           YEGEON
         </span>
       </Link>
+
+      {/* Language toggle */}
+      <button
+        type="button"
+        onClick={() => {
+          const nextLocale = locale === "ko" ? "en" : "ko"
+          // 전체 새로고침으로 Google Translate DOM 오염 방지
+          window.location.href = `/${nextLocale}${pathname}`
+        }}
+        className="mb-3 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-medium yg-text-ink-600 transition-colors hover:yg-bg-canvas-50 hover:yg-text-ink-1000"
+      >
+        <Globe className="h-4 w-4" />
+        <span>{locale === "ko" ? "한국어" : "English"}</span>
+        <span className="ml-auto yg-text-ink-400">{locale === "ko" ? "🇰🇷" : "🇺🇸"}</span>
+      </button>
 
       {/* User profile */}
       <Link
@@ -182,19 +191,6 @@ export default function YeGeonSidebar({ onNavigate }: YeGeonSidebarProps) {
             <Moon className="h-5 w-5" />
           )}
           {theme === "light" ? t("light") : t("dark")}
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            const nextLocale = locale === "ko" ? "en" : "ko"
-            router.replace(pathname, { locale: nextLocale })
-            onNavigate?.()
-          }}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm yg-text-ink-600 transition-colors hover:yg-bg-canvas-50 hover:yg-text-ink-1000"
-        >
-          <Globe className="h-5 w-5" />
-          <span className="flex-1">{locale === "ko" ? "한국어" : "English"}</span>
-          <span className="text-xs yg-text-ink-400">{locale === "ko" ? "🇰🇷" : "🇺🇸"}</span>
         </button>
         <span
           role="none"
