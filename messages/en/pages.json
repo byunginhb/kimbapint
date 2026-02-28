@@ -149,5 +149,45 @@
     "elevated": { "label": "Elevated", "description": "Attention required" },
     "high": { "label": "High", "description": "Heightened tension state" },
     "critical": { "label": "Critical", "description": "Immediate attention required" }
+  },
+  "globe": {
+    "back": "Dashboard",
+    "categories": {
+      "all": "All",
+      "politics": "Politics",
+      "economy": "Economy",
+      "sports": "Sports",
+      "technology": "Technology",
+      "society": "Society",
+      "culture": "Culture"
+    },
+    "statuses": {
+      "active": "Active",
+      "hot": "Hot",
+      "resolved": "Resolved"
+    },
+    "stats": {
+      "activeMarkets": "Active Markets",
+      "volume24h": "24h Volume",
+      "tps": "TPS",
+      "countries": "Countries"
+    },
+    "popup": {
+      "probability": "Probability",
+      "volume": "Volume",
+      "country": "Country",
+      "lastTrade": "Last Trade"
+    },
+    "feed": {
+      "title": "Live Trades",
+      "live": "LIVE",
+      "empty": "No trades yet"
+    },
+    "timeAgo": {
+      "justNow": "just now",
+      "minutesAgo": "{min}m ago",
+      "hoursAgo": "{hours}h ago",
+      "daysAgo": "{days}d ago"
+    }
   }
 }

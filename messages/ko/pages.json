@@ -149,5 +149,45 @@
     "elevated": { "label": "상승", "description": "주의가 필요한 수준" },
     "high": { "label": "높음", "description": "긴장 고조 상태" },
     "critical": { "label": "위기", "description": "즉각적인 주의 필요" }
+  },
+  "globe": {
+    "back": "대시보드",
+    "categories": {
+      "all": "전체",
+      "politics": "정치",
+      "economy": "경제",
+      "sports": "스포츠",
+      "technology": "기술",
+      "society": "사회",
+      "culture": "문화"
+    },
+    "statuses": {
+      "active": "활성",
+      "hot": "핫",
+      "resolved": "종료"
+    },
+    "stats": {
+      "activeMarkets": "활성 마켓",
+      "volume24h": "24h 거래량",
+      "tps": "TPS",
+      "countries": "국가"
+    },
+    "popup": {
+      "probability": "확률",
+      "volume": "거래량",
+      "country": "국가",
+      "lastTrade": "최근 거래"
+    },
+    "feed": {
+      "title": "실시간 거래",
+      "live": "LIVE",
+      "empty": "거래가 없습니다"
+    },
+    "timeAgo": {
+      "justNow": "방금",
+      "minutesAgo": "{min}분 전",
+      "hoursAgo": "{hours}시간 전",
+      "daysAgo": "{days}일 전"
+    }
   }
 }
