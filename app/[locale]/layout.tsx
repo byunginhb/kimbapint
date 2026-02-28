@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import localFont from "next/font/local"
 import { routing } from "@/i18n/routing"
 import GoogleTranslate from "@/components/common/GoogleTranslate"
+import { AppThemeProvider } from "@/components/common/ThemeProvider"
 import "../globals.css"
 
 const neoDunggeunmo = localFont({
@@ -64,10 +65,19 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("kimbapint-theme");if(t==="light")document.documentElement.classList.add("light")}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className={`${neoDunggeunmo.variable} antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <GoogleTranslate />
-          {children}
+          <AppThemeProvider>
+            <GoogleTranslate />
+            {children}
+          </AppThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

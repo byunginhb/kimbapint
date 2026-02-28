@@ -99,28 +99,28 @@ const markets: MarketItem[] = [
 function TweetCard({ tweet }: { tweet: OsintTweet }) {
   return (
     <div
-      className={`bg-gray-800/50 border ${tweet.hasWarning ? "border-yellow-500/30" : "border-gray-700"} rounded-lg p-4 hover:bg-gray-800 transition-colors cursor-pointer`}
+      className={`bg-ki-elevated/50 border ${tweet.hasWarning ? "border-yellow-500/30" : "border-ki-border-subtle"} rounded-lg p-4 hover:bg-ki-elevated transition-colors cursor-pointer`}
     >
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs">
+          <div className="w-8 h-8 rounded-full bg-ki-border-subtle flex items-center justify-center text-xs">
             👤
           </div>
           <div>
             <div className="flex items-center gap-1">
-              <span className="text-sm font-medium text-white">
+              <span className="text-sm font-medium text-ki-text">
                 {tweet.account}
               </span>
               {tweet.hasWarning && (
                 <span className="text-yellow-500 text-xs">⚠</span>
               )}
             </div>
-            <span className="text-xs text-gray-500">{tweet.time}</span>
+            <span className="text-xs text-ki-text-muted">{tweet.time}</span>
           </div>
         </div>
         <a
           href="#"
-          className="text-gray-500 hover:text-white transition-colors"
+          className="text-ki-text-muted hover:text-ki-text transition-colors"
         >
           <svg
             viewBox="0 0 24 24"
@@ -131,7 +131,7 @@ function TweetCard({ tweet }: { tweet: OsintTweet }) {
           </svg>
         </a>
       </div>
-      <p className="text-sm text-gray-300 leading-relaxed line-clamp-4">
+      <p className="text-sm text-ki-text-secondary leading-relaxed line-clamp-4">
         {tweet.content}
       </p>
     </div>
@@ -141,14 +141,14 @@ function TweetCard({ tweet }: { tweet: OsintTweet }) {
 function IntelMarketCard({ market }: { market: MarketItem }) {
   const t = useTranslations("marketIntel")
   return (
-    <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/50 transition-colors">
+    <div className="bg-ki-elevated/30 border border-ki-border-subtle rounded-lg p-4 hover:bg-ki-elevated/50 transition-colors">
       <div className="flex items-start gap-3">
         <div className="text-3xl">{market.image}</div>
         <div className="flex-1 min-w-0">
-          <h4 className="text-sm text-white font-medium mb-1 line-clamp-2">
+          <h4 className="text-sm text-ki-text font-medium mb-1 line-clamp-2">
             {market.title}
           </h4>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-ki-text-muted">
             {market.priceChange !== null ? (
               <span
                 className={
@@ -170,17 +170,17 @@ function IntelMarketCard({ market }: { market: MarketItem }) {
           <span className="text-xs text-green-400">{market.status}</span>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-700">
-        <span className="text-xs text-gray-500">
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-ki-border-subtle">
+        <span className="text-xs text-ki-text-muted">
           24h Vol — {market.volume24h}
         </span>
         <div className="flex items-center gap-2">
-          <button className="text-xs text-gray-500 hover:text-gray-300 transition-colors">
+          <button className="text-xs text-ki-text-muted hover:text-ki-text-secondary transition-colors">
             <ChevronDown className="w-4 h-4 inline" /> {t("details")}
           </button>
           <a
             href="#"
-            className="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded text-white transition-colors font-mono"
+            className="px-3 py-1 text-xs bg-ki-border-subtle hover:bg-ki-elevated rounded text-ki-text transition-colors font-mono"
           >
             {t("viewMarket")}
           </a>
@@ -200,15 +200,15 @@ export function MarketIntelligence() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <TrendingUp className="w-5 h-5 text-cyan-400" />
-          <h2 className="text-lg font-bold text-white font-mono tracking-wider">
+          <h2 className="text-lg font-bold text-ki-text font-mono tracking-wider">
             {t("title")}
           </h2>
           <span className="flex items-center gap-1.5 text-xs">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-gray-400">{t("live")}</span>
+            <span className="text-ki-text-secondary">{t("live")}</span>
           </span>
         </div>
-        <div className="flex items-center gap-2 text-xs text-gray-500">
+        <div className="flex items-center gap-2 text-xs text-ki-text-muted">
           <span>Powered by</span>
           <span className="px-2 py-1 bg-blue-600 rounded text-white font-medium">
             Polymarket
@@ -217,17 +217,17 @@ export function MarketIntelligence() {
       </div>
 
       {/* 설명 */}
-      <div className="flex items-start gap-2 mb-6 p-4 bg-gray-800/30 rounded-lg border border-gray-700">
-        <HelpCircle className="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
+      <div className="flex items-start gap-2 mb-6 p-4 bg-ki-elevated/30 rounded-lg border border-ki-border-subtle">
+        <HelpCircle className="w-5 h-5 text-ki-text-muted flex-shrink-0 mt-0.5" />
         <div>
-          <p className="text-sm text-gray-300 mb-2">
+          <p className="text-sm text-ki-text-secondary mb-2">
             {t("description")}{" "}
             <a href="#" className="text-cyan-400 hover:underline">
               {t("topMarkets")}
             </a>
             {t("descriptionSuffix")}
           </p>
-          <div className="flex flex-wrap gap-4 text-xs text-gray-500">
+          <div className="flex flex-wrap gap-4 text-xs text-ki-text-muted">
             <span>
               <span className="text-green-400">●</span> {t("tipTweet")}
             </span>
@@ -244,8 +244,8 @@ export function MarketIntelligence() {
       {/* OSINT FEED 헤더 */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-gray-500">⚡</span>
-          <h3 className="text-sm font-mono text-gray-400 tracking-wider">
+          <span className="text-ki-text-muted">⚡</span>
+          <h3 className="text-sm font-mono text-ki-text-secondary tracking-wider">
             OSINT FEED
           </h3>
         </div>
@@ -254,7 +254,7 @@ export function MarketIntelligence() {
             onClick={() => setActiveTab("Live")}
             className={`px-3 py-1 text-xs font-mono rounded transition-colors ${activeTab === "Live"
                 ? "bg-blue-600 text-white"
-                : "bg-gray-800 text-gray-400 hover:text-white"
+                : "bg-ki-elevated text-ki-text-secondary hover:text-ki-text"
               }`}
           >
             Live
@@ -263,12 +263,12 @@ export function MarketIntelligence() {
             onClick={() => setActiveTab("Top")}
             className={`px-3 py-1 text-xs font-mono rounded transition-colors ${activeTab === "Top"
                 ? "bg-blue-600 text-white"
-                : "bg-gray-800 text-gray-400 hover:text-white"
+                : "bg-ki-elevated text-ki-text-secondary hover:text-ki-text"
               }`}
           >
             Top
           </button>
-          <span className="text-xs text-gray-500 ml-2 font-mono">00:14Z</span>
+          <span className="text-xs text-ki-text-muted ml-2 font-mono">00:14Z</span>
         </div>
       </div>
 
@@ -287,12 +287,12 @@ export function MarketIntelligence() {
       </div>
 
       {/* Polymarket 배너 */}
-      <div className="mt-6 p-4 bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg border border-gray-700 flex items-center justify-between">
+      <div className="mt-6 p-4 bg-gradient-to-r from-ki-elevated to-ki-surface-alt rounded-lg border border-ki-border-subtle flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="px-2 py-1 bg-blue-600 rounded text-white text-xs font-medium">
             Polymarket
           </span>
-          <span className="text-white font-medium">
+          <span className="text-ki-text font-medium">
             {t("tradingBanner")}
           </span>
         </div>
@@ -303,14 +303,14 @@ export function MarketIntelligence() {
           >
             {t("trading")}
           </a>
-          <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-white text-sm transition-colors">
+          <button className="px-4 py-2 bg-ki-border-subtle hover:bg-ki-elevated rounded text-ki-text text-sm transition-colors">
             {t("close")}
           </button>
         </div>
       </div>
 
       {/* 푸터 */}
-      <div className="mt-8 text-center text-xs text-gray-600 font-mono tracking-wider">
+      <div className="mt-8 text-center text-xs text-ki-text-muted font-mono tracking-wider">
         {t("classified")}
       </div>
     </div>

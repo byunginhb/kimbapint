@@ -68,17 +68,17 @@ const levelStyles: Record<
 > = {
   LOW: {
     badge: "bg-green-500/20 text-green-400 border-green-500/50",
-    border: "border-gray-700",
+    border: "border-ki-border-subtle",
     chart: "#22c55e",
   },
   MODERATE: {
     badge: "bg-cyan-500/20 text-cyan-400 border-cyan-500/50",
-    border: "border-gray-700",
+    border: "border-ki-border-subtle",
     chart: "#06b6d4",
   },
   HIGH: {
     badge: "bg-orange-500/20 text-orange-400 border-orange-500/50",
-    border: "border-gray-700",
+    border: "border-ki-border-subtle",
     chart: "#f97316",
   },
   CRITICAL: {
@@ -137,12 +137,12 @@ function ThreatCard({ pair, analyzeLabel }: { pair: ThreatPair; analyzeLabel: st
   return (
     <Link
       href={`/polypulse/${pair.id}`}
-      className={`block bg-gray-900/60 border ${styles.border} rounded-lg p-4 hover:bg-gray-800/60 transition-colors`}
+      className={`block bg-ki-surface-alt/60 border ${styles.border} rounded-lg p-4 hover:bg-ki-elevated/60 transition-colors`}
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-xl">{pair.from.flag}</span>
-          <span className="text-gray-500">→</span>
+          <span className="text-ki-text-muted">→</span>
           <span className="text-xl">{pair.to.flag}</span>
         </div>
         <span
@@ -152,7 +152,7 @@ function ThreatCard({ pair, analyzeLabel }: { pair: ThreatPair; analyzeLabel: st
         </span>
       </div>
 
-      <p className="text-sm text-gray-400 font-mono mb-3">
+      <p className="text-sm text-ki-text-secondary font-mono mb-3">
         {pair.from.code} / {pair.to.code}
       </p>
 
@@ -160,7 +160,7 @@ function ThreatCard({ pair, analyzeLabel }: { pair: ThreatPair; analyzeLabel: st
         <MiniChart data={pair.chartData} color={styles.chart} />
       </div>
 
-      <span className="text-xs text-gray-500 hover:text-gray-300 transition-colors font-mono">
+      <span className="text-xs text-ki-text-muted hover:text-ki-text-secondary transition-colors font-mono">
         {analyzeLabel}
       </span>
     </Link>
@@ -178,16 +178,16 @@ export function PolyPulseThreatMonitor() {
           <span className="px-2 py-0.5 text-[10px] font-mono bg-green-500/20 text-green-400 border border-green-500/50 rounded">
             NEW
           </span>
-          <h2 className="text-lg sm:text-xl font-mono text-white flex items-center gap-2">
+          <h2 className="text-lg sm:text-xl font-mono text-ki-text flex items-center gap-2">
             <span className="text-purple-400">↗</span>
             <span className="font-bold">PolyPulse</span>
-            <span className="text-gray-400">—</span>
-            <span className="text-gray-300">{t("title")}</span>
+            <span className="text-ki-text-secondary">—</span>
+            <span className="text-ki-text-secondary">{t("title")}</span>
           </h2>
         </div>
         <Link
           href="/polypulse"
-          className="hidden sm:flex items-center gap-2 px-4 py-2 border border-gray-600 rounded-lg text-sm text-gray-300 hover:bg-gray-800 transition-colors font-mono"
+          className="hidden sm:flex items-center gap-2 px-4 py-2 border border-ki-border-subtle rounded-lg text-sm text-ki-text-secondary hover:bg-ki-elevated transition-colors font-mono"
         >
           {t("openPolyPulse")}
         </Link>

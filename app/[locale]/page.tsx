@@ -16,7 +16,7 @@ import { MarketGrid } from "@/components/markets/MarketGrid";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-ki-base text-ki-text font-mono">
       {/* 상단 바 */}
       <TopBar />
 
@@ -36,7 +36,7 @@ export default function Home() {
       <KimbapShopGrid />
 
       {/* 예측 마켓 그리드 */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-ki-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <MarketGrid />
         </div>
@@ -48,7 +48,7 @@ export default function Home() {
       </div>
 
       {/* Nothing Ever Happens Index 섹션 */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-ki-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           <NothingEverHappensIndex
             percentage={19}
@@ -62,21 +62,21 @@ export default function Home() {
       </div>
 
       {/* PolyPulse - Bilateral Threat Monitor */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-ki-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <PolyPulseThreatMonitor />
         </div>
       </div>
 
       {/* Feature Cards (POLY GLOBE + Mention HUB) */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-ki-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FeatureCards />
         </div>
       </div>
 
       {/* Market Intelligence */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-ki-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <MarketIntelligence />
         </div>

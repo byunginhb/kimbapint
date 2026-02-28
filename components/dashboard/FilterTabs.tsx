@@ -20,7 +20,7 @@ export function FilterTabs() {
   const [activeFilter, setActiveFilter] = useState<"all" | "filter" | "map">("all");
 
   return (
-    <div className="bg-gray-900/50 border-b border-gray-800 py-3 px-4">
+    <div className="bg-ki-surface-alt/50 border-b border-ki-border py-3 px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-4">
         {/* 왼쪽: 필터 탭 */}
         <div className="flex items-center gap-2">
@@ -29,7 +29,7 @@ export function FilterTabs() {
             className={`p-2 rounded-lg border transition-all ${
               activeFilter === "all"
                 ? "bg-yellow-500/20 border-yellow-500/40 text-yellow-400"
-                : "bg-gray-800/50 border-gray-700 text-gray-400 hover:text-white"
+                : "bg-ki-elevated/50 border-ki-border-subtle text-ki-text-secondary hover:text-ki-text"
             }`}
           >
             <Image src="/kimbap.png" alt="Kimbap" width={20} height={20} />
@@ -39,7 +39,7 @@ export function FilterTabs() {
             className={`p-2 rounded-lg border transition-all ${
               activeFilter === "filter"
                 ? "bg-blue-500/20 border-blue-500/40 text-blue-400"
-                : "bg-gray-800/50 border-gray-700 text-gray-400 hover:text-white"
+                : "bg-ki-elevated/50 border-ki-border-subtle text-ki-text-secondary hover:text-ki-text"
             }`}
           >
             <Filter className="w-5 h-5" />
@@ -49,7 +49,7 @@ export function FilterTabs() {
             className={`p-2 rounded-lg border transition-all ${
               activeFilter === "map"
                 ? "bg-purple-500/20 border-purple-500/40 text-purple-400"
-                : "bg-gray-800/50 border-gray-700 text-gray-400 hover:text-white"
+                : "bg-ki-elevated/50 border-ki-border-subtle text-ki-text-secondary hover:text-ki-text"
             }`}
           >
             <Map className="w-5 h-5" />
@@ -58,7 +58,7 @@ export function FilterTabs() {
 
         {/* 중앙: Timeline View */}
         <div className="flex items-center gap-3">
-          <span className="text-xs text-gray-500 font-mono hidden sm:inline">⏱️ TIMELINE VIEW:</span>
+          <span className="text-xs text-ki-text-muted font-mono hidden sm:inline">⏱️ TIMELINE VIEW:</span>
           <div className="flex items-center gap-1">
             {days.map((day, index) => (
               <button
@@ -67,7 +67,7 @@ export function FilterTabs() {
                 className={`px-3 py-1.5 rounded text-xs font-mono transition-all ${
                   selectedDay === index
                     ? "bg-blue-600 text-white"
-                    : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    : "bg-ki-elevated text-ki-text-secondary hover:bg-ki-border-subtle hover:text-ki-text"
                 }`}
               >
                 {day}
@@ -83,7 +83,7 @@ export function FilterTabs() {
             LIVE
           </button>
 
-          <div className="w-8 h-8 rounded-full bg-gray-700 border border-gray-600 flex items-center justify-center text-lg">
+          <div className="w-8 h-8 rounded-full bg-ki-border-subtle border border-ki-border-subtle flex items-center justify-center text-lg">
             <Image src="/kimbap.png" alt="Kimbap" width={20} height={20} />
           </div>
         </div>

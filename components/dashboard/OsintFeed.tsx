@@ -43,17 +43,17 @@ export function OsintFeed() {
   const t = useTranslations("osintFeed");
 
   return (
-    <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-3 shadow-lg">
+    <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-3 shadow-lg">
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <Satellite className="w-4 h-4 text-blue-400" />
-          <h3 className="text-sm font-bold font-mono text-white">OSINT FEED</h3>
+          <h3 className="text-sm font-bold font-mono text-ki-text">OSINT FEED</h3>
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <Wifi className="w-3 h-3 text-green-400" />
           </div>
-          <div className="text-xs text-gray-500 font-mono">00:00Z</div>
+          <div className="text-xs text-ki-text-muted font-mono">00:00Z</div>
         </div>
         <div className="flex items-center gap-2">
           <div className="text-xs font-mono px-2 py-1 rounded text-green-400 bg-green-900/20">
@@ -71,7 +71,7 @@ export function OsintFeed() {
       {/* 통계 */}
       <div className="flex items-center justify-between mb-3 text-xs font-mono">
         <div className="text-blue-400">MONITORING 12 ACCOUNTS</div>
-        <div className="text-gray-500">87 REPORTS • 15 ALERTS</div>
+        <div className="text-ki-text-muted">87 REPORTS • 15 ALERTS</div>
       </div>
 
       {/* 피드 아이템들 */}
@@ -90,9 +90,9 @@ export function OsintFeed() {
               className="relative flex-shrink-0 w-[calc(100vw-4rem)] sm:w-80"
             >
               <div
-                className={`bg-gray-900/60 border rounded-lg transition-all duration-300 hover:bg-gray-800/60 p-2 h-32 flex flex-col overflow-hidden ${item.isAlert
+                className={`bg-ki-surface-alt/60 border rounded-lg transition-all duration-300 hover:bg-ki-elevated/60 p-2 h-32 flex flex-col overflow-hidden ${item.isAlert
                   ? "animate-alert-breathe"
-                  : "border-gray-700"
+                  : "border-ki-border-subtle"
                   }`}
               >
                 {/* 상단 */}
@@ -106,12 +106,12 @@ export function OsintFeed() {
                       <span className="text-xs text-red-400">⚠️</span>
                     )}
                   </div>
-                  <span className="text-xs text-gray-500 font-mono">{item.timestamp}</span>
+                  <span className="text-xs text-ki-text-muted font-mono">{item.timestamp}</span>
                 </div>
 
                 {/* 콘텐츠 */}
                 <div className="flex gap-1 flex-1 pb-0.5 mb-1">
-                  <div className="text-xs text-gray-200 leading-snug font-mono flex-1 line-clamp-3">
+                  <div className="text-xs text-ki-text leading-snug font-mono flex-1 line-clamp-3">
                     {item.content}
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export function OsintFeed() {
                 <div className="flex justify-between items-center mt-auto">
                   <div className="flex items-center gap-1">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-xs text-gray-500 font-mono">LIVE</span>
+                    <span className="text-xs text-ki-text-muted font-mono">LIVE</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <button className="flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 transition-colors font-mono">

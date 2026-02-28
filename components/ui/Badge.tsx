@@ -11,12 +11,12 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default: "bg-neutral-800 text-neutral-300",
+  default: "bg-ki-elevated text-ki-text-secondary",
   success: "bg-green-500/10 text-green-500 border border-green-500/20",
   warning: "bg-yellow-500/10 text-yellow-500 border border-yellow-500/20",
   danger: "bg-red-500/10 text-red-500 border border-red-500/20",
   info: "bg-blue-500/10 text-blue-500 border border-blue-500/20",
-  region: "bg-neutral-800 text-neutral-300 border border-neutral-700",
+  region: "bg-ki-elevated text-ki-text-secondary border border-ki-border-subtle",
 };
 
 export function Badge({ children, variant = "default", className, pulse }: BadgeProps) {
@@ -37,7 +37,7 @@ export function Badge({ children, variant = "default", className, pulse }: Badge
               variant === "warning" && "bg-yellow-500",
               variant === "danger" && "bg-red-500",
               variant === "info" && "bg-blue-500",
-              variant === "default" && "bg-neutral-500"
+              variant === "default" && "bg-ki-text-muted"
             )}
           />
           <span
@@ -47,7 +47,7 @@ export function Badge({ children, variant = "default", className, pulse }: Badge
               variant === "warning" && "bg-yellow-500",
               variant === "danger" && "bg-red-500",
               variant === "info" && "bg-blue-500",
-              variant === "default" && "bg-neutral-500"
+              variant === "default" && "bg-ki-text-muted"
             )}
           />
         </span>

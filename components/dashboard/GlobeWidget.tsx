@@ -16,14 +16,14 @@ const markets: MarketItem[] = [
 
 export function GlobeWidget() {
   return (
-    <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+    <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
       {/* 헤더 */}
       <div className="flex items-center gap-2 mb-4">
         <div className="p-2 bg-purple-900/30 rounded-lg">
           <Globe className="w-5 h-5 text-purple-400" />
         </div>
         <div>
-          <h3 className="text-sm font-bold text-white font-mono">KIMBAP</h3>
+          <h3 className="text-sm font-bold text-ki-text font-mono">KIMBAP</h3>
           <h3 className="text-sm font-bold text-purple-400 font-mono">GLOBE</h3>
         </div>
       </div>
@@ -61,20 +61,20 @@ export function GlobeWidget() {
 
       {/* 마켓 리스트 */}
       <div className="space-y-2">
-        <div className="flex items-center gap-2 text-xs text-gray-500 font-mono mb-2">
+        <div className="flex items-center gap-2 text-xs text-ki-text-muted font-mono mb-2">
           <TrendingUp className="w-3 h-3" />
           <span>RELATED MARKETS</span>
         </div>
         {markets.map((market, index) => (
           <div
             key={index}
-            className="flex items-center justify-between p-2 bg-gray-800/50 rounded hover:bg-gray-800 transition-colors cursor-pointer"
+            className="flex items-center justify-between p-2 bg-ki-elevated/50 rounded hover:bg-ki-elevated transition-colors cursor-pointer"
           >
-            <span className="text-xs text-gray-300 font-mono truncate flex-1 mr-2">
+            <span className="text-xs text-ki-text-secondary font-mono truncate flex-1 mr-2">
               {market.name}
             </span>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-white font-mono">
+              <span className="text-sm font-bold text-ki-text font-mono">
                 {market.percentage}%
               </span>
               <span

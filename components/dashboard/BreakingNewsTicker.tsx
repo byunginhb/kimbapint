@@ -39,7 +39,7 @@ export function BreakingNewsTicker() {
   const t = useTranslations("breakingNews");
 
   return (
-    <div className="bg-gray-900/80 border-y border-gray-700 py-2 px-4">
+    <div className="bg-ki-surface-alt/80 border-y border-ki-border-subtle py-2 px-4">
       <div className="flex items-center gap-4 overflow-hidden">
         {/* BREAKING 배지 */}
         <div className="flex-shrink-0 flex items-center gap-1 px-2 py-1 bg-yellow-500/20 border border-yellow-500/40 rounded text-yellow-400 text-xs font-mono">
@@ -56,8 +56,8 @@ export function BreakingNewsTicker() {
             {[...newsItems, ...newsItems].map((item, index) => (
               <div key={`${item.id}-${index}`} className="flex items-center gap-2 text-sm">
                 <span>{item.emoji}</span>
-                <span className="text-gray-300">{item.text}</span>
-                <span className="text-white font-bold">{item.probability}%</span>
+                <span className="text-ki-text-secondary">{item.text}</span>
+                <span className="text-ki-text font-bold">{item.probability}%</span>
                 <span className={item.change >= 0 ? "text-green-400" : "text-red-400"}>
                   {item.change >= 0 ? "↑" : "↓"}{Math.abs(item.change)}%
                 </span>
@@ -67,7 +67,7 @@ export function BreakingNewsTicker() {
         </div>
 
         {/* 더보기 버튼 */}
-        <button className="flex-shrink-0 flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs">
+        <button className="flex-shrink-0 flex items-center gap-1 text-ki-text-secondary hover:text-ki-text transition-colors text-xs">
           <span className="hidden sm:inline">{t("morePredictions")}</span>
           <ChevronDown className="w-4 h-4" />
         </button>

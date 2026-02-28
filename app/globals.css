@@ -1,13 +1,59 @@
 @import "tailwindcss";
 
+/* ── KimbapINT 테마 시스템 ── */
+/* 기본값 = 다크 모드, .light 클래스로 라이트 모드 오버라이드 */
+
+:root {
+  --ki-base: #000000;
+  --ki-surface: #171717;       /* neutral-900 */
+  --ki-surface-alt: #111827;   /* gray-900 */
+  --ki-elevated: #1f2937;      /* gray-800 */
+  --ki-overlay: rgba(10, 10, 10, 0.8); /* neutral-950/80 */
+  --ki-text: #fafafa;          /* neutral-50 */
+  --ki-text-secondary: #a3a3a3; /* neutral-400 */
+  --ki-text-muted: #737373;    /* neutral-500 */
+  --ki-border: #262626;        /* neutral-800 */
+  --ki-border-subtle: #374151; /* gray-700 */
+  --ki-scrollbar: #374151;
+  --ki-scrollbar-hover: #4b5563;
+}
+
+:root.light {
+  --ki-base: #fafafa;
+  --ki-surface: #ffffff;
+  --ki-surface-alt: #f3f4f6;   /* gray-100 */
+  --ki-elevated: #e5e7eb;      /* gray-200 */
+  --ki-overlay: rgba(255, 255, 255, 0.8);
+  --ki-text: #171717;          /* neutral-900 */
+  --ki-text-secondary: #52525b; /* zinc-600 */
+  --ki-text-muted: #737373;    /* neutral-500 */
+  --ki-border: #e5e7eb;        /* gray-200 */
+  --ki-border-subtle: #d1d5db; /* gray-300 */
+  --ki-scrollbar: #d1d5db;
+  --ki-scrollbar-hover: #9ca3af;
+}
+
 @theme {
   --font-sans: var(--font-neo-dunggeunmo), monospace;
   --font-mono: var(--font-neo-dunggeunmo), monospace;
+
+  --color-ki-base: var(--ki-base);
+  --color-ki-surface: var(--ki-surface);
+  --color-ki-surface-alt: var(--ki-surface-alt);
+  --color-ki-elevated: var(--ki-elevated);
+  --color-ki-overlay: var(--ki-overlay);
+  --color-ki-text: var(--ki-text);
+  --color-ki-text-secondary: var(--ki-text-secondary);
+  --color-ki-text-muted: var(--ki-text-muted);
+  --color-ki-border: var(--ki-border);
+  --color-ki-border-subtle: var(--ki-border-subtle);
 }
 
+@custom-variant light (&:where(.light, .light *));
+
 body {
-  background: #000000;
-  color: #ffffff;
+  background: var(--ki-base);
+  color: var(--ki-text);
   font-family: var(--font-neo-dunggeunmo), monospace;
 }
 
@@ -30,6 +76,16 @@ body {
   );
   pointer-events: none;
   z-index: 1;
+}
+
+.light .scanlines::before {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
 }
 
 /* DOUGHCON 글로우 애니메이션 */
@@ -136,12 +192,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #374151;
+  background: var(--ki-scrollbar);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
+  background: var(--ki-scrollbar-hover);
 }
 
 /* Google Translate 기본 UI 숨김 */

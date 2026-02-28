@@ -43,7 +43,7 @@ export function ThreatLevel({
       <div className="relative">
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-neutral-400">{tCard("currentLevel")}</span>
+          <span className="text-base text-ki-text-secondary">{tCard("currentLevel")}</span>
           {anomalyDetected && (
             <Badge variant="warning" className="gap-1">
               <AlertTriangle className="h-3 w-3" />
@@ -58,35 +58,35 @@ export function ThreatLevel({
             <span className={cn("text-5xl font-bold", config.color)}>
               {t(`${levelKey}.label`)}
             </span>
-            <span className="text-lg text-neutral-500 ml-2">({level})</span>
+            <span className="text-lg text-ki-text-muted ml-2">({level})</span>
           </div>
         </div>
 
         {/* 설명 */}
-        <p className="text-sm text-neutral-400 mb-4">{t(`${levelKey}.description`)}</p>
+        <p className="text-base text-ki-text-secondary mb-4">{t(`${levelKey}.description`)}</p>
 
         {/* 통계 */}
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-800">
+        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-ki-border">
           <div>
-            <p className="text-xs text-neutral-500 mb-1">{tCard("todayOrders")}</p>
-            <p className="text-2xl font-semibold font-mono text-neutral-50">
+            <p className="text-sm text-ki-text-muted mb-1">{tCard("todayOrders")}</p>
+            <p className="text-2xl font-semibold font-mono text-ki-text">
               {formatNumber(deliveryCount, locale)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-neutral-500 mb-1">{tCard("change24h")}</p>
+            <p className="text-sm text-ki-text-muted mb-1">{tCard("change24h")}</p>
             <div className="flex items-center gap-2">
               {isPositiveChange ? (
                 <TrendingUp className="h-4 w-4 text-green-500" />
               ) : change24h < 0 ? (
                 <TrendingDown className="h-4 w-4 text-red-500" />
               ) : (
-                <Minus className="h-4 w-4 text-neutral-500" />
+                <Minus className="h-4 w-4 text-ki-text-muted" />
               )}
               <span
                 className={cn(
                   "text-2xl font-semibold font-mono",
-                  isPositiveChange ? "text-green-500" : change24h < 0 ? "text-red-500" : "text-neutral-50"
+                  isPositiveChange ? "text-green-500" : change24h < 0 ? "text-red-500" : "text-ki-text"
                 )}
               >
                 {isPositiveChange ? "+" : ""}

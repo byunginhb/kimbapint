@@ -77,9 +77,9 @@ export default function MarketsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-ki-base text-ki-text font-mono">
       {/* 헤더 */}
-      <div className="bg-gray-900 border-b border-gray-700">
+      <div className="bg-ki-surface-alt border-b border-ki-border-subtle">
         <div className="container mx-auto px-4 py-4">
           <BackButton href="/" label={tCommon("dashboard")} />
 
@@ -101,17 +101,17 @@ export default function MarketsPage() {
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* 통계 카드 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <Target className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("marketCount")}</span>
             </div>
-            <span className="text-3xl font-bold text-white">{stats.total}</span>
-            <span className="text-gray-500 text-sm ml-2">{t("countUnit")}</span>
+            <span className="text-3xl font-bold text-ki-text">{stats.total}</span>
+            <span className="text-ki-text-muted text-sm ml-2">{t("countUnit")}</span>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <DollarSign className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("totalVolume24h")}</span>
             </div>
@@ -120,15 +120,15 @@ export default function MarketsPage() {
             </span>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <BarChart3 className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("avgProbability")}</span>
             </div>
             <span className="text-3xl font-bold text-green-500">
               {(stats.avgProbability * 100).toFixed(1)}
             </span>
-            <span className="text-gray-500 text-lg ml-1">%</span>
+            <span className="text-ki-text-muted text-lg ml-1">%</span>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ export default function MarketsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           {/* 지역 필터 */}
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2 text-gray-400">
+            <div className="flex items-center gap-2 mb-2 text-ki-text-secondary">
               <Filter className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("regionFilter")}</span>
             </div>
@@ -148,7 +148,7 @@ export default function MarketsPage() {
                   className={`px-3 py-1.5 rounded text-sm transition-all ${
                     selectedRegion === region
                       ? "bg-purple-600 text-white"
-                      : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                      : "bg-ki-elevated text-ki-text-secondary hover:bg-ki-border-subtle hover:text-ki-text"
                   }`}
                 >
                   {REGION_CONFIG[region].emoji} {tRegions(region)}
@@ -159,7 +159,7 @@ export default function MarketsPage() {
 
           {/* 정렬 */}
           <div>
-            <div className="flex items-center gap-2 mb-2 text-gray-400">
+            <div className="flex items-center gap-2 mb-2 text-ki-text-secondary">
               <ArrowUpDown className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("sort")}</span>
             </div>
@@ -169,7 +169,7 @@ export default function MarketsPage() {
                 className={`px-3 py-1.5 rounded text-sm transition-all flex items-center gap-1 ${
                   sortBy === "probability"
                     ? "bg-green-600 text-white"
-                    : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    : "bg-ki-elevated text-ki-text-secondary hover:bg-ki-border-subtle hover:text-ki-text"
                 }`}
               >
                 {t("probability")}
@@ -182,7 +182,7 @@ export default function MarketsPage() {
                 className={`px-3 py-1.5 rounded text-sm transition-all flex items-center gap-1 ${
                   sortBy === "volume"
                     ? "bg-cyan-600 text-white"
-                    : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    : "bg-ki-elevated text-ki-text-secondary hover:bg-ki-border-subtle hover:text-ki-text"
                 }`}
               >
                 {t("volume")}
@@ -195,7 +195,7 @@ export default function MarketsPage() {
                 className={`px-3 py-1.5 rounded text-sm transition-all flex items-center gap-1 ${
                   sortBy === "endDate"
                     ? "bg-yellow-600 text-white"
-                    : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    : "bg-ki-elevated text-ki-text-secondary hover:bg-ki-border-subtle hover:text-ki-text"
                 }`}
               >
                 {t("endDate")}
@@ -217,7 +217,7 @@ export default function MarketsPage() {
         {/* 마켓이 없을 때 */}
         {filteredAndSortedMarkets.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">{t("noMarkets")}</p>
+            <p className="text-ki-text-muted text-lg">{t("noMarkets")}</p>
           </div>
         )}
       </div>

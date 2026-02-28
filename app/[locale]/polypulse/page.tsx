@@ -27,13 +27,13 @@ export default function PolyPulsePage() {
   const stats = calculateGlobalStats();
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-ki-base text-ki-text font-mono">
       {/* 헤더 */}
-      <div className="bg-gray-900 border-b border-gray-700">
+      <div className="bg-ki-surface-alt border-b border-ki-border-subtle">
         <div className="container mx-auto px-4 py-4">
           <button
             onClick={() => router.push("/")}
-            className="flex items-center gap-2 px-3 py-1.5 text-gray-400 hover:text-white transition-colors font-mono text-sm"
+            className="flex items-center gap-2 px-3 py-1.5 text-ki-text-secondary hover:text-ki-text transition-colors font-mono text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{tCommon("dashboard")}</span>
@@ -46,7 +46,7 @@ export default function PolyPulsePage() {
                 <h1 className="text-xl sm:text-2xl font-bold tracking-wide">
                   {t("title")}
                 </h1>
-                <p className="text-gray-400 text-sm mt-1">
+                <p className="text-ki-text-secondary text-sm mt-1">
                   {t("subtitle")}
                 </p>
               </div>
@@ -61,8 +61,8 @@ export default function PolyPulsePage() {
 
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* 위협 레벨 범례 */}
-        <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
+        <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+          <h3 className="text-xs font-bold text-ki-text-secondary uppercase tracking-wider mb-3">
             {t("threatLevel")}
           </h3>
           <div className="flex flex-wrap gap-3">
@@ -85,37 +85,37 @@ export default function PolyPulsePage() {
 
         {/* 통계 카드 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <Activity className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("monitoringPairs")}</span>
             </div>
             <div className="text-3xl font-bold text-cyan-400">{stats.totalPairs}</div>
-            <p className="text-xs text-gray-500 mt-1">{t("pairsTracking")}</p>
+            <p className="text-xs text-ki-text-muted mt-1">{t("pairsTracking")}</p>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <TrendingUp className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("avgZScore")}</span>
             </div>
             <div className="text-3xl font-bold text-yellow-400">{stats.avgZScore}</div>
-            <p className="text-xs text-gray-500 mt-1">{t("avgBasis")}</p>
+            <p className="text-xs text-ki-text-muted mt-1">{t("avgBasis")}</p>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <AlertTriangle className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("crisisPairs")}</span>
             </div>
             <div className="text-3xl font-bold text-red-400">{stats.criticalPairs}</div>
-            <p className="text-xs text-gray-500 mt-1">{t("crisisDesc")}</p>
+            <p className="text-xs text-ki-text-muted mt-1">{t("crisisDesc")}</p>
           </div>
         </div>
 
         {/* 국가 쌍 그리드 */}
         <div>
-          <h2 className="text-sm font-bold text-white tracking-wider uppercase mb-4">
+          <h2 className="text-sm font-bold text-ki-text tracking-wider uppercase mb-4">
             {t("pairList")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -126,11 +126,11 @@ export default function PolyPulsePage() {
         </div>
 
         {/* 방법론 설명 */}
-        <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-          <h3 className="text-sm font-bold text-white tracking-wider uppercase mb-3">
+        <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+          <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase mb-3">
             {t("methodology")}
           </h3>
-          <div className="text-sm text-gray-400 space-y-2">
+          <div className="text-sm text-ki-text-secondary space-y-2">
             <p>{t("methodDesc1")}</p>
             <p>{t("methodDesc2")}</p>
             <p>{t("methodDesc3")}</p>
@@ -159,7 +159,7 @@ function ThreatPairCard({ pair }: { pair: ThreatPair }) {
     ? "text-red-400"
     : detail?.statistics.trend === "falling"
       ? "text-green-400"
-      : "text-gray-400";
+      : "text-ki-text-secondary";
 
   const trendKey = detail?.statistics.trend === "rising"
     ? "rising" as const
@@ -170,13 +170,13 @@ function ThreatPairCard({ pair }: { pair: ThreatPair }) {
   return (
     <Link
       href={`/polypulse/${pair.id}`}
-      className="block bg-gray-900/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/60 hover:border-gray-600 transition-all"
+      className="block bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4 hover:bg-ki-elevated/60 hover:border-ki-border-subtle transition-all"
     >
       {/* 국가 쌍 표시 */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-xl">{pair.from.flag}</span>
-          <span className="text-gray-500">→</span>
+          <span className="text-ki-text-muted">→</span>
           <span className="text-xl">{pair.to.flag}</span>
         </div>
         <div className={`px-2 py-0.5 ${config.bgColor} border ${config.borderColor} rounded text-xs ${config.color}`}>
@@ -185,7 +185,7 @@ function ThreatPairCard({ pair }: { pair: ThreatPair }) {
       </div>
 
       {/* 국가명 */}
-      <div className="text-sm text-white font-medium mb-2">
+      <div className="text-sm text-ki-text font-medium mb-2">
         {pair.from.name} → {pair.to.name}
       </div>
 
@@ -195,7 +195,7 @@ function ThreatPairCard({ pair }: { pair: ThreatPair }) {
           <span className="text-2xl font-bold" style={{ color: config.chartColor }}>
             {pair.zScore.toFixed(1)}
           </span>
-          <span className="text-xs text-gray-500">{t("zScore")}</span>
+          <span className="text-xs text-ki-text-muted">{t("zScore")}</span>
         </div>
         <div className={`flex items-center gap-1 ${trendColor} text-xs`}>
           <TrendIcon className="w-3 h-3" />

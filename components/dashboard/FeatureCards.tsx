@@ -10,7 +10,7 @@ export function FeatureCards() {
     <div className="py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* POLY GLOBE 카드 */}
-        <div className="bg-gray-900/40 border border-gray-700 rounded-xl p-6 lg:p-8 hover:border-gray-600 transition-colors">
+        <div className="bg-ki-surface-alt/40 border border-ki-border-subtle rounded-xl p-6 lg:p-8 hover:border-ki-border-subtle transition-colors">
           <div className="flex flex-col items-center text-center">
             <div className="mb-6 relative">
               <div className="w-32 h-32 lg:w-40 lg:h-40 relative">
@@ -57,15 +57,15 @@ export function FeatureCards() {
               </div>
             </div>
 
-            <p className="text-gray-400 text-sm lg:text-base mb-6 max-w-xs">
+            <p className="text-ki-text-secondary text-sm lg:text-base mb-6 max-w-xs">
               {t("polyGlobeDesc")}
             </p>
 
-            <hr className="w-full border-gray-700 mb-6" />
+            <hr className="w-full border-ki-border-subtle mb-6" />
 
             <a
               href="#"
-              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-mono text-sm"
+              className="flex items-center gap-2 text-ki-text-secondary hover:text-ki-text transition-colors font-mono text-sm"
             >
               <ExternalLink className="w-4 h-4" />
               {t("polyGlobeEnter")}
@@ -74,7 +74,7 @@ export function FeatureCards() {
         </div>
 
         {/* Mention HUB 카드 */}
-        <div className="bg-gray-900/40 border border-gray-700 rounded-xl p-6 lg:p-8 hover:border-gray-600 transition-colors">
+        <div className="bg-ki-surface-alt/40 border border-ki-border-subtle rounded-xl p-6 lg:p-8 hover:border-ki-border-subtle transition-colors">
           <div className="flex flex-col items-center text-center">
             <div className="mb-6 relative">
               <div className="w-32 h-32 lg:w-40 lg:h-40 relative flex items-center justify-center">
@@ -96,7 +96,7 @@ export function FeatureCards() {
                   Mention
                 </p>
                 <p
-                  className="text-3xl lg:text-4xl font-bold text-white leading-none"
+                  className="text-3xl lg:text-4xl font-bold text-ki-text leading-none"
                   style={{ fontFamily: "var(--font-vt323)" }}
                 >
                   HUB
@@ -104,11 +104,11 @@ export function FeatureCards() {
               </div>
             </div>
 
-            <p className="text-gray-400 text-sm lg:text-base mb-6 max-w-xs">
+            <p className="text-ki-text-secondary text-sm lg:text-base mb-6 max-w-xs">
               {t("trumpDesc")}
             </p>
 
-            <hr className="w-full border-gray-700 mb-6" />
+            <hr className="w-full border-ki-border-subtle mb-6" />
 
             <a
               href="#"

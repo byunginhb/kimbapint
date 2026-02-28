@@ -17,8 +17,8 @@ export function MarketGrid() {
       {/* 헤더 */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-xl font-semibold text-neutral-50">{t("gridTitle")}</h2>
-          <p className="text-sm text-neutral-400 mt-1">
+          <h2 className="text-xl font-semibold text-ki-text">{t("gridTitle")}</h2>
+          <p className="text-sm text-ki-text-secondary mt-1">
             {t("gridSubtitle")}
           </p>
         </div>
@@ -35,7 +35,7 @@ export function MarketGrid() {
       {/* 결과 없음 */}
       {markets.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-neutral-500">{t("noMarketsGrid")}</p>
+          <p className="text-ki-text-muted">{t("noMarketsGrid")}</p>
         </div>
       )}
     </div>

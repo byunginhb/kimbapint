@@ -28,8 +28,8 @@ export function RegionFilter({ selectedRegion, onRegionChange }: RegionFilterPro
               "px-4 py-2 rounded-lg text-sm font-medium transition-all",
               "border",
               isSelected
-                ? "bg-neutral-800 border-neutral-700 text-neutral-50"
-                : "bg-transparent border-neutral-800 text-neutral-400 hover:border-neutral-700 hover:text-neutral-300"
+                ? "bg-ki-elevated border-ki-border-subtle text-ki-text"
+                : "bg-transparent border-ki-border text-ki-text-secondary hover:border-ki-border-subtle hover:text-ki-text-secondary"
             )}
           >
             <span className="mr-1.5">{config.emoji}</span>

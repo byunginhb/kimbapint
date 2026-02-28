@@ -21,6 +21,7 @@ import {
   ReferenceLine,
 } from "recharts";
 import { BackButton } from "@/components/ui/BackButton";
+import { useChartTheme } from "@/lib/chart-theme";
 import {
   mockKimbapconHistory,
   mockMajorEvents,
@@ -36,6 +37,7 @@ export default function HistoryPage() {
   const t = useTranslations("history");
   const tCommon = useTranslations("pageCommon");
   const [period, setPeriod] = useState<PeriodFilter>(30);
+  const ct = useChartTheme();
 
   const filteredHistory = useMemo(() => {
     if (period === "all") return mockKimbapconHistory;
@@ -61,9 +63,9 @@ export default function HistoryPage() {
   const currentConfig = KIMBAPCON_LEVELS[currentLevel];
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-ki-base text-ki-text font-mono">
       {/* 헤더 */}
-      <div className="bg-gray-900 border-b border-gray-700">
+      <div className="bg-ki-surface-alt border-b border-ki-border-subtle">
         <div className="container mx-auto px-4 py-4">
           <BackButton href="/" label={tCommon("dashboard")} />
 
@@ -85,14 +87,14 @@ export default function HistoryPage() {
 
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* 현재 상태 카드 */}
-        <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-6">
+        <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-6">
           <div className="flex items-center gap-3 mb-4">
             <Shield className="w-6 h-6 text-blue-400" />
             <h2 className="text-lg font-bold">{t("currentStatus")}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">
+              <p className="text-ki-text-secondary text-xs uppercase tracking-wider mb-1">
                 {t("level")}
               </p>
               <p className={`text-3xl font-bold ${currentConfig.color}`}>
@@ -100,25 +102,25 @@ export default function HistoryPage() {
               </p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">
+              <p className="text-ki-text-secondary text-xs uppercase tracking-wider mb-1">
                 {t("statusCode")}
               </p>
-              <p className="text-lg text-white">
+              <p className="text-lg text-ki-text">
                 {mockKimbapconHistory[0]?.status || "N/A"}
               </p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">
+              <p className="text-ki-text-secondary text-xs uppercase tracking-wider mb-1">
                 {t("description")}
               </p>
-              <p className="text-lg text-gray-300">{tKimbapcon(`${currentLevel as 1 | 2 | 3 | 4 | 5}.description`)}</p>
+              <p className="text-lg text-ki-text-secondary">{tKimbapcon(`${currentLevel as 1 | 2 | 3 | 4 | 5}.description`)}</p>
             </div>
           </div>
         </div>
 
         {/* 기간 필터 */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 text-gray-400">
+          <div className="flex items-center gap-2 text-ki-text-secondary">
             <Calendar className="w-4 h-4" />
             <span className="text-xs uppercase tracking-wider">{t("period")}</span>
           </div>
@@ -135,7 +137,7 @@ export default function HistoryPage() {
                 className={`px-3 py-1.5 rounded text-sm transition-all ${
                   period === option.value
                     ? "bg-blue-600 text-white"
-                    : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
+                    : "bg-ki-elevated text-ki-text-secondary hover:bg-ki-border-subtle hover:text-ki-text"
                 }`}
               >
                 {option.label}
@@ -145,8 +147,8 @@ export default function HistoryPage() {
         </div>
 
         {/* 레벨 변화 차트 */}
-        <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-          <h3 className="text-sm font-bold text-white tracking-wider uppercase mb-4">
+        <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+          <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase mb-4">
             {t("levelChart")}
           </h3>
           <div className="h-64">
@@ -154,23 +156,25 @@ export default function HistoryPage() {
               <LineChart data={chartData}>
                 <XAxis
                   dataKey="date"
-                  tick={{ fill: "#6b7280", fontSize: 10 }}
+                  tick={{ fill: ct.tick, fontSize: 10 }}
                   interval="preserveStartEnd"
                 />
                 <YAxis
                   domain={[1, 5]}
                   ticks={[1, 2, 3, 4, 5]}
-                  tick={{ fill: "#6b7280", fontSize: 10 }}
+                  tick={{ fill: ct.tick, fontSize: 10 }}
                   width={30}
                   reversed
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#1f2937",
-                    border: "1px solid #374151",
+                    backgroundColor: ct.tooltipBg,
+                    border: `1px solid ${ct.tooltipBorder}`,
                     borderRadius: "8px",
                     fontSize: "12px",
+                    color: ct.tooltipText,
                   }}
+                  labelStyle={{ color: ct.tooltipLabel }}
                   formatter={(v) => [`Level ${v}`, "KIMBAPCON"]}
                   labelFormatter={(label, payload) => {
                     if (payload && payload[0]) {
@@ -195,33 +199,33 @@ export default function HistoryPage() {
           <div className="flex justify-center gap-6 mt-4 text-xs">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-green-500" />
-              <span className="text-gray-400">{t("levelStable")}</span>
+              <span className="text-ki-text-secondary">{t("levelStable")}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-blue-500" />
-              <span className="text-gray-400">{t("levelNormal")}</span>
+              <span className="text-ki-text-secondary">{t("levelNormal")}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <span className="text-gray-400">{t("levelElevated")}</span>
+              <span className="text-ki-text-secondary">{t("levelElevated")}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-orange-500" />
-              <span className="text-gray-400">{t("levelHigh")}</span>
+              <span className="text-ki-text-secondary">{t("levelHigh")}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500" />
-              <span className="text-gray-400">{t("levelMax")}</span>
+              <span className="text-ki-text-secondary">{t("levelMax")}</span>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 레벨 변경 기록 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-4 h-4 text-cyan-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("changeLog")}
               </h3>
               <span className="px-2 py-0.5 bg-cyan-900/30 border border-cyan-500/30 rounded text-cyan-400 text-xs">
@@ -237,7 +241,7 @@ export default function HistoryPage() {
                 return (
                   <div
                     key={entry.id}
-                    className="p-3 bg-gray-800/50 rounded-lg border border-gray-700"
+                    className="p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
@@ -259,15 +263,15 @@ export default function HistoryPage() {
                           </span>
                         )}
                         {!isUp && !isDown && (
-                          <span className="flex items-center gap-1 text-gray-400 text-xs">
+                          <span className="flex items-center gap-1 text-ki-text-secondary text-xs">
                             <Minus className="w-3 h-3" />
                             {t("maintain")}
                           </span>
                         )}
                       </div>
-                      <span className="text-xs text-gray-500">{entry.date}</span>
+                      <span className="text-xs text-ki-text-muted">{entry.date}</span>
                     </div>
-                    <p className="text-sm text-gray-300">{entry.trigger}</p>
+                    <p className="text-sm text-ki-text-secondary">{entry.trigger}</p>
                   </div>
                 );
               })}
@@ -275,10 +279,10 @@ export default function HistoryPage() {
           </div>
 
           {/* 주요 이벤트 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <AlertTriangle className="w-4 h-4 text-yellow-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("majorEvents")}
               </h3>
               <span className="px-2 py-0.5 bg-yellow-900/30 border border-yellow-500/30 rounded text-yellow-400 text-xs">
@@ -289,7 +293,7 @@ export default function HistoryPage() {
               {filteredEvents.map((event) => (
                 <div
                   key={event.id}
-                  className="p-3 bg-gray-800/50 rounded-lg border border-gray-700"
+                  className="p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle"
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -301,7 +305,7 @@ export default function HistoryPage() {
                               ? "bg-blue-900/30 text-blue-400"
                               : event.type === "economic"
                                 ? "bg-green-900/30 text-green-400"
-                                : "bg-gray-900/30 text-gray-400"
+                                : "bg-ki-surface-alt/30 text-ki-text-secondary"
                         }`}
                       >
                         {event.type === "military"
@@ -318,7 +322,7 @@ export default function HistoryPage() {
                             ? "text-red-400"
                             : event.impact === "medium"
                               ? "text-yellow-400"
-                              : "text-gray-400"
+                              : "text-ki-text-secondary"
                         }`}
                       >
                         {event.impact === "high"
@@ -328,15 +332,15 @@ export default function HistoryPage() {
                             : t("impactLow")}
                       </span>
                     </div>
-                    <span className="text-xs text-gray-500">{event.date}</span>
+                    <span className="text-xs text-ki-text-muted">{event.date}</span>
                   </div>
-                  <h4 className="text-sm text-white font-medium mb-1">
+                  <h4 className="text-sm text-ki-text font-medium mb-1">
                     {event.title}
                   </h4>
-                  <p className="text-xs text-gray-400">{event.description}</p>
+                  <p className="text-xs text-ki-text-secondary">{event.description}</p>
                   {event.kimbapconEffect !== 0 && (
                     <div className="mt-2 flex items-center gap-1">
-                      <span className="text-xs text-gray-500">{t("kimbapconEffect")}:</span>
+                      <span className="text-xs text-ki-text-muted">{t("kimbapconEffect")}:</span>
                       <span
                         className={`text-xs font-bold ${
                           event.kimbapconEffect < 0

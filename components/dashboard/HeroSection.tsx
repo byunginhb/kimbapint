@@ -17,7 +17,7 @@ export function HeroSection({
   const t = useTranslations("hero");
 
   return (
-    <div className="py-3 sm:py-4 lg:py-6 border-b border-gray-800">
+    <div className="py-3 sm:py-4 lg:py-6 border-b border-ki-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4 lg:gap-8">
           {/* 왼쪽: 타이틀 + KIMBAPCON */}
@@ -37,13 +37,13 @@ export function HeroSection({
                   {t("kimbapIndex")}
                 </h1>
                 <div className="flex items-center gap-1.5 justify-center sm:justify-start mt-0.5 sm:mt-1 flex-wrap sm:flex-nowrap">
-                  <p className="text-gray-400 text-xs sm:text-sm lg:text-base tracking-wider sm:tracking-widest whitespace-nowrap">
+                  <p className="text-ki-text-secondary text-xs sm:text-sm lg:text-base tracking-wider sm:tracking-widest whitespace-nowrap">
                     {t("tagline")}
                   </p>
-                  <span className="text-gray-500 text-xs sm:text-sm lg:text-base">
+                  <span className="text-ki-text-muted text-xs sm:text-sm lg:text-base">
                     |
                   </span>
-                  <span className="text-gray-400 text-xs sm:text-sm lg:text-base tracking-wider">
+                  <span className="text-ki-text-secondary text-xs sm:text-sm lg:text-base tracking-wider">
                     Kimbap<span className="text-green-400">INT</span>
                   </span>
                 </div>

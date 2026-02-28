@@ -26,6 +26,7 @@ import {
 } from "recharts";
 import { Link } from "@/i18n/navigation";
 import { BackButton } from "@/components/ui/BackButton";
+import { useChartTheme } from "@/lib/chart-theme";
 import { getMarketBySlug, mockShopDetails } from "@/lib/mock-data";
 import { REGION_CONFIG } from "@/lib/types";
 import { formatNumber, formatDate } from "@/lib/utils";
@@ -38,6 +39,7 @@ export default function MarketDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
 
+  const ct = useChartTheme();
   const market = useMemo(() => getMarketBySlug(slug), [slug]);
 
   if (!market) {
@@ -56,7 +58,7 @@ export default function MarketDetailPage() {
   const trendColor = {
     up: "text-green-500",
     down: "text-red-500",
-    stable: "text-gray-500",
+    stable: "text-ki-text-muted",
   }[market.trend];
 
   const trendLabelKey = {
@@ -80,9 +82,9 @@ export default function MarketDetailPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-ki-base text-ki-text font-mono">
       {/* 헤더 */}
-      <div className="bg-gray-900 border-b border-gray-700">
+      <div className="bg-ki-surface-alt border-b border-ki-border-subtle">
         <div className="container mx-auto px-4 py-4">
           <BackButton href="/" label={tCommon("dashboard")} />
 
@@ -99,7 +101,7 @@ export default function MarketDetailPage() {
             <h1 className="text-xl sm:text-2xl font-bold tracking-wide mb-2">
               {market.title}
             </h1>
-            <p className="text-gray-400 text-sm">{market.description}</p>
+            <p className="text-ki-text-secondary text-sm">{market.description}</p>
           </div>
         </div>
       </div>
@@ -108,8 +110,8 @@ export default function MarketDetailPage() {
         {/* 확률 및 거래량 카드 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* 현재 확률 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-6">
-            <div className="flex items-center gap-2 text-gray-400 mb-3">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-6">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-3">
               <TrendingUp className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("currentProb")}</span>
             </div>
@@ -117,14 +119,14 @@ export default function MarketDetailPage() {
               <span className="text-5xl font-bold text-green-500">
                 {probabilityPercent}
               </span>
-              <span className="text-2xl text-gray-500 mb-1">%</span>
+              <span className="text-2xl text-ki-text-muted mb-1">%</span>
             </div>
-            <p className="text-xs text-gray-500 mt-2">{t("predictionProb")}</p>
+            <p className="text-xs text-ki-text-muted mt-2">{t("predictionProb")}</p>
           </div>
 
           {/* 24시간 거래량 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-6">
-            <div className="flex items-center gap-2 text-gray-400 mb-3">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-6">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-3">
               <DollarSign className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("volume24h")}</span>
             </div>
@@ -133,21 +135,21 @@ export default function MarketDetailPage() {
                 ₩{formatNumber(market.volume24h, locale)}
               </span>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-ki-text-muted mt-2">
               {t("totalVolume")}: ₩{formatNumber(market.totalVolume, locale)}
             </p>
           </div>
 
           {/* 마감일 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-6">
-            <div className="flex items-center gap-2 text-gray-400 mb-3">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-6">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-3">
               <Calendar className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("endDate")}</span>
             </div>
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-ki-text">
               {formatDate(market.endDate, locale)}
             </div>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-ki-text-muted mt-2">
               {t("createdAt")}: {formatDate(market.createdAt, locale)}
             </p>
           </div>
@@ -156,9 +158,9 @@ export default function MarketDetailPage() {
         {/* 차트 섹션 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 확률 히스토리 차트 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("probChart")}
               </h3>
               <span className="px-2 py-0.5 bg-green-900/30 border border-green-500/30 rounded text-green-400 text-xs">
@@ -170,21 +172,23 @@ export default function MarketDetailPage() {
                 <AreaChart data={probabilityChartData}>
                   <XAxis
                     dataKey="date"
-                    tick={{ fill: "#6b7280", fontSize: 10 }}
+                    tick={{ fill: ct.tick, fontSize: 10 }}
                     interval={2}
                   />
                   <YAxis
-                    tick={{ fill: "#6b7280", fontSize: 10 }}
+                    tick={{ fill: ct.tick, fontSize: 10 }}
                     width={35}
                     tickFormatter={(v) => `${v}%`}
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#1f2937",
-                      border: "1px solid #374151",
+                      backgroundColor: ct.tooltipBg,
+                      border: `1px solid ${ct.tooltipBorder}`,
                       borderRadius: "8px",
                       fontSize: "12px",
+                      color: ct.tooltipText,
                     }}
+                    labelStyle={{ color: ct.tooltipLabel }}
                     formatter={(v) => [`${v}%`, t("probTooltip")]}
                   />
                   <Area
@@ -200,33 +204,35 @@ export default function MarketDetailPage() {
           </div>
 
           {/* 거래량 차트 */}
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("volumeChart")}
               </h3>
-              <span className="text-xs text-gray-500">{t("volumeUnit")}</span>
+              <span className="text-xs text-ki-text-muted">{t("volumeUnit")}</span>
             </div>
             <div className="h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={volumeChartData}>
                   <XAxis
                     dataKey="date"
-                    tick={{ fill: "#6b7280", fontSize: 10 }}
+                    tick={{ fill: ct.tick, fontSize: 10 }}
                     interval={2}
                   />
                   <YAxis
-                    tick={{ fill: "#6b7280", fontSize: 10 }}
+                    tick={{ fill: ct.tick, fontSize: 10 }}
                     width={35}
                     tickFormatter={(v) => `${v}M`}
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#1f2937",
-                      border: "1px solid #374151",
+                      backgroundColor: ct.tooltipBg,
+                      border: `1px solid ${ct.tooltipBorder}`,
                       borderRadius: "8px",
                       fontSize: "12px",
+                      color: ct.tooltipText,
                     }}
+                    labelStyle={{ color: ct.tooltipLabel }}
                     formatter={(v) => [`₩${Number(v).toFixed(1)}M`, t("volumeTooltip")]}
                   />
                   <Bar dataKey="volume" fill="#06b6d4" radius={[2, 2, 0, 0]} />
@@ -238,10 +244,10 @@ export default function MarketDetailPage() {
 
         {/* 핵심 이벤트 타임라인 */}
         {market.keyEvents.length > 0 && (
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <AlertCircle className="w-4 h-4 text-yellow-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("keyEvents")}
               </h3>
               <span className="px-2 py-0.5 bg-yellow-900/30 border border-yellow-500/30 rounded text-yellow-400 text-xs">
@@ -252,7 +258,7 @@ export default function MarketDetailPage() {
               {market.keyEvents.map((event) => (
                 <div
                   key={`${event.date}-${event.event.slice(0, 20)}`}
-                  className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700"
+                  className="flex items-start gap-3 p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle"
                 >
                   <div
                     className={`w-2 h-2 rounded-full mt-1.5 ${
@@ -260,7 +266,7 @@ export default function MarketDetailPage() {
                         ? "bg-green-400"
                         : event.impact === "negative"
                           ? "bg-red-400"
-                          : "bg-gray-400"
+                          : "bg-ki-text-secondary"
                     }`}
                   />
                   <div className="flex-1">
@@ -271,7 +277,7 @@ export default function MarketDetailPage() {
                             ? "text-green-400"
                             : event.impact === "negative"
                               ? "text-red-400"
-                              : "text-gray-400"
+                              : "text-ki-text-secondary"
                         }`}
                       >
                         {event.impact === "positive"
@@ -280,9 +286,9 @@ export default function MarketDetailPage() {
                             ? t("impactNegative")
                             : t("impactNeutral")}
                       </span>
-                      <span className="text-xs text-gray-500">{event.date}</span>
+                      <span className="text-xs text-ki-text-muted">{event.date}</span>
                     </div>
-                    <p className="text-sm text-gray-300 mt-1">{event.event}</p>
+                    <p className="text-sm text-ki-text-secondary mt-1">{event.event}</p>
                   </div>
                 </div>
               ))}
@@ -292,10 +298,10 @@ export default function MarketDetailPage() {
 
         {/* 관련 뉴스 */}
         {market.relatedNews.length > 0 && (
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <Newspaper className="w-4 h-4 text-blue-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("relatedNews")}
               </h3>
             </div>
@@ -303,12 +309,12 @@ export default function MarketDetailPage() {
               {market.relatedNews.map((news) => (
                 <div
                   key={`${news.date}-${news.source}`}
-                  className="p-3 bg-gray-800/50 rounded-lg border border-gray-700 hover:bg-gray-800 transition-colors"
+                  className="p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle hover:bg-ki-elevated transition-colors"
                 >
-                  <h4 className="text-sm text-white font-medium mb-1">
+                  <h4 className="text-sm text-ki-text font-medium mb-1">
                     {news.title}
                   </h4>
-                  <div className="flex items-center gap-3 text-xs text-gray-500">
+                  <div className="flex items-center gap-3 text-xs text-ki-text-muted">
                     <span>{news.source}</span>
                     <span>•</span>
                     <span>{news.date}</span>
@@ -321,10 +327,10 @@ export default function MarketDetailPage() {
 
         {/* 관련 김밥집 */}
         {relatedShopsData.length > 0 && (
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <Store className="w-4 h-4 text-orange-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("relatedShops")}
               </h3>
             </div>
@@ -333,14 +339,14 @@ export default function MarketDetailPage() {
                 <Link
                   key={shop.id}
                   href={`/shop/${shop.id}`}
-                  className="flex items-center gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700 hover:bg-gray-800 transition-colors"
+                  className="flex items-center gap-3 p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle hover:bg-ki-elevated transition-colors"
                 >
                   <Image src="/kimbap.png" alt="Kimbap" width={28} height={28} />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm text-white font-medium truncate">
+                    <h4 className="text-sm text-ki-text font-medium truncate">
                       {shop.name}
                     </h4>
-                    <p className="text-xs text-gray-500">{shop.nearbyFacility}</p>
+                    <p className="text-xs text-ki-text-muted">{shop.nearbyFacility}</p>
                   </div>
                   <span
                     className={`px-2 py-1 rounded text-xs ${
@@ -350,7 +356,7 @@ export default function MarketDetailPage() {
                           ? "bg-red-900/30 text-red-400"
                           : shop.status === "BUSY"
                             ? "bg-yellow-900/30 text-yellow-400"
-                            : "bg-gray-800 text-gray-400"
+                            : "bg-ki-elevated text-ki-text-secondary"
                     }`}
                   >
                     {shop.status}

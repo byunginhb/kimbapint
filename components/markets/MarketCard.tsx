@@ -29,12 +29,12 @@ export function MarketCard({ market }: MarketCardProps) {
   const trendColor = {
     up: "text-green-500",
     down: "text-red-500",
-    stable: "text-neutral-500",
+    stable: "text-ki-text-muted",
   }[market.trend];
 
   return (
     <Link href={`/market/${market.slug}`} className="block">
-      <Card className="flex flex-col h-full hover:border-gray-600 transition-colors">
+      <Card className="flex flex-col h-full hover:border-ki-border-subtle transition-colors">
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-3">
           <Badge variant="region">
@@ -44,12 +44,12 @@ export function MarketCard({ market }: MarketCardProps) {
         </div>
 
         {/* 제목 */}
-        <h3 className="text-lg font-semibold text-neutral-50 mb-2 line-clamp-2">
+        <h3 className="text-xl font-semibold text-ki-text mb-2 line-clamp-2">
           {market.title}
         </h3>
 
         {/* 설명 */}
-        <p className="text-sm text-neutral-400 mb-4 line-clamp-2 grow">
+        <p className="text-base text-ki-text-secondary mb-4 line-clamp-2 grow">
           {market.description}
         </p>
 
@@ -59,20 +59,20 @@ export function MarketCard({ market }: MarketCardProps) {
             <span className="text-4xl font-bold text-green-500 font-mono">
               {probabilityPercent}
             </span>
-            <span className="text-lg text-neutral-500 ml-1">%</span>
-            <p className="text-xs text-neutral-500 mt-1">{tMarkets("predictionProb")}</p>
+            <span className="text-lg text-ki-text-muted ml-1">%</span>
+            <p className="text-sm text-ki-text-muted mt-1">{tMarkets("predictionProb")}</p>
           </div>
 
           <div className="text-right">
-            <p className="text-sm font-mono text-neutral-300">
+            <p className="text-base font-mono text-ki-text-secondary">
               ₩{formatNumber(market.volume24h, locale)}
             </p>
-            <p className="text-xs text-neutral-500">{tMarkets("volume24h")}</p>
+            <p className="text-sm text-ki-text-muted">{tMarkets("volume24h")}</p>
           </div>
         </div>
 
         {/* 푸터 */}
-        <div className="pt-3 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-500">
+        <div className="pt-3 border-t border-ki-border flex items-center justify-between text-sm text-ki-text-muted">
           <div className="flex items-center gap-1">
             <Calendar className="h-3 w-3" />
             <span>{tMarkets("deadline")}: {formatDate(market.endDate, locale)}</span>

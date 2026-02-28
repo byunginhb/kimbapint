@@ -17,7 +17,7 @@ export function Header({ threatLevel }: HeaderProps) {
   const config = THREAT_LEVEL_CONFIG[threatLevel];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-ki-border bg-ki-overlay backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* 로고 */}
@@ -25,10 +25,10 @@ export function Header({ threatLevel }: HeaderProps) {
             <Image src="/kimbap.png" alt="Kimbap" width={44} height={44} />
             <div>
               <h1 className="text-xl font-bold tracking-tight">
-                <span className="text-neutral-50">Kimbap</span>
+                <span className="text-ki-text">Kimbap</span>
                 <span className="text-green-500">INT</span>
               </h1>
-              <p className="text-xs text-neutral-500">{t("title")}</p>
+              <p className="text-xs text-ki-text-muted">{t("title")}</p>
             </div>
           </div>
 
@@ -38,7 +38,7 @@ export function Header({ threatLevel }: HeaderProps) {
               <Circle
                 className={cn("h-3 w-3 fill-current", config.color)}
               />
-              <span className="text-sm text-neutral-400">{t("threatLevel")}:</span>
+              <span className="text-sm text-ki-text-secondary">{t("threatLevel")}:</span>
               <Badge
                 variant={
                   threatLevel === "LOW"
@@ -58,7 +58,7 @@ export function Header({ threatLevel }: HeaderProps) {
           {/* 우측 - LIVE 배지 */}
           <div className="flex items-center gap-3">
             <LiveBadge />
-            <span className="text-xs text-neutral-500 hidden sm:inline">
+            <span className="text-xs text-ki-text-muted hidden sm:inline">
               {t("realTimeMonitoring")}
             </span>
           </div>

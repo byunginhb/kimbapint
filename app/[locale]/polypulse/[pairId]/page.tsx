@@ -27,6 +27,7 @@ import {
   getThreatPairDetailById,
   THREAT_LEVEL_CONFIG,
 } from "@/lib/polypulse-data";
+import { useChartTheme } from "@/lib/chart-theme";
 
 type Period = "7d" | "30d" | "90d";
 
@@ -35,6 +36,7 @@ export default function PolyPulseDetailPage() {
   const params = useParams();
   const pairId = params.pairId as string;
   const [period, setPeriod] = useState<Period>("30d");
+  const ct = useChartTheme();
 
   const t = useTranslations("polypulseDetail");
   const tLevel = useTranslations("polypulseThreatLevel");
@@ -65,7 +67,7 @@ export default function PolyPulseDetailPage() {
     ? "text-red-400"
     : pair.statistics.trend === "falling"
       ? "text-green-400"
-      : "text-gray-400";
+      : "text-ki-text-secondary";
 
   const trendLabel = pair.statistics.trend === "rising"
     ? t("trendRising")
@@ -74,13 +76,13 @@ export default function PolyPulseDetailPage() {
       : t("trendStable");
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-ki-base text-ki-text font-mono">
       {/* 헤더 */}
-      <div className="bg-gray-900 border-b border-gray-700">
+      <div className="bg-ki-surface-alt border-b border-ki-border-subtle">
         <div className="container mx-auto px-4 py-4">
           <button
             onClick={() => router.push("/polypulse")}
-            className="flex items-center gap-2 px-3 py-1.5 text-gray-400 hover:text-white transition-colors font-mono text-sm"
+            className="flex items-center gap-2 px-3 py-1.5 text-ki-text-secondary hover:text-ki-text transition-colors font-mono text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>PolyPulse</span>
@@ -90,7 +92,7 @@ export default function PolyPulseDetailPage() {
             <div className="flex items-center gap-3 mb-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{pair.from.flag}</span>
-                <span className="text-gray-500 text-lg">→</span>
+                <span className="text-ki-text-muted text-lg">→</span>
                 <span className="text-2xl">{pair.to.flag}</span>
               </div>
               <div className={`px-2.5 py-1 ${config.bgColor} border ${config.borderColor} rounded text-xs ${config.color}`}>
@@ -104,7 +106,7 @@ export default function PolyPulseDetailPage() {
             <h1 className="text-xl sm:text-2xl font-bold tracking-wide">
               {pair.from.name} → {pair.to.name}
             </h1>
-            <p className="text-gray-400 text-sm mt-1">{tLevel(`${levelKey}.description`)}</p>
+            <p className="text-ki-text-secondary text-sm mt-1">{tLevel(`${levelKey}.description`)}</p>
           </div>
         </div>
       </div>
@@ -112,8 +114,8 @@ export default function PolyPulseDetailPage() {
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* 통계 카드 */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <Activity className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("currentZScore")}</span>
             </div>
@@ -124,8 +126,8 @@ export default function PolyPulseDetailPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <BarChart3 className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("avg28d")}</span>
             </div>
@@ -134,8 +136,8 @@ export default function PolyPulseDetailPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <BarChart3 className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("avg90d")}</span>
             </div>
@@ -144,8 +146,8 @@ export default function PolyPulseDetailPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-gray-400 mb-2">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+            <div className="flex items-center gap-2 text-ki-text-secondary mb-2">
               <TrendingUp className="w-4 h-4" />
               <span className="text-xs uppercase tracking-wider">{t("percentile")}</span>
             </div>
@@ -153,17 +155,17 @@ export default function PolyPulseDetailPage() {
               <span className="text-3xl font-bold text-yellow-400">
                 {pair.statistics.percentile}
               </span>
-              <span className="text-lg text-gray-500">%</span>
+              <span className="text-lg text-ki-text-muted">%</span>
             </div>
           </div>
         </div>
 
         {/* Z-점수 차트 */}
-        <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+        <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 text-cyan-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("zScoreTrend")}
               </h3>
               <span className="px-2 py-0.5 bg-red-900/30 border border-red-500/30 rounded text-red-400 text-xs flex items-center gap-1">
@@ -181,7 +183,7 @@ export default function PolyPulseDetailPage() {
                   className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
                     period === p
                       ? "bg-cyan-900/50 border border-cyan-500 text-cyan-400"
-                      : "bg-gray-800 border border-gray-700 text-gray-400 hover:text-white"
+                      : "bg-ki-elevated border border-ki-border-subtle text-ki-text-secondary hover:text-ki-text"
                   }`}
                 >
                   {p === "7d" ? t("days7") : p === "30d" ? t("days30") : t("days90")}
@@ -195,21 +197,23 @@ export default function PolyPulseDetailPage() {
               <AreaChart data={chartData}>
                 <XAxis
                   dataKey="date"
-                  tick={{ fill: "#6b7280", fontSize: 10 }}
+                  tick={{ fill: ct.tick, fontSize: 10 }}
                   interval={period === "7d" ? 0 : period === "30d" ? 4 : 10}
                 />
                 <YAxis
-                  tick={{ fill: "#6b7280", fontSize: 10 }}
+                  tick={{ fill: ct.tick, fontSize: 10 }}
                   width={35}
                   domain={[-1, 6]}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#1f2937",
-                    border: "1px solid #374151",
+                    backgroundColor: ct.tooltipBg,
+                    border: `1px solid ${ct.tooltipBorder}`,
                     borderRadius: "8px",
                     fontSize: "12px",
+                    color: ct.tooltipText,
                   }}
+                  labelStyle={{ color: ct.tooltipLabel }}
                   formatter={(v) => [v, t("zScoreTrend")]}
                 />
                 {/* 위협 레벨 기준선 */}
@@ -230,10 +234,10 @@ export default function PolyPulseDetailPage() {
 
         {/* 핵심 이벤트 */}
         {pair.keyEvents.length > 0 && (
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <AlertCircle className="w-4 h-4 text-yellow-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("keyEvents")}
               </h3>
               <span className="px-2 py-0.5 bg-yellow-900/30 border border-yellow-500/30 rounded text-yellow-400 text-xs">
@@ -244,7 +248,7 @@ export default function PolyPulseDetailPage() {
               {pair.keyEvents.map((event) => (
                 <div
                   key={`${event.date}-${event.title.slice(0, 20)}`}
-                  className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700"
+                  className="flex items-start gap-3 p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle"
                 >
                   <div
                     className={`w-2 h-2 rounded-full mt-1.5 ${
@@ -252,7 +256,7 @@ export default function PolyPulseDetailPage() {
                         ? "bg-green-400"
                         : event.impact === "negative"
                           ? "bg-red-400"
-                          : "bg-gray-400"
+                          : "bg-ki-text-secondary"
                     }`}
                   />
                   <div className="flex-1">
@@ -263,7 +267,7 @@ export default function PolyPulseDetailPage() {
                             ? "text-green-400"
                             : event.impact === "negative"
                               ? "text-red-400"
-                              : "text-gray-400"
+                              : "text-ki-text-secondary"
                         }`}
                       >
                         {event.impact === "positive"
@@ -276,10 +280,10 @@ export default function PolyPulseDetailPage() {
                         <span className={`text-xs font-mono ${event.zScoreImpact > 0 ? "text-red-400" : "text-green-400"}`}>
                           {event.zScoreImpact > 0 ? "+" : ""}{event.zScoreImpact.toFixed(1)} Z
                         </span>
-                        <span className="text-xs text-gray-500">{event.date}</span>
+                        <span className="text-xs text-ki-text-muted">{event.date}</span>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-300 mt-1">{event.title}</p>
+                    <p className="text-sm text-ki-text-secondary mt-1">{event.title}</p>
                   </div>
                 </div>
               ))}
@@ -289,10 +293,10 @@ export default function PolyPulseDetailPage() {
 
         {/* 관련 뉴스 */}
         {pair.relatedNews.length > 0 && (
-          <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
+          <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
             <div className="flex items-center gap-2 mb-4">
               <Newspaper className="w-4 h-4 text-blue-400" />
-              <h3 className="text-sm font-bold text-white tracking-wider uppercase">
+              <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase">
                 {t("relatedNews")}
               </h3>
             </div>
@@ -300,12 +304,12 @@ export default function PolyPulseDetailPage() {
               {pair.relatedNews.map((news) => (
                 <div
                   key={`${news.date}-${news.source}`}
-                  className="p-3 bg-gray-800/50 rounded-lg border border-gray-700"
+                  className="p-3 bg-ki-elevated/50 rounded-lg border border-ki-border-subtle"
                 >
-                  <h4 className="text-sm text-white font-medium mb-1">
+                  <h4 className="text-sm text-ki-text font-medium mb-1">
                     {news.title}
                   </h4>
-                  <div className="flex items-center gap-3 text-xs text-gray-500">
+                  <div className="flex items-center gap-3 text-xs text-ki-text-muted">
                     <span>{news.source}</span>
                     <span>•</span>
                     <span>{news.date}</span>
@@ -317,26 +321,26 @@ export default function PolyPulseDetailPage() {
         )}
 
         {/* 방법론 설명 */}
-        <div className="bg-gray-900/60 border border-gray-700 rounded-lg p-4">
-          <h3 className="text-sm font-bold text-white tracking-wider uppercase mb-3">
+        <div className="bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4">
+          <h3 className="text-sm font-bold text-ki-text tracking-wider uppercase mb-3">
             {t("methodology")}
           </h3>
-          <div className="text-sm text-gray-400 space-y-2">
+          <div className="text-sm text-ki-text-secondary space-y-2">
             <p>
-              <span className="text-white font-medium">{t("zScoreExplain")}</span>
+              <span className="text-ki-text font-medium">{t("zScoreExplain")}</span>
               {" "}
               {tLevel(`${levelKey}.description`)}
             </p>
             <p>
-              <span className="text-white font-medium">{t("percentileExplain")}</span>
+              <span className="text-ki-text font-medium">{t("percentileExplain")}</span>
               {" "}
               {pair.statistics.percentile}%
             </p>
-            <div className="mt-3 p-3 bg-gray-800/50 rounded border border-gray-700">
-              <p className="text-xs text-gray-500">
+            <div className="mt-3 p-3 bg-ki-elevated/50 rounded border border-ki-border-subtle">
+              <p className="text-xs text-ki-text-muted">
                 Data source: GDELT Project (Global Database of Events, Language, and Tone)
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-ki-text-muted mt-1">
                 {t("lastUpdated")}: {pair.lastUpdated.slice(0, 10)} {pair.lastUpdated.slice(11, 19)} UTC
               </p>
             </div>

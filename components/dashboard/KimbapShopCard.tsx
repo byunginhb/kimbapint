@@ -25,9 +25,9 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
       textColor: "text-yellow-400",
     },
     CLOSED: {
-      bgColor: "bg-gray-800",
-      borderColor: "border-gray-600",
-      textColor: "text-gray-400",
+      bgColor: "bg-ki-elevated",
+      borderColor: "border-ki-border-subtle",
+      textColor: "text-ki-text-secondary",
     },
     SPIKE: {
       bgColor: "bg-red-900/20",
@@ -42,21 +42,21 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
   return (
     <Link
       href={`/shop/${shop.id}`}
-      className="block bg-gray-900/60 border border-gray-700 rounded-lg p-4 hover:bg-gray-800/60 hover:border-gray-600 transition-all cursor-pointer"
+      className="block bg-ki-surface-alt/60 border border-ki-border-subtle rounded-lg p-4 hover:bg-ki-elevated/60 hover:border-ki-border-subtle transition-all cursor-pointer"
     >
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Image src="/kimbap.png" alt="Kimbap" width={24} height={24} />
-          <h3 className="font-bold text-white font-mono text-sm uppercase tracking-wide">
+          <h3 className="font-bold text-ki-text font-mono text-base uppercase tracking-wide">
             {shop.name}
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="p-1.5 rounded bg-gray-800 text-gray-400">
+          <span className="p-1.5 rounded bg-ki-elevated text-ki-text-secondary">
             <ExternalLink className="w-4 h-4" />
           </span>
-          <span className="p-1.5 rounded bg-gray-800 text-gray-400">
+          <span className="p-1.5 rounded bg-ki-elevated text-ki-text-secondary">
             <Car className="w-4 h-4" />
           </span>
         </div>
@@ -65,25 +65,25 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
       {/* 상태 배지 + 거리 */}
       <div className="flex items-center justify-between mb-4">
         <div
-          className={`px-3 py-1.5 rounded ${config.bgColor} border ${config.borderColor} ${config.textColor} text-xs font-mono`}
+          className={`px-3 py-1.5 rounded ${config.bgColor} border ${config.borderColor} ${config.textColor} text-sm font-mono`}
         >
           {shop.status === "NOMINAL" && "↗ "}
           {tStatus(shop.status.toLowerCase() as "nominal" | "busy" | "closed" | "spike")}
         </div>
-        <span className="text-gray-500 text-xs font-mono">{shop.distance}</span>
+        <span className="text-ki-text-muted text-sm font-mono">{shop.distance}</span>
       </div>
 
       {/* POPULAR TIMES ANALYSIS */}
       <div className="mb-3">
-        <h4 className="text-xs text-gray-500 font-mono mb-2 tracking-wide">
+        <h4 className="text-sm text-ki-text-muted font-mono mb-2 tracking-wide">
           {tShop("popularTimes").toUpperCase()}
         </h4>
         <div className="flex items-center gap-1.5 mb-3">
-          <span className="px-2 py-0.5 bg-red-900/30 border border-red-500/30 rounded text-red-400 text-xs font-mono flex items-center gap-1">
+          <span className="px-2 py-0.5 bg-red-900/30 border border-red-500/30 rounded text-red-400 text-sm font-mono flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
             LIVE
           </span>
-          <span className="text-gray-400 text-xs">{shop.statusText}</span>
+          <span className="text-ki-text-secondary text-sm">{shop.statusText}</span>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ export function KimbapShopCard({ shop }: KimbapShopCardProps) {
                 style={{ height: `${height}%`, minHeight: data.value > 0 ? "4px" : "0" }}
               />
               {index % 4 === 0 && (
-                <span className="text-[8px] text-gray-600 font-mono">
+                <span className="text-[10px] text-ki-text-muted font-mono">
                   {data.hour.toString().padStart(2, "0")}
                 </span>
               )}

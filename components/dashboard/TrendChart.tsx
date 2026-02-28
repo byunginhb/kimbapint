@@ -14,6 +14,7 @@ import {
   Area,
   AreaChart,
 } from "recharts";
+import { useChartTheme } from "@/lib/chart-theme";
 
 interface TrendChartProps {
   weeklyOrders: number[];
@@ -22,6 +23,7 @@ interface TrendChartProps {
 
 export function TrendChart({ weeklyOrders, weeklyAverage }: TrendChartProps) {
   const t = useTranslations("trendChart");
+  const ct = useChartTheme();
   const labels = getWeekdayLabels();
   const data = weeklyOrders.map((orders, index) => ({
     day: labels[index],
@@ -33,15 +35,15 @@ export function TrendChart({ weeklyOrders, weeklyAverage }: TrendChartProps) {
     <Card>
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-4">
-        <span className="text-sm text-neutral-400">{t("title")}</span>
-        <div className="flex items-center gap-4 text-xs">
+        <span className="text-base text-ki-text-secondary">{t("title")}</span>
+        <div className="flex items-center gap-4 text-sm">
           <div className="flex items-center gap-1">
             <div className="h-2 w-2 rounded-full bg-green-500" />
-            <span className="text-neutral-500">{t("dailyOrders")}</span>
+            <span className="text-ki-text-muted">{t("dailyOrders")}</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="h-2 w-2 rounded-full bg-neutral-500" />
-            <span className="text-neutral-500">{t("average")}</span>
+            <div className="h-2 w-2 rounded-full bg-ki-text-muted" />
+            <span className="text-ki-text-muted">{t("average")}</span>
           </div>
         </div>
       </div>
@@ -56,26 +58,26 @@ export function TrendChart({ weeklyOrders, weeklyAverage }: TrendChartProps) {
                 <stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#262626" />
+            <CartesianGrid strokeDasharray="3 3" stroke={ct.grid} />
             <XAxis
               dataKey="day"
-              tick={{ fill: "#737373", fontSize: 12 }}
-              axisLine={{ stroke: "#262626" }}
-              tickLine={{ stroke: "#262626" }}
+              tick={{ fill: ct.tick, fontSize: 12 }}
+              axisLine={{ stroke: ct.axisLine }}
+              tickLine={{ stroke: ct.axisLine }}
             />
             <YAxis
-              tick={{ fill: "#737373", fontSize: 12 }}
-              axisLine={{ stroke: "#262626" }}
-              tickLine={{ stroke: "#262626" }}
+              tick={{ fill: ct.tick, fontSize: 12 }}
+              axisLine={{ stroke: ct.axisLine }}
+              tickLine={{ stroke: ct.axisLine }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#171717",
-                border: "1px solid #262626",
+                backgroundColor: ct.tooltipBg,
+                border: `1px solid ${ct.tooltipBorder}`,
                 borderRadius: "8px",
-                color: "#fafafa",
+                color: ct.tooltipText,
               }}
-              labelStyle={{ color: "#a3a3a3" }}
+              labelStyle={{ color: ct.tooltipLabel }}
               formatter={(value, name) => [
                 `${value}`,
                 name === "orders" ? t("ordersTooltip") : t("averageTooltip"),
