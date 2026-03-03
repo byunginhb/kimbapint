@@ -18,6 +18,7 @@ import type {
 import { buildFilteredGeoJSON } from "@/lib/globe-data"
 import type { GlobeBeam } from "@/lib/globe-beam"
 import { beamsToTrailGeoJSON, beamsToHeadGeoJSON } from "@/lib/globe-beam"
+import { fetchGlobeStyle } from "@/lib/globe-style"
 
 export interface GlobeMapHandle {
   flyTo: (lng: number, lat: number, zoom?: number) => void
@@ -182,7 +183,10 @@ const GlobeMap = forwardRef<GlobeMapHandle, GlobeMapProps>(
       let destroyed = false
 
       const init = async () => {
-        const { Map: MapLibreMap } = await import("maplibre-gl")
+        const [{ Map: MapLibreMap }, globeStyle] = await Promise.all([
+          import("maplibre-gl"),
+          fetchGlobeStyle(),
+        ])
 
         if (destroyed || !containerRef.current) return
 
@@ -192,46 +196,7 @@ const GlobeMap = forwardRef<GlobeMapHandle, GlobeMapProps>(
           center: INITIAL_CENTER,
           pitch: 0,
           canvasContextAttributes: { antialias: true },
-          style: {
-            version: 8,
-            projection: { type: "globe" },
-            sources: {
-              satellite: {
-                tiles: [
-                  "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg",
-                ],
-                type: "raster",
-                tileSize: 256,
-              },
-            },
-            layers: [
-              {
-                id: "satellite",
-                type: "raster",
-                source: "satellite",
-                paint: {
-                  "raster-brightness-min": 0.03,
-                  "raster-brightness-max": 0.4,
-                  "raster-contrast": 0.5,
-                  "raster-saturation": -0.6,
-                },
-              },
-            ],
-            sky: {
-              "atmosphere-blend": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0, 1,
-                5, 1,
-                7, 0,
-              ],
-            },
-            light: {
-              anchor: "map",
-              position: [1.5, 90, 80],
-            },
-          },
+          style: globeStyle,
         })
 
         mapRef.current = map
